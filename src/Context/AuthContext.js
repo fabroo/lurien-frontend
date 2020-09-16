@@ -17,6 +17,7 @@ export default ({ children }) => {
             setIsAuthenticated(data.isAuthenticated);
             setIsLoaded(true);
         });
+        
     }, []);
 
     return (
