@@ -1,14 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext,useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from '../Services/AuthService';
 import { AuthContext } from '../Context/AuthContext';
 import '../styles/navbar.css'
 import Logo from '../images/LurienIcon.png'
 import Sol from '../images/sol.svg'
+import Luna from '../images/luna.svg'
 
 const Navbar = props => {
-    const { isAuthenticated, user, setIsAuthenticated, setUser } = useContext(AuthContext);
-
+    const { isAuthenticated, user, setIsAuthenticated, setUser,setdarkk } = useContext(AuthContext);
+    const [dark, setdark] = useState(true);
+    const authContext = useContext(AuthContext);
+    
     const onClickLogoutHandler = () => {
         AuthService.logout().then(data => {
             if (data.success) {
@@ -42,7 +45,6 @@ const Navbar = props => {
     const authenticatedNavBar = () => {
         return (
             <>
-
                 {
                     user.role === "admin" ?
                         <div className="nav-rect">
@@ -85,6 +87,14 @@ const Navbar = props => {
             </>
         )
     }
+
+    const toggleTheme = () =>{
+        
+        setdark(!dark)
+        authContext.setdarkk(dark)
+        console.log(dark)
+    }
+
     return (
         <nav className="navbar">
             <div className="logo_section">
@@ -96,10 +106,10 @@ const Navbar = props => {
 
             <div className="culo">
                 <ul className="nav-links">
-                    <div className="theme_toggle">
-                        <div className="back_rec">
+                    <div className="theme_toggle" onClick={toggleTheme} style = {dark ? {background:'#F8F8F8'} : {background:'#282828'}}>
+                        <div className="back_rec" style = {dark ? {background:'#282828',marginLeft:'4px'} : {background:'#F8F8F8',marginLeft:'47px'}}>
                             <div className="icon_theme">
-                                <img src={Sol} alt=""/>
+                                <img src={dark ? Sol : Luna} alt=""/>
                             </div>
                         </div>
                     </div>

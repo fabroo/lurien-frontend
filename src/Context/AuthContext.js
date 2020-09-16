@@ -15,7 +15,7 @@ export default ({ children }) => {
     // const [companyid, setCompanyid] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
-
+    const [dark,setdarkk] = useState(false);
     useEffect(() => {
         AuthService.isAuthenticated().then(data => {
             setUser(data.user);
@@ -44,7 +44,7 @@ export default ({ children }) => {
                     </div>
                 </div> :
                 //, dni, setDni, mail, setMail, companyid, setCompanyid,createdAccount,setCreatedAccount 
-                <AuthContext.Provider value={{ user, setUser, isAuthenticated, setIsAuthenticated }}>
+                <AuthContext.Provider value={{ user, setUser, isAuthenticated, setIsAuthenticated,dark,setdarkk }}>
                     {children}
                 </AuthContext.Provider>
             }
