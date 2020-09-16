@@ -17,6 +17,27 @@ const Admin = props => {
     let [noregistradoClass, setNoRegistradoClass] = useState({ style: { display: 'none', margin: 'auto .5rem' } })
 
     let [loading, isLoading] = useState(false); //loading message
+    const [toggle, setToggle] = useState(false);
+
+    const authContext= useContext(AuthContext);
+
+    const {dark} = useContext(AuthContext);
+    useEffect(() => {
+        const owo = () =>{
+            if(dark){
+                
+                document.body.classList.remove('dark-bg') 
+                document.body.classList.add('light-bg') 
+            } 
+            else{
+                
+                document.body.classList.remove('light-bg') 
+                document.body.classList.add('dark-bg')
+            }
+            setToggle(dark)
+        }
+        owo()
+    }, [dark])
 
     useEffect(() => { //fetch user list at the beggining
 

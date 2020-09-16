@@ -1,18 +1,40 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect,useContext } from 'react'
 import AuthService from '../Services/AuthService';
 import swal from 'sweetalert';
+import { AuthContext } from '../Context/AuthContext';
 
 const Admin = props => {
     const [search, setSearch] = useState("");
     let [elinput, setElInput] = useState({ dni: 0, comapnyid: "", role: "user", username: "" })
     let [loading, isLoading] = useState(false)
-    let [viewmore, setViewmore] = useState({ display: 'block' })
+let [viewmore, setViewmore] = useState({ display: 'block' })
     const handleInput = e => {
         setSearch(e.target.value);
     };
 
     let [content, setContent] = useState(null)
     let [contenido, setContenido] = useState(null)
+    const [toggle, setToggle] = useState(false);
+
+    const authContext= useContext(AuthContext);
+
+    const {dark} = useContext(AuthContext);
+    useEffect(() => {
+        const owo = () =>{
+            if(dark){
+                
+                document.body.classList.remove('dark-bg') 
+                document.body.classList.add('light-bg') 
+            } 
+            else{
+                
+                document.body.classList.remove('light-bg') 
+                document.body.classList.add('dark-bg')
+            }
+            setToggle(dark)
+        }
+        owo()
+    }, [dark])
 
     useEffect(() => {
         isLoading(true)

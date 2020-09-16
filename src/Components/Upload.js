@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext,useEffect } from 'react';
 import AuthService from '../Services/AuthService';
 import { AuthContext } from '../Context/AuthContext';
 import swal from 'sweetalert';
@@ -10,7 +10,27 @@ const Upload = props => {
     const [style, setStyle] = useState({ width: '0%' })
     const [porcentaje, setPorcentaje] = useState({ porcentaje: '0%' })
     const [fotos, setFotos] = useState({ cantidad: 0 })
+    const [toggle, setToggle] = useState(false);
 
+    const authContext= useContext(AuthContext);
+
+    const {dark} = useContext(AuthContext);
+    useEffect(() => {
+        const owo = () =>{
+            if(dark){
+                
+                document.body.classList.remove('dark-bg') 
+                document.body.classList.add('light-bg') 
+            } 
+            else{
+                
+                document.body.classList.remove('light-bg') 
+                document.body.classList.add('dark-bg')
+            }
+            setToggle(dark)
+        }
+        owo()
+    }, [dark])
 
     const onChangeHandler = (e) => {
 
