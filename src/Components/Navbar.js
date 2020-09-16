@@ -2,6 +2,9 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from '../Services/AuthService';
 import { AuthContext } from '../Context/AuthContext';
+import '../styles/navbar.css'
+import Logo from '../images/LurienIcon.png'
+import Sol from '../images/sol.svg'
 
 const Navbar = props => {
     const { isAuthenticated, user, setIsAuthenticated, setUser } = useContext(AuthContext);
@@ -18,21 +21,20 @@ const Navbar = props => {
     const unauthenticatedNavBar = () => {
         return (
             <>
-                <Link to="/" className="nav-item">
-                    <li className="nav-link" data-toggle="collapse" data-target="#navbarSupportedContent">
-                        Home
+                <div className="nav-rect">
+                    <Link to="/login" className="nav-link">
+                        <li data-toggle="collapse" data-target="#navbarSupportedContent">
+                            Login
                     </li>
-                </Link>
-                <Link to="/login" className="nav-item">
-                    <li className="nav-link" data-toggle="collapse" data-target="#navbarSupportedContent">
-                        Login
+                    </Link>
+                </div>
+                <div className="nav-rect register-link">
+                    <Link to="/register" className="nav-link ">
+                        <li data-toggle="collapse" data-target="#navbarSupportedContent">
+                            Register
                     </li>
-                </Link>
-                <Link to="/register" className="nav-item">
-                    <li className=" nav-link" data-toggle="collapse" data-target="#navbarSupportedContent">
-                        Register
-                    </li>
-                </Link>
+                    </Link>
+                </div>
             </>
         )
     }
@@ -41,63 +43,69 @@ const Navbar = props => {
         return (
             <>
 
-                <Link to="/" className="nav-item">
-                    <li className=" nav-link" data-toggle="collapse" data-target="#navbarSupportedContent">
-                        Home
-                    </li>
-                </Link>
                 {
                     user.role === "admin" ?
-                        <Link to="/admin" className="nav-item">
-                            <li className=" nav-link" data-toggle="collapse" data-target="#navbarSupportedContent">
-                                Admin
+                        <div className="nav-rect">
+                            <Link to="/admin" className="nav-link">
+                                <li data-toggle="collapse" data-target="#navbarSupportedContent">
+                                    Admin
                         </li>
-                        </Link> : user.role === "mod" ? <Link to="/admin" className="nav-item">
-                            <li className=" nav-link" data-toggle="collapse" data-target="#navbarSupportedContent">
-                                Admin
-                        </li>
-                        </Link> : null
+                            </Link>
+                        </div>: null
                 }
                 {
                     user.role === "mod" ? (
-                        <Link to="/mod" className="nav-item">
-                            <li className=" nav-link" data-toggle="collapse" data-target="#navbarSupportedContent">
-                                MOD
+                        <div className="nav-rect">
+                            <Link to="/mod" className="nav-link">
+                                <li data-toggle="collapse" data-target="#navbarSupportedContent">
+                                    Mod
                 </li>
-                        </Link>
+                            </Link>
+                        </div>
                     ) : null
                 }
-                <Link className=" nav-item " to="/upload" >
+                <div className="nav-rect">
+                    <Link to="/upload" className="nav-link">
 
-                    <li className=" nav-link" data-toggle="collapse" data-target="#navbarSupportedContent">
-                        Upload
+                        <li data-toggle="collapse" data-target="#navbarSupportedContent">
+                            Upload
+</li>
+                    </Link>
+                </div>
+                <div className="nav-rect">
+                    <Link 
+                    className = "nav-link"
+                        to="/"
+                        onClick={onClickLogoutHandler}><li data-toggle="collapse" data-target="#navbarSupportedContent">
+                            Logout
                     </li>
-                </Link>
-                <Link type="button"
-                    className=" nav-item " to="/"
-                    onClick={onClickLogoutHandler}><li className=" nav-link" data-toggle="collapse" data-target="#navbarSupportedContent">
-                        Logout
-                    </li>
-                </Link>
+                    </Link>
+                </div>
 
             </>
         )
     }
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link to="/" className="nav-item">
-                <div className="navbar-brand">Lurien</div>
-            </Link>
+        <nav className="navbar">
+            <div className="logo_section">
+                <img src={Logo} className="logo_img" alt="" />
+                <Link className="logo_name" to="/" >
+                    <div>Lurien</div>
+                </Link>
+            </div>
 
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul className="navbar-nav mr-auto">
+            <div className="culo">
+                <ul className="nav-links">
+                    <div className="theme_toggle">
+                        <div className="back_rec">
+                            <div className="icon_theme">
+                                <img src={Sol} alt=""/>
+                            </div>
+                        </div>
+                    </div>
                     {!isAuthenticated ? unauthenticatedNavBar() : authenticatedNavBar()}
                 </ul>
             </div>
-
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
 
         </nav>
     )
