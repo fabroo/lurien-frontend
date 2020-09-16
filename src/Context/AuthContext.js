@@ -8,21 +8,12 @@ export const AuthContext = createContext();
 
 export default ({ children }) => {
     const [user, setUser] = useState(null);
-    
-    // const [dni, setDni] = useState(null);
-    // const [mail, setMail] = useState(null);
-    // const [createdAccount, setCreatedAccount] = useState(null);
-    // const [companyid, setCompanyid] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [dark,setdarkk] = useState(false);
     useEffect(() => {
         AuthService.isAuthenticated().then(data => {
             setUser(data.user);
-            // setDni(data.dni);
-            // setCompanyid(data.companyID);
-            // setCreatedAccount(data.createdAccount);
-            // setMail(data.mail);
             setIsAuthenticated(data.isAuthenticated);
             setIsLoaded(true);
         });

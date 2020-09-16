@@ -106,10 +106,10 @@ const Navbar = props => {
 
             <div className="culo">
                 <ul className="nav-links">
-                    <div className="theme_toggle" onClick={toggleTheme} style = {dark ? {background:'#F8F8F8'} : {background:'#282828'}}>
-                        <div className="back_rec" style = {dark ? {background:'#282828',marginLeft:'4px'} : {background:'#F8F8F8',marginLeft:'47px'}}>
+                    <div className="theme_toggle" onClick={toggleTheme} style = {!dark ? {background:'#F8F8F8'} : {background:'#282828'}}>
+                        <div className="back_rec" style = {!dark ? {background:'#282828',marginLeft:'4px'} : {background:'#F8F8F8',marginLeft:'47px'}}>
                             <div className="icon_theme">
-                                <img src={dark ? Sol : Luna} alt=""/>
+                                <img src={!dark ? Sol : Luna} alt=""/>
                             </div>
                         </div>
                     </div>
