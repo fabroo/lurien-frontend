@@ -1,4 +1,6 @@
-.loginn{
+*{
+    scroll-behavior: smooth;
+}.loginn{
     margin: 20vh auto 0 auto;
 }
 .none{

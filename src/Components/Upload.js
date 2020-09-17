@@ -14,7 +14,8 @@ const Upload = props => {
 
     const authContext= useContext(AuthContext);
 
-    const {dark} = useContext(AuthContext);
+    const {dark,open2,setOpenn} = useContext(AuthContext);
+
     useEffect(() => {
         const owo = () =>{
             if(dark){
@@ -84,7 +85,13 @@ const Upload = props => {
         }
     }
     return (
-        <div className="container">
+        <div className="container" onClick={() => {
+            if (open2) {
+                setOpenn(false)
+            console.log("deja de tocarme")
+
+            }
+        }}>
             <div className="row">
                 <div className="col-sm"></div>
                 <div className="col-sm">

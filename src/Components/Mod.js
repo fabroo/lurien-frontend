@@ -18,7 +18,8 @@ const Admin = props => {
 
     const authContext = useContext(AuthContext);
 
-    const { dark } = useContext(AuthContext);
+    const {dark,open2,setOpenn} = useContext(AuthContext);
+
     useEffect(() => {
         const owo = () => {
             if (dark) {
@@ -125,7 +126,13 @@ const Admin = props => {
     }
 
     return (
-        <div className="container" >
+        <div className="container"  onClick={() => {
+            if (open2) {
+                setOpenn(false)
+            console.log("deja de tocarme")
+
+            }
+        }}>
             <div className="m-2 arriba d-flex flex-row-reverse">
 
                 <form onSubmit={(e) => searchh()} >

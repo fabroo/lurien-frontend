@@ -21,7 +21,7 @@ const Admin = props => {
 
     const authContext= useContext(AuthContext);
 
-    const {dark} = useContext(AuthContext);
+    const {dark,open2,setOpenn} = useContext(AuthContext);
     useEffect(() => {
         const owo = () =>{
             if(dark){
@@ -206,7 +206,13 @@ const Admin = props => {
     }
 
     return (
-        <div className="container" >
+        <div className="container"  onClick={() => {
+            if (open2) {
+                setOpenn(false)
+            console.log("deja de tocarme")
+
+            }
+        }}>
             <div className="arriba d-flex flex-row-reverse">
                 <div className="botonera" style={{ display: 'flex' }} >
                 <button className="btn btn-info m-2" ><a style={{color:'white'}} href={"http://localhost:5000/api/upload/download/" + user.companyID}>DOWNLOAD DATA</a></button>

@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+*{
+    scroll-behavior: smooth;
+}
+
+.whole-body{
+    margin-top: 140px;
+    display: grid;
+    grid-template-columns: .4fr .6fr;
+}
+
+
+/*perfil datos de la imagen*/
+.profile-picture{
+    margin-left: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.profile-text{
+    margin-bottom: 26px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 0%;color: #676767;
+}
+.profile-picture-img{
+    width: 194px;
+    margin-bottom: 32px;
+    height: 194px;
+    border-radius: 117px;
+}
+
+.change-profile-picture{
+    background: #282828;
+    border-radius: 50px;
+    
+    width: 121px;
+    height: 35.44px;
+    margin-bottom: 34px;
+    font-family: Montserrat;
+    border: none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 0%;
+    color: #D3D3D3;
+
+}
+.profile-name{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 0%;
+    color: #282828;
+}
+
+/*datos del perfil*/
+.datos-del-perfil{
+    padding-top: 20px;
+    margin-left: 30px;
+}
+
+.datos-del-perfil-text{
+    margin-top: 10px;
+    margin-bottom: 60px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 0%;
+    color: #282828;
+}
+.fields{
+    width: 800px;
+    align-items: flex-end;
+    justify-content: end;
+}
+.full-name-field{
+    display: flex;
+    margin-bottom: 50px;
+}
+.email-field{
+    display: flex;
+    margin-bottom: 50px;
+}
+.dni-field{
+    display: flex;
+    margin-bottom: 50px;
+}
+.companyid-field{
+    display: flex;
+}
+.description{
+    
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 0%;
+    color: #272727;
+}
+.value-field{
+    margin-left: 10px;
+    border: none;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 0%;
+    color: #272727;
+    width: 600px;
+    height: 12px;
+    border-bottom: 1px solid #7A7A7A;
+}
+.second-row{
+    display: grid;
+    grid-template-columns: .5fr .5fr;
+    margin-top: 150px;
+    align-items: center;
+    /* height: 900px; */
+    margin-bottom: 100px;
+}
+.qr-zone{
+    border-right: 1px solid #4E5053;
+}
+.chart-zone{
+}
+.qr-zone,.chart-zone{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.div-separador{
+    width: 100%;
+    text-align: center;
+}
+.separador{
+    height: 600px;
+    width: 20px;
+    text-align: center;
+  background-color: red;
+}
+/*QR CODE*/
+.qr-text{
+    margin-bottom: 60px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 0%;
+
+    color: #282828;
+}
+.qr-img{
+    width: 428px;
+    height: 428px;
+}
+/*CHART*/
+.chart-text{
+    margin-bottom: 60px;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 0%;
+
+    color: #282828;
+}
+.chart-img{
+    width: 666px;
+    height: 441px;
+}
+.ultima-entrada-text{
+    margin-top: 20px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 0%;
+
+    color: #615B5B
+}
+
+@media (max-width:1400px){
+
+    .whole-body{
+        display: flex;
+        flex-direction: column;
+        margin-top: 60px;
+    }
+    .profile-picture{
+        margin-left: 0;
+        margin-bottom: 40px;
+    }
+    .datos-del-perfil, .fields{
+        text-align: center;
+    }
+    .datos-del-perfil .value-field{
+        border: none;
+    }
+    .second-row{
+        display: flex;
+        flex-direction: column;
+        margin-top: 50px;
+    }
+    .second-row img{
+        width: 300px;
+        height: auto;
+    }
+    .qr-zone{
+        border: none;
+        margin-bottom: 60px;
+    }
+    .qr-img{
+        width: 200px !important;
+    }
+    .qr-text,.chart-text{
+        font-size: 30px;
+    }
+}

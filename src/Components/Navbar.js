@@ -8,22 +8,16 @@ import Sol from '../images/sol2.svg'
 import Luna from '../images/luna1.svg'
 /**/
 import '../styles/owo.css';
-import { ReactComponent as BellIcon } from '../icons/bell.svg';
-import { ReactComponent as MessengerIcon } from '../icons/messenger.svg';
 import { ReactComponent as CaretIcon } from '../icons/caret.svg';
-import { ReactComponent as PlusIcon } from '../icons/plus.svg';
-import { ReactComponent as CogIcon } from '../icons/cog.svg';
-import { ReactComponent as ChevronIcon } from '../icons/chevron.svg';
-import { ReactComponent as ArrowIcon } from '../icons/arrow.svg';
-import { ReactComponent as BoltIcon } from '../icons/bolt.svg';
-
+import { ReactComponent as Admin } from '../images/admin.svg';
 import { CSSTransition } from 'react-transition-group';
 
 /**/
 const Navbar = props => {
-    const { isAuthenticated, user, setIsAuthenticated, setUser, setdarkk } = useContext(AuthContext);
+    const { isAuthenticated, user, setIsAuthenticated,setOpenn,open2, setUser, setdarkk } = useContext(AuthContext);
     const [dark, setdark] = useState(true);
     const authContext = useContext(AuthContext);
+    const [open, setOpen] = useState(false);
 
     const onClickLogoutHandler = () => {
         AuthService.logout().then(data => {
@@ -33,10 +27,7 @@ const Navbar = props => {
             }
         });
     }
-
-
     const toggleTheme = () => {
-
         setdark(!dark)
         authContext.setdarkk(dark)
         console.log(dark)
@@ -51,15 +42,17 @@ const Navbar = props => {
     }
 
     function NavItem(props) {
-        const [open, setOpen] = useState(false);
 
         return (
             <li className="nav-item">
-                <a href="#" className="icon-button a" onClick={() => setOpen(!open)}>
+                <a href="#" className="icon-button a" onClick={() => {
+                    setOpen(!open)
+                    authContext.setOpenn(true);
+                }}>
                     {props.icon}
                 </a>
 
-                {open && props.children}
+                {open2 && props.children}
             </li>
         );
     }
@@ -98,43 +91,45 @@ const Navbar = props => {
                     onEnter={calcHeight}>
                     <div className="menu">
                         {!isAuthenticated ? (
-                           null
+                            null
                         ) : (
                                 <>
-                                        {
-                                            user.role === "admin" ?
-                                                <DropdownItem><div>
-                                                    <Link to="/admin" className="nav-link">
-                                                        Admin
+                                    {
+                                        user.role === "admin" ?
+                                            <DropdownItem leftIcon={<Admin />}><div>
+                                                <Link to="/admin" className="nav-link">
+                                                    Admin
                                                     </Link>
-                                                </div> </DropdownItem> : null
-                                        }
-                                        {
-                                            user.role === "mod" ? (
-                                                <DropdownItem> <div >
-                                                    <Link to="/mod" className="nav-link">
-                                                        Mod
+                                            </div> </DropdownItem> : null
+                                    }
+                                    {
+                                        user.role === "mod" ? (
+                                            <DropdownItem> <div >
+                                                <Link to="/mod" className="nav-link">
+                                                    Mod
                                                     </Link>
-                                                </div></DropdownItem>
-                                            ) : null
-                                        }
-                                        <DropdownItem> <div >
-                                            <Link to="/upload" className="nav-link">
-                                                Upload
+                                            </div></DropdownItem>
+                                        ) : null
+                                    }
+                                    <DropdownItem> <div >
+                                        <Link to="/upload" className="nav-link">
+                                            Upload
                                             </Link>
-                                        </div></DropdownItem>
-                                        <DropdownItem> <div >
-                                            <Link to="/profile" className="nav-link">
-                                                Profile
+                                    </div></DropdownItem>
+                                    <DropdownItem> <div >
+                                        <Link to="/profile" className="nav-link">
+                                            Profile
                                             </Link>
-                                        </div></DropdownItem>
-                                        <DropdownItem> <div >
-                                            <Link
-                                                className="nav-link"
-                                                to="/"
-                                                onClick={onClickLogoutHandler}>Logout
+                                    </div></DropdownItem>
+                                    <br /><br /><br />
+                                    <br /><br /><br />
+                                    <DropdownItem> <div >
+                                        <Link
+                                            className="nav-link"
+                                            to="/"
+                                            onClick={onClickLogoutHandler}>Logout
                                             </Link>
-                                        </div></DropdownItem>
+                                    </div></DropdownItem>
                                 </>
                             )}
                     </div>
@@ -144,7 +139,11 @@ const Navbar = props => {
         );
     }
     return (
-        <nav className="navbar">
+        <nav className="navbar" onClick={() => {
+            if (open2) {
+                setOpenn(!open2)
+            }
+        }}>
             <div className="logo_section">
                 <img src={Logo} className="logo_img" alt="" />
                 <Link className="logo_name" to="/" >
@@ -154,29 +153,29 @@ const Navbar = props => {
 
             <div className="culo">
                 <ul className="nav-links ul">
-                    <div className="theme_toggle" onClick={toggleTheme} style={!dark ? { background: '#F8F8F8'} : { background: '#282828'}}>
+                    <div className="theme_toggle" onClick={toggleTheme} style={!dark ? { background: '#F8F8F8' } : { background: '#282828' }}>
                         {/* <div className="back_rec" style={!dark ? { background: '#282828', marginLeft: '4px' } : { background: '#F8F8F8', marginLeft: '47px' }}> */}
-                            <div className="icon_theme" style={!dark ? { marginLeft: '3px'} : {  marginLeft: '46px'}}>
-                                <img src={!dark ? Sol : Luna} alt="" />
-                            </div>
+                        <div className="icon_theme" style={!dark ? { marginLeft: '3px' } : { marginLeft: '46px' }}>
+                            <img src={!dark ? Sol : Luna} alt="" />
+                        </div>
                         {/* </div> */}
                     </div>
-                    {!isAuthenticated ? ( <>
-                             <div className="nav-rect">
-                                   <Link to="/login" className="nav-link">
-                                        Login
+                    {!isAuthenticated ? (<>
+                        <div className="nav-rect">
+                            <Link to="/login" className="nav-link">
+                                Login
                                </Link>
-                                </div>
-                                
-                            <div className="nav-rect">
-                                    <Link to="/register" className="nav-link ">
-                                        Register
+                        </div>
+
+                        <div className="nav-rect">
+                            <Link to="/register" className="nav-link ">
+                                Register
                                </Link>
-                                </div>
-                            </>) : ( <NavItem icon={<CaretIcon />}>
+                        </div>
+                    </>) : (<NavItem icon={<CaretIcon />}>
                         <DropdownMenu></DropdownMenu>
                     </NavItem>)}
-                   
+
                 </ul>
             </div>
 

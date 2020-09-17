@@ -68,10 +68,14 @@ div .nav-links{
     margin: auto  15px !important;
     background-color: #1E1E1E;
     width: 141px;
-    height: 520x;
+    /* height: 520px; */
     text-align: center;
     border-radius: 50px;
     transition: all .4s;
+}
+.icon_theme{
+    transition: all .4s;
+
 }
 .nav-rect:hover {
     background-color: #d8d8d8;

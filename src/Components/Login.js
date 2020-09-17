@@ -11,7 +11,7 @@ const Login = props => {
     const [toggle, setToggle] = useState(false);
     const authContext = useContext(AuthContext);
 
-    const { dark } = useContext(AuthContext);
+    const { dark,open,setOpenn } = useContext(AuthContext);
 
 
 
@@ -51,7 +51,7 @@ const Login = props => {
         });
     }
     return (
-        <div className="body" style={toggle ? { background: '#F8F8F8 ' } : { background: '#272727' }}>
+        <div className="body" style={toggle ? { background: '#F8F8F8 ' } : { background: '#272727' }} >
             <div></div>
             <form onSubmit={onSubmit}>
 
