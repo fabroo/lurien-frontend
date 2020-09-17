@@ -98,19 +98,7 @@ const Navbar = props => {
                     onEnter={calcHeight}>
                     <div className="menu">
                         {!isAuthenticated ? (
-                            <>
-                                <DropdownItem><div className="">
-                                    <Link to="/login" className="nav-link">
-                                        Login
-                               </Link>
-                                </div>
-                                </DropdownItem>
-                                <DropdownItem><div className="">
-                                    <Link to="/register" className="nav-link ">
-                                        Register
-                               </Link>
-                                </div></DropdownItem>
-                            </>
+                           null
                         ) : (
                                 <>
                                         {
@@ -133,6 +121,11 @@ const Navbar = props => {
                                         <DropdownItem> <div >
                                             <Link to="/upload" className="nav-link">
                                                 Upload
+                                            </Link>
+                                        </div></DropdownItem>
+                                        <DropdownItem> <div >
+                                            <Link to="/profile" className="nav-link">
+                                                Profile
                                             </Link>
                                         </div></DropdownItem>
                                         <DropdownItem> <div >
@@ -168,9 +161,22 @@ const Navbar = props => {
                             </div>
                         {/* </div> */}
                     </div>
-                    <NavItem icon={<CaretIcon />}>
+                    {!isAuthenticated ? ( <>
+                             <div className="nav-rect">
+                                   <Link to="/login" className="nav-link">
+                                        Login
+                               </Link>
+                                </div>
+                                
+                            <div className="nav-rect">
+                                    <Link to="/register" className="nav-link ">
+                                        Register
+                               </Link>
+                                </div>
+                            </>) : ( <NavItem icon={<CaretIcon />}>
                         <DropdownMenu></DropdownMenu>
-                    </NavItem>
+                    </NavItem>)}
+                   
                 </ul>
             </div>
 

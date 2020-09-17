@@ -3,6 +3,7 @@ import Navbar from './Components/Navbar';
 import Login from './Components/Login';
 // import Home from './Components/Home';
 import Upload from './Components/Upload';
+import Profile from './Components/Profile';
 import Register from './Components/Register';
 import Admin  from './Components/Admin';
 import Mod  from './Components/Mod';
@@ -20,6 +21,7 @@ function App() {
       <PrivateRoute path="/admin" roles={["admin","mod"]} component={Admin}/>
       <PrivateRoute path="/mod" roles={["mod"]} component={Mod}/>
       <PrivateRoute path="/upload" roles={["user","admin","mod"]} component={Upload}/>
+      <PrivateRoute path="/profile" roles={["user","admin","mod"]} component={Profile}/>
     </Router>
   );
 }
