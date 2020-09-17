@@ -10,6 +10,9 @@ import Luna from '../images/luna1.svg'
 import '../styles/owo.css';
 import { ReactComponent as CaretIcon } from '../icons/caret.svg';
 import { ReactComponent as Admin } from '../images/admin.svg';
+import { ReactComponent as Upload } from '../images/upload.svg';
+import { ReactComponent as Logout } from '../images/logout.svg';
+import { ReactComponent as Profile } from '../images/profile.svg';
 import { CSSTransition } from 'react-transition-group';
 
 /**/
@@ -96,7 +99,7 @@ const Navbar = props => {
                                 <>
                                     {
                                         user.role === "admin" ?
-                                            <DropdownItem leftIcon={<Admin />}><div>
+                                            <DropdownItem icon={<Admin />}><div>
                                                 <Link to="/admin" className="nav-link">
                                                     Admin
                                                     </Link>
@@ -111,19 +114,19 @@ const Navbar = props => {
                                             </div></DropdownItem>
                                         ) : null
                                     }
-                                    <DropdownItem> <div >
+                                    <DropdownItem leftIcon ={<Upload/>}> <div >
                                         <Link to="/upload" className="nav-link">
                                             Upload
                                             </Link>
                                     </div></DropdownItem>
-                                    <DropdownItem> <div >
+                                    <DropdownItem leftIcon={<Profile/>}>  <div >
                                         <Link to="/profile" className="nav-link">
                                             Profile
                                             </Link>
                                     </div></DropdownItem>
                                     <br /><br /><br />
                                     <br /><br /><br />
-                                    <DropdownItem> <div >
+                                    <DropdownItem leftIcon={<Logout/>}> <div >
                                         <Link
                                             className="nav-link"
                                             to="/"
@@ -143,20 +146,20 @@ const Navbar = props => {
             if (open2) {
                 setOpenn(!open2)
             }
-        }}>
+        }}  style={!dark ? { background: '#D3D3D3' } : { background: '#282828' }}>
             <div className="logo_section">
                 <img src={Logo} className="logo_img" alt="" />
                 <Link className="logo_name" to="/" >
-                    <div>Lurien</div>
+                    <div  style={!dark ? { color: '#282828' } : { color: '#D3D3D3' }} >Lurien</div>
                 </Link>
             </div>
 
             <div className="culo">
                 <ul className="nav-links ul">
-                    <div className="theme_toggle" onClick={toggleTheme} style={!dark ? { background: '#F8F8F8' } : { background: '#282828' }}>
+                    <div className="theme_toggle" style={!dark ? { background: '#F8F8F8' } : { background: '#282828' }}>
                         {/* <div className="back_rec" style={!dark ? { background: '#282828', marginLeft: '4px' } : { background: '#F8F8F8', marginLeft: '47px' }}> */}
                         <div className="icon_theme" style={!dark ? { marginLeft: '3px' } : { marginLeft: '46px' }}>
-                            <img src={!dark ? Sol : Luna} alt="" />
+                            <img  onClick={toggleTheme} src={!dark ? Sol : Luna} alt="" />
                         </div>
                         {/* </div> */}
                     </div>

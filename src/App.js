@@ -1,7 +1,7 @@
 import React,{useContext} from 'react';
 import Navbar from './Components/Navbar';
 import Login from './Components/Login';
-// import Home from './Components/Home';
+import Home from './Components/Home';
 import Upload from './Components/Upload';
 import Profile from './Components/Profile';
 import Register from './Components/Register';
@@ -24,8 +24,8 @@ const {dark,open2,setOpenn} = useContext(AuthContext);
       }
   }}>
       <Navbar/>
-      {/* <Route exact path="/" component={Home}/> */}
-      <UnPrivateRoute exact path="/login" component={Login}/>
+      <Route exact path="/" component={Home}/>
+      <UnPrivateRoute  path="/login" component={Login}/>
       <UnPrivateRoute path="/register" component={Register}/>
       <PrivateRoute path="/admin" roles={["admin","mod"]} component={Admin}/>
       <PrivateRoute path="/mod" roles={["mod"]} component={Mod}/>

@@ -2,9 +2,9 @@
     margin: 0%;
     padding: 0;
 }
-
 .body{
     margin: 2rem auto;
+    /* transition: all .4s; */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr ;
 }
@@ -60,7 +60,7 @@
     font-weight: normal;
     font-size: 24px;
     line-height: 0%;
-    transition: all .5s;
+    transition: all .4s;
 }
 .dark-bg{
     background:  #272727;
