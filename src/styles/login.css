@@ -85,3 +85,20 @@
     text-align: center;
     grid-template-columns: .1fr .8fr .1fr ;
 }
+
+@media (max-width:600px){
+    .input{
+        width: 350px;
+    }
+    .aceptar{
+        width: 200px;
+        height: 60px;
+        border-radius: 50px;
+    }
+    .login_text{
+        font-size: 60px;
+    }
+    .registrar{
+        font-size: 15px;
+    }
+}

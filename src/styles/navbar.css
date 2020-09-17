@@ -12,6 +12,7 @@
     grid-template-columns: .3fr .7fr ;
     width: 100%;
     background-color: #212121;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 /*LOGO*/
 .logo_section{
@@ -48,9 +49,10 @@
 }
 .nav-link{
     font-family: 'Montserrat', sans-serif !important;
-    text-decoration: none;
+    text-decoration: none !important;
     list-style: none;
-    font-size: 24px;
+    cursor: pointer;
+    font-size: 20px;
     text-align: center;
     color: #D3D3D3;
     height: 100%;
@@ -86,6 +88,7 @@ div .nav-links{
     height: 34px;
     background-color: #F8F8F8;
     margin-right: 30px;
+    user-select: none;
     transition: all .4s;
     border-radius: 48px;
 }
@@ -95,11 +98,15 @@ div .nav-links{
     height: 28px;
     border-radius: 50px;
     margin-top: 3px;
-    transition: all .4s;
+    transition: all .4s;user-select: none;
     margin-left: 4px;
 }
 .icon_theme {
     cursor: pointer;
+    width: 31px;
+    height: 31px;
+    margin-top: 1px;
+    margin-left: 3px;
 }
 .icon_theme img{
     position: relative;
@@ -108,3 +115,30 @@ div .nav-links{
     margin-top: 1px;
 
 } 
+@media (max-width:500px){
+    .theme_toggle{
+        display:none
+    }
+    .inputs{
+        display: flex;
+    }
+    .input{
+        width: 100px;
+    }
+    .logo_name{
+        font-size: 24px;
+    }
+    .logo_img{
+        margin: 0;
+    }
+    .navbar{
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        justify-content: space-around;
+        display: flex;
+    }
+    .body{
+        display: flex;
+    }
+}
