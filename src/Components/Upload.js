@@ -1,4 +1,4 @@
-import React, { useState, useContext,useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import AuthService from '../Services/AuthService';
 import { AuthContext } from '../Context/AuthContext';
 import swal from 'sweetalert';
@@ -12,20 +12,25 @@ const Upload = props => {
     const [fotos, setFotos] = useState({ cantidad: 0 })
     const [toggle, setToggle] = useState(false);
 
-    const authContext= useContext(AuthContext);
+    const authContext = useContext(AuthContext);
 
-    const {dark,open2,setOpenn} = useContext(AuthContext);
-
+    const { dark, open2, setOpenn } = useContext(AuthContext);
+    
+    const mostrarFoto = () => {
+        for (var image in picture) {
+          console.log("sadasdas",image[0])
+        }
+    }
     useEffect(() => {
-        const owo = () =>{
-            if(dark){
-                
-                document.body.classList.remove('dark-bg') 
-                document.body.classList.add('light-bg') 
-            } 
-            else{
-                
-                document.body.classList.remove('light-bg') 
+        const owo = () => {
+            if (dark) {
+
+                document.body.classList.remove('dark-bg')
+                document.body.classList.add('light-bg')
+            }
+            else {
+
+                document.body.classList.remove('light-bg')
                 document.body.classList.add('dark-bg')
             }
             setToggle(dark)
@@ -63,7 +68,7 @@ const Upload = props => {
                         swal(res.data.message)
                     })
 
-                    
+
 
                 } else {
                     swal({
@@ -88,11 +93,13 @@ const Upload = props => {
         <div className="container" onClick={() => {
             if (open2) {
                 setOpenn(false)
-            console.log("deja de tocarme")
+                console.log("deja de tocarme")
 
             }
         }}>
             <div className="row">
+
+                {picture ? (mostrarFoto()) : (null)}
                 <div className="col-sm"></div>
                 <div className="col-sm">
                     <h1 className="display-4 m-4 ">Fotos:</h1>
