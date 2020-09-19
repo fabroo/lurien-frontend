@@ -11,7 +11,7 @@ const Login = props => {
     const [toggle, setToggle] = useState(false);
     const authContext = useContext(AuthContext);
 
-    const { dark,open,setOpenn } = useContext(AuthContext);
+    const { dark } = useContext(AuthContext);
 
 
 

@@ -10,9 +10,7 @@ const Register = props => {
     const [user, setUser] = useState({ username: "", password: "", dni: "", companyID: "", mail: "" });
     const [message, setMessage] = useState(null);
     const [toggle, setToggle] = useState(false);
-    const [picture, setPicture] = useState(null);
     let timerID = useRef(null);
-    const authContext= useContext(AuthContext);
 
     const {dark} = useContext(AuthContext);
     useEffect(() => {
@@ -38,9 +36,7 @@ const Register = props => {
         }
     }, []);
 
-    const onChangeHandler = (e) => {
-        setPicture(e.target.files)
-    }
+
     const onClickHandler = () => {
         // const data = new FormData()
         // data.append('username', user.dni)

@@ -6,7 +6,6 @@ import '../styles/navbar.css'
 import Logo from '../images/LurienIcon.png'
 import Sol from '../images/sol2.svg'
 import Luna from '../images/luna1.svg'
-/**/
 import '../styles/owo.css';
 import { ReactComponent as CaretIcon } from '../icons/caret.svg';
 import { ReactComponent as Admin } from '../images/admin.svg';
@@ -17,10 +16,11 @@ import { CSSTransition } from 'react-transition-group';
 
 /**/
 const Navbar = props => {
-    const { isAuthenticated, user, setIsAuthenticated,setOpenn,open2, setUser, setdarkk } = useContext(AuthContext);
+    const { isAuthenticated, user, setIsAuthenticated,setOpenn,open2, setUser } = useContext(AuthContext);
     const [dark, setdark] = useState(true);
     const authContext = useContext(AuthContext);
     const [open, setOpen] = useState(false);
+    const [setMenuHeight] = useState(null);
 
     const onClickLogoutHandler = () => {
         AuthService.logout().then(data => {
@@ -36,18 +36,12 @@ const Navbar = props => {
         console.log(dark)
     }
 
-    function Navbar(props) {
-        return (
-            <nav className="navbar1">
-                <ul className="navbar-nav ul">{props.children}</ul>
-            </nav>
-        );
-    }
 
     function NavItem(props) {
 
         return (
             <li className="nav-item">
+                {/* eslint-disable-next-line*/} 
                 <a href="#" className="icon-button a" onClick={() => {
                     setOpen(!open)
                     authContext.setOpenn(true);
@@ -62,12 +56,11 @@ const Navbar = props => {
 
     function DropdownMenu() {
         const [activeMenu, setActiveMenu] = useState('main');
-        const [menuHeight, setMenuHeight] = useState(null);
         const dropdownRef = useRef(null);
 
-        useEffect(() => {
-            setMenuHeight(dropdownRef.current?.firstChild.offsetHeight)
-        }, [])
+        // useEffect(() => {
+        //     setMenuHeight(dropdownRef.current?.firstChild.offsetHeight)
+        // }, [])
 
         function calcHeight(el) {
             const height = el.offsetHeight;
@@ -76,6 +69,7 @@ const Navbar = props => {
 
         function DropdownItem(props) {
             return (
+
                 <a href="#" className="menu-item a" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
                     <span className="icon-button">{props.leftIcon}</span>
                     {props.children}

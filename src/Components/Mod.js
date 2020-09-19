@@ -8,15 +8,15 @@ const Admin = props => {
     let [elinput, setElInput] = useState({ dni: 0, comapnyid: "", role: "user", username: "" })
     let [loading, isLoading] = useState(false)
     let [viewmore, setViewmore] = useState({ display: 'block' })
+    
     const handleInput = e => {
         setSearch(e.target.value);
     };
 
     let [content, setContent] = useState(null)
     let [contenido, setContenido] = useState(null)
-    const [toggle, setToggle] = useState(false);
+    const [toggle,setToggle] = useState(false);
 
-    const authContext = useContext(AuthContext);
 
     const {dark,open2,setOpenn} = useContext(AuthContext);
 
@@ -33,8 +33,10 @@ const Admin = props => {
                 document.body.classList.add('dark-bg')
             }
             setToggle(dark)
+
         }
         owo()
+
     }, [dark])
 
     useEffect(() => {

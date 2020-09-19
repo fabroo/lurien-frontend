@@ -17,9 +17,7 @@ const Admin = props => {
     let [noregistradoClass, setNoRegistradoClass] = useState({ style: { display: 'none', margin: 'auto .5rem' } })
 
     let [loading, isLoading] = useState(false); //loading message
-    const [toggle, setToggle] = useState(false);
-
-    const authContext= useContext(AuthContext);
+    const [setToggle] = useState(false);
 
     const {dark,open2,setOpenn} = useContext(AuthContext);
     useEffect(() => {

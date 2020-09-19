@@ -2,8 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import AuthService from '../Services/AuthService';
 import { AuthContext } from '../Context/AuthContext';
 import swal from 'sweetalert';
-
-
+import UploadLogo from '../images/upload-logo.svg'
+import '../styles/upload.css'
 const Upload = props => {
     const [picture, setPicture] = useState(null);
     const { user } = useContext(AuthContext);
@@ -11,16 +11,10 @@ const Upload = props => {
     const [porcentaje, setPorcentaje] = useState({ porcentaje: '0%' })
     const [fotos, setFotos] = useState({ cantidad: 0 })
     const [toggle, setToggle] = useState(false);
-
+    const [urls, setUrls] = useState(null)
     const authContext = useContext(AuthContext);
 
     const { dark, open2, setOpenn } = useContext(AuthContext);
-    
-    const mostrarFoto = () => {
-        for (var image in picture) {
-          console.log("sadasdas",image[0])
-        }
-    }
     useEffect(() => {
         const owo = () => {
             if (dark) {
@@ -40,10 +34,23 @@ const Upload = props => {
 
     const onChangeHandler = (e) => {
 
-        setStyle({ width: '0%' })
-        setPicture(e.target.files)
-        setFotos({ cantidad: e.target.files.length })
+        let fotos = e.target.files;
+        let cantidad = fotos.length
+        if (cantidad > 0 && cantidad < 4) {
+            setStyle({ width: '0%' })
+            setPicture(fotos)
+            let urls_1 = [];
+            for (var i = 0; i < fotos.length; i++) {
+                urls_1.push({ url: URL.createObjectURL(fotos[i]), index: i })
+            }
+            setUrls(urls_1)
+            console.log("culo", urls_1)
+            // console.log(e.target.files)
+            setFotos({ cantidad })
 
+        } else {
+            alert("maximo 3 fotos perri")
+        }
     }
 
 
@@ -90,38 +97,38 @@ const Upload = props => {
         }
     }
     return (
-        <div className="container" onClick={() => {
+        <div className="contenedor-general" onClick={() => {
             if (open2) {
                 setOpenn(false)
                 console.log("deja de tocarme")
 
             }
         }}>
-            <div className="row">
+            <div className="">
+                <div className="contenedor">
+                    <img src={UploadLogo} alt="" className="logo-upload" />
+                    <p className="drag-n-drop">Drag &amp; Drop</p>
+                    <p className="or-text">Or</p>
+                        <label for="customFile" class="custom-file-upload">
+                             Browse Files
+</label>
+                        <input  type="file" multiple onChange={onChangeHandler}  id="customFile" accept="image/png, image/jpeg,image/jpg"/>
 
-                {picture ? (mostrarFoto()) : (null)}
-                <div className="col-sm"></div>
-                <div className="col-sm">
-                    <h1 className="display-4 m-4 ">Fotos:</h1>
-                    <p className="text-center">Subiste {fotos.cantidad} foto(s)</p>
-                    <div className="custom-file m-4">
-                        <br /><br />
-                        <input type="file" multiple onChange={onChangeHandler} name="holu" className="custom-file-input" id="customFile" accept="image/png, image/jpeg,image/jpg" />
-                        <label className="custom-file-label" htmlFor="customFile">Choose file</label>
-                        <br></br>
                         <div className="progress">
                             <div className="progress-bar" role="progressbar" style={style} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{porcentaje.porcentaje}</div>
                         </div>
-                        <br /><br /><br></br>
-                        <button type="button" className="btn btn-info" onClick={onClickHandler}>Upload</button>
-                    </div>
+                        <div className="img-zone">
+                            {urls ? (
+                                urls.map((url0) => {
+                                    return <div className="cover-img"><img id={url0.index} className="image-preview" key={url0.index} src={url0.url} /></div>
+                                })
+                            ) : (null)}
+                        </div>
+                        <div className="vacio"></div>
                 </div>
-                <div className="col-sm"></div>
+                <button type="button" className="boton-aceptar" onClick={onClickHandler}>Upload</button>
+
             </div>
-            <br /><br /><br />
-            <div className="container">
-            </div>
-            <br /><br />
         </div>
     )
 }
