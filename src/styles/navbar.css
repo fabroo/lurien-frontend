@@ -39,6 +39,7 @@
     /* justify-content: space-around; */
 
 }
+
 .culo{
     position:absolute;                  
     right:0; 
@@ -115,7 +116,33 @@ div .nav-links{
     margin-top: 1px;
 
 } 
-@media (max-width:500px){
+.display-username{
+    margin: 0 !important;
+
+    margin-right: 30px !important;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 0%;
+    color: #282828;
+
+}
+.sidenav-owo{
+    display: none !important;
+}
+@media (max-width:1000px){
+    .sidenav-owo{
+        display: unset !important;
+    }
+    .botones-login-reg{
+        display: none;
+    }
+}
+@media (max-width:550px){
+    .display-username{
+    display: none;
+    }
     .theme_toggle{
         display:none
     }

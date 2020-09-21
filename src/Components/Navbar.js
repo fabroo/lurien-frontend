@@ -12,11 +12,12 @@ import { ReactComponent as Admin } from '../images/admin.svg';
 import { ReactComponent as Upload } from '../images/upload.svg';
 import { ReactComponent as Logout } from '../images/logout.svg';
 import { ReactComponent as Profile } from '../images/profile.svg';
+import { ReactComponent as Mod } from '../images/modsvg.svg';
 import { CSSTransition } from 'react-transition-group';
 
 /**/
 const Navbar = props => {
-    const { isAuthenticated, user, setIsAuthenticated,setOpenn,open2, setUser } = useContext(AuthContext);
+    const { isAuthenticated, user, setIsAuthenticated, setOpenn, open2, setUser } = useContext(AuthContext);
     const [dark, setdark] = useState(true);
     const authContext = useContext(AuthContext);
     const [open, setOpen] = useState(false);
@@ -41,8 +42,8 @@ const Navbar = props => {
 
         return (
             <li className="nav-item">
-                {/* eslint-disable-next-line*/} 
-                <a href="#" className="icon-button a" onClick={() => {
+                {/* eslint-disable-next-line*/}
+                <a href="#" className="icon-button a" style={!dark ? ({ background: '#979797' }) : ({ background: '#484a4d' })} onClick={() => {
                     setOpen(!open)
                     authContext.setOpenn(true);
                 }}>
@@ -71,15 +72,15 @@ const Navbar = props => {
             return (
 
                 <a href="#" className="menu-item a" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
-                    <span className="icon-button">{props.leftIcon}</span>
+                    <span className="icon-button" style={!dark ? ({ background: '#979797' }) : ({ background: '#484a4d' })}>{props.leftIcon}</span>
                     {props.children}
-                    <span className="icon-right">{props.rightIcon}</span>
+                    <span className="icon-right" style={!dark ? ({ background: '#979797' }) : ({ background: '#484a4d' })}>{props.rightIcon}</span>
                 </a>
             );
         }
 
         return (
-            <div className="dropdown" ref={dropdownRef}>
+            <div className="dropdown" style={!dark ? ({ background: '#D3D3D3' }) : ({ background: "#242526" })} ref={dropdownRef}>
                 <CSSTransition
                     in={activeMenu === 'main'}
                     timeout={500}
@@ -88,41 +89,68 @@ const Navbar = props => {
                     onEnter={calcHeight}>
                     <div className="menu">
                         {!isAuthenticated ? (
-                            null
+                            <>
+                                <Link to="/login" className="nav-link" style={!dark ? ({ color: '#282828' ,padding:'0'}) : ({ color: '#D3D3D3' ,padding:'0'})}>
+
+                                    <DropdownItem icon={<Admin />}><div>
+
+                                        Login
+                                </div>
+                                    </DropdownItem>
+                                </Link>
+
+                                <Link to="/register" className="nav-link " style={!dark ? ({ color: '#282828' ,padding:'0'}) : ({ color: '#D3D3D3',padding:'0' })}>
+
+                                    <DropdownItem icon={<Admin />}><div>
+                                        Register
+                                </div>
+                                    </DropdownItem>
+                                </Link>
+
+                            </>
                         ) : (
                                 <>
                                     {
                                         user.role === "admin" ?
-                                            <DropdownItem icon={<Admin />}><div>
-                                                <Link to="/admin" className="nav-link">
+                                            <Link to="/admin" className="nav-link" style={!dark ? ({ color: '#282828' ,padding:'0'}) : ({ color: '#D3D3D3' ,padding:'0'})}>
+
+                                                <DropdownItem leftIcon={<Admin />}><div>
                                                     Admin
-                                                    </Link>
-                                            </div> </DropdownItem> : null
+                                            </div> </DropdownItem>
+                                            </Link> : null
+
                                     }
                                     {
                                         user.role === "mod" ? (
-                                            <DropdownItem> <div >
-                                                <Link to="/mod" className="nav-link">
+                                            <Link to="/mod" className="nav-link" style={!dark ? ({ color: '#282828',padding:'0' }) : ({ color: '#D3D3D3',padding:'0' })}>
+
+                                                <DropdownItem leftIcon={<Mod />}> <div >
                                                     Mod
-                                                    </Link>
-                                            </div></DropdownItem>
+                                            </div>
+                                                </DropdownItem>
+                                            </Link>
+
                                         ) : null
                                     }
-                                    <DropdownItem leftIcon ={<Upload/>}> <div >
-                                        <Link to="/upload" className="nav-link">
+                                    <Link to="/upload" className="nav-link" style={!dark ? ({ color: '#282828' ,padding:'0'}) : ({ color: '#D3D3D3',padding:'0' })}>
+
+                                        <DropdownItem leftIcon={<Upload />}> <div >
                                             Upload
-                                            </Link>
                                     </div></DropdownItem>
-                                    <DropdownItem leftIcon={<Profile/>}>  <div >
-                                        <Link to="/profile" className="nav-link">
+                                    </Link>
+
+                                    <Link to="/profile" className="nav-link" style={!dark ? ({ color: '#282828' ,padding:'0'}) : ({ color: '#D3D3D3' ,padding:'0'})}>
+                                        <DropdownItem leftIcon={<Profile />}>  <div >
                                             Profile
-                                            </Link>
                                     </div></DropdownItem>
+                                    </Link>
+
                                     <br /><br /><br />
                                     <br /><br /><br />
-                                    <DropdownItem leftIcon={<Logout/>}> <div >
+                                    <DropdownItem leftIcon={<Logout />}> <div >
                                         <Link
                                             className="nav-link"
+                                            style={!dark ? ({ color: '#282828' }) : ({ color: '#D3D3D3' })}
                                             to="/"
                                             onClick={onClickLogoutHandler}>Logout
                                             </Link>
@@ -140,11 +168,11 @@ const Navbar = props => {
             if (open2) {
                 setOpenn(!open2)
             }
-        }}  style={!dark ? { background: '#D3D3D3' } : { background: '#282828' }}>
+        }} style={!dark ? { background: '#D3D3D3' } : { background: '#282828' }}>
             <div className="logo_section">
                 <img src={Logo} className="logo_img" alt="" />
                 <Link className="logo_name" to="/" >
-                    <div  style={!dark ? { color: '#282828' } : { color: '#D3D3D3' }} >Lurien</div>
+                    <div style={!dark ? { color: '#282828' } : { color: '#D3D3D3' }} >Lurien</div>
                 </Link>
             </div>
 
@@ -153,25 +181,37 @@ const Navbar = props => {
                     <div className="theme_toggle" style={!dark ? { background: '#F8F8F8' } : { background: '#282828' }}>
                         {/* <div className="back_rec" style={!dark ? { background: '#282828', marginLeft: '4px' } : { background: '#F8F8F8', marginLeft: '47px' }}> */}
                         <div className="icon_theme" style={!dark ? { marginLeft: '3px' } : { marginLeft: '46px' }}>
-                            <img  onClick={toggleTheme} src={!dark ? Sol : Luna} alt="" />
+                            <img onClick={toggleTheme} src={!dark ? Sol : Luna} alt="" />
                         </div>
                         {/* </div> */}
                     </div>
                     {!isAuthenticated ? (<>
-                        <div className="nav-rect">
-                            <Link to="/login" className="nav-link">
+                        <div className="nav-rect botones-login-reg">
+                            <Link to="/login" className="nav-link" style={!dark ? ({ color: '#282828' }) : ({ color: '#D3D3D3' })}>
                                 Login
                                </Link>
                         </div>
 
-                        <div className="nav-rect">
-                            <Link to="/register" className="nav-link ">
+                        <div className="nav-rect botones-login-reg">
+                            <Link to="/register" className="nav-link " style={!dark ? ({ color: '#282828' }) : ({ color: '#D3D3D3' })}>
                                 Register
                                </Link>
                         </div>
-                    </>) : (<NavItem icon={<CaretIcon />}>
-                        <DropdownMenu></DropdownMenu>
-                    </NavItem>)}
+
+                        <div className="sidenav-owo">
+                            <NavItem icon={<CaretIcon />}>
+                                <DropdownMenu></DropdownMenu>
+                            </NavItem>
+                        </div>
+
+                    </>) : (
+                            <>
+                                <p className="display-username" style={!dark ? { color: '#282828' } : { color: '#D3D3D3' }} >{user.username}</p>
+                                <NavItem icon={<CaretIcon />}>
+                                    <DropdownMenu></DropdownMenu>
+                                </NavItem>
+                            </>
+                        )}
 
                 </ul>
             </div>

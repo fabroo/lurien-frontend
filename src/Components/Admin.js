@@ -208,22 +208,23 @@ const Admin = props => {
 
     return (
 
-<div className="contenedor-de-tabla container" onClick={() => {
+        <div className="contenedor-de-tabla container" onClick={() => {
             if (open2) {
                 setOpenn(false)
                 console.log("deja de tocarme")
 
             }
         }}>
+            {/* <div className="botonera" style={{ display: 'flex' }} >
+
+                <button className="btn btn-info m-2" ><a style={{ color: 'white' }} href={"http://localhost:5000/api/upload/download/" + user.companyID}>DOWNLOAD DATA</a></button>
+                <button className="btn btn-primary m-2 none" style={registradoClass} onClick={() => showWich(true)}>REGISTRADOS</button>
+                <button className="btn btn-secondary m-2 none" style={noregistradoClass} onClick={() => showWich(false)}>NO REGISTRADOS</button>
+                <button type="button" className="btn btn-info m-2" data-toggle="modal" data-target="#exampleModalCenter"> +</button>
+
+            </div> */}
             <div className="arriba d-flex flex-row-reverse">
-                {/* <div className="botonera" style={{ display: 'flex' }} >
 
-                    <button className="btn btn-info m-2" ><a style={{ color: 'white' }} href={"http://localhost:5000/api/upload/download/" + user.companyID}>DOWNLOAD DATA</a></button>
-                    <button className="btn btn-primary m-2 none" style={registradoClass} onClick={() => showWich(true)}>REGISTRADOS</button>
-                    <button className="btn btn-secondary m-2 none" style={noregistradoClass} onClick={() => showWich(false)}>NO REGISTRADOS</button>
-                    <button type="button" className="btn btn-info m-2" data-toggle="modal" data-target="#exampleModalCenter"> +</button>
-
-                </div> */}
                 <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered" role="document">
                         <div className="modal-content">
@@ -261,13 +262,13 @@ const Admin = props => {
                     <table className="tabla-admin table table-hover text-center table-responsive-lg">
                         <thead className="thead thead-style">
                             <tr>
-                                <th className="">Nombre</th>
-                                <th className="">DNI</th>
-                                <th className="">E-Mail</th>
-                                <th className="">Modelo Entrenado</th>
-                                <th className="">Profile Picture</th>
-                                <th className="">Rol</th>
-                                <th className="">N° Fotos</th>
+                                <th>Nombre</th>
+                                <th>DNI</th>
+                                <th>E-Mail</th>
+                                <th>Modelo Entrenado</th>
+                                <th>Profile Picture</th>
+                                <th>Rol</th>
+                                <th>Fotos</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -279,14 +280,14 @@ const Admin = props => {
                                         <td>{!user.createdAccount ? (<p>No registrado</p>) : (<p>{user.username}</p>)}</td>
                                         <td ><p>{user.dni}</p></td>
                                         <td>{user.createdAccount ? (<p><a rel="noopener noreferrer" href={"https://mail.google.com/mail/u/0/?view=cm&fs=1&to=" + user.mail + "&tf=1"} target="_blank">{user.mail}</a></p>) : (<p>No creada</p>)}</td>
-                                        <td> {!user.modeloEntrenado ? ( <img src={No} alt="no"/> ) : ( <img src={Si} alt="si"/> ) }</td>
-                                        <td>{user.createdAccount ? <img className="img-fluid" style={{ width: '100px', height: '100px', objectFit: 'cover' }} src={'http://localhost:5000\\user\\pfp\\' + user.companyID + '\\' + user.dni} alt={user.username} /> : (<p>no hay :(</p>)}</td>
+                                        <td> {!user.modeloEntrenado ? (<img src={No} alt="no" />) : (<img src={Si} alt="si" />)}</td>
+                                        <td>{user.createdAccount ? <img className="img-fluid profile-imgs" src={'http://localhost:5000/api/user/pfp/' + user.companyID + '\\' + user.dni} alt={user.username} /> : (<p>no hay :(</p>)}</td>
                                         {/* para la IP LOCAL poner 192.168.1.203:5000 */}
 
                                         <td><p>{user.role}</p></td>
                                         <td><p onClick={() => wipeFotos(user)}>{user.cantidadFotos}</p></td>
 
-                                        <td> {user.role !== "admin" ? (<img className="btn-elim" src={Eliminar} onClick={() => chau(user._id)}/>) : user.role !== "mod" ? ((<img className="btn-elim" src={Eliminar} onClick={() => chau(user._id)}/>)) : (<p>es admin bro</p>)} </td>
+                                        <td className="boton-elim-border"> {user.role !== "admin" ? (<img className="btn-elim" src={Eliminar} onClick={() => chau(user._id)} />) : user.role !== "mod" ? ((<img className="btn-elim" src={Eliminar} onClick={() => chau(user._id)} />)) : (<p>es admin bro</p>)} </td>
                                     </tr>)
 
                             ) : (<tr><td>No content...</td></tr>)}
