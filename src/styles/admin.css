@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+.tabla-admin{
+    font-family: 'Montserrat', sans-serif;
+}
+.thead tr th{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    color: #282828;
+
+}
+.container{
+    max-width: 1400px;
+}
+.contenedor-de-tabla{
+    margin-top: 150px;
+    background: #FFFEFE;
+    border-radius: 0px 0px 22px 22px;
+}
+.btn-elim{
+    transition: all .1s;
+}
+.btn-elim:hover{
+    filter: brightness(80%);
+}
+.contenerdor-centro{
+    width: 100%;
+    display: flex;
+    margin-top: 150px;
+    align-items: center;
+    justify-content: space-around;
+}
+.thead-style{
+    background-color: #FFFEFE !important;
+}

@@ -2,13 +2,16 @@ import React, { useContext, useState, useEffect } from 'react'
 import { AuthContext } from '../Context/AuthContext';
 import AuthService from '../Services/AuthService';
 import swal from 'sweetalert';
+import '../styles/admin.css'
+import Luna from '../images/luna1.svg'
+import No from '../images/no.svg'
+import Si from '../images/si.svg'
+import Eliminar from '../images/no-rojo.svg'
 
 const Admin = props => {
 
     //actual user
     const { user } = useContext(AuthContext);
-
-
     let [content, setContent] = useState(null) //list of company users
     let [elinput, setElInput] = useState({ dni: 0, role: "user" }) //create new company user 
 
@@ -17,19 +20,19 @@ const Admin = props => {
     let [noregistradoClass, setNoRegistradoClass] = useState({ style: { display: 'none', margin: 'auto .5rem' } })
 
     let [loading, isLoading] = useState(false); //loading message
-    const [setToggle] = useState(false);
+    const [toggle, setToggle] = useState(false);
 
-    const {dark,open2,setOpenn} = useContext(AuthContext);
+    const { dark, open2, setOpenn } = useContext(AuthContext);
     useEffect(() => {
-        const owo = () =>{
-            if(dark){
-                
-                document.body.classList.remove('dark-bg') 
-                document.body.classList.add('light-bg') 
-            } 
-            else{
-                
-                document.body.classList.remove('light-bg') 
+        const owo = () => {
+            if (dark) {
+
+                document.body.classList.remove('dark-bg')
+                document.body.classList.add('light-bg')
+            }
+            else {
+
+                document.body.classList.remove('light-bg')
                 document.body.classList.add('dark-bg')
             }
             setToggle(dark)
@@ -93,14 +96,14 @@ const Admin = props => {
                 }
             })
             //sort them
-           
-                setContent(users.sort(function (a, b) {
-                    if (a.username < b.username) { return -1; }
-                    if (a.username > b.username) { return 1; }
-                    return 0;
-                }));
-          
-            
+
+            setContent(users.sort(function (a, b) {
+                if (a.username < b.username) { return -1; }
+                if (a.username > b.username) { return 1; }
+                return 0;
+            }));
+
+
         }, [])
     }
     //delete users
@@ -204,22 +207,23 @@ const Admin = props => {
     }
 
     return (
-        <div className="container"  onClick={() => {
+
+<div className="contenedor-de-tabla container" onClick={() => {
             if (open2) {
                 setOpenn(false)
-            console.log("deja de tocarme")
+                console.log("deja de tocarme")
 
             }
         }}>
             <div className="arriba d-flex flex-row-reverse">
-                <div className="botonera" style={{ display: 'flex' }} >
-                <button className="btn btn-info m-2" ><a style={{color:'white'}} href={"http://localhost:5000/api/upload/download/" + user.companyID}>DOWNLOAD DATA</a></button>
+                {/* <div className="botonera" style={{ display: 'flex' }} >
 
+                    <button className="btn btn-info m-2" ><a style={{ color: 'white' }} href={"http://localhost:5000/api/upload/download/" + user.companyID}>DOWNLOAD DATA</a></button>
                     <button className="btn btn-primary m-2 none" style={registradoClass} onClick={() => showWich(true)}>REGISTRADOS</button>
                     <button className="btn btn-secondary m-2 none" style={noregistradoClass} onClick={() => showWich(false)}>NO REGISTRADOS</button>
                     <button type="button" className="btn btn-info m-2" data-toggle="modal" data-target="#exampleModalCenter"> +</button>
 
-                </div>
+                </div> */}
                 <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered" role="document">
                         <div className="modal-content">
@@ -254,17 +258,17 @@ const Admin = props => {
             </div>
             {!loading ? (
                 <div>
-                    <table className="table table-hover text-center table-responsive-lg">
-                        <thead className="thead-dark">
+                    <table className="tabla-admin table table-hover text-center table-responsive-lg">
+                        <thead className="thead thead-style">
                             <tr>
                                 <th className="">Nombre</th>
                                 <th className="">DNI</th>
                                 <th className="">E-Mail</th>
-                                <th className="">Modelo Entrenado?</th>
+                                <th className="">Modelo Entrenado</th>
                                 <th className="">Profile Picture</th>
                                 <th className="">Rol</th>
-                                <th className="">Cantidad de Fotos</th>
-                                <th>Eliminar</th>
+                                <th className="">N° Fotos</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -275,14 +279,14 @@ const Admin = props => {
                                         <td>{!user.createdAccount ? (<p>No registrado</p>) : (<p>{user.username}</p>)}</td>
                                         <td ><p>{user.dni}</p></td>
                                         <td>{user.createdAccount ? (<p><a rel="noopener noreferrer" href={"https://mail.google.com/mail/u/0/?view=cm&fs=1&to=" + user.mail + "&tf=1"} target="_blank">{user.mail}</a></p>) : (<p>No creada</p>)}</td>
-                                        <td> {!user.modeloEntrenado ? <p>no</p> : <p>si</p>}</td>
+                                        <td> {!user.modeloEntrenado ? ( <img src={No} alt="no"/> ) : ( <img src={Si} alt="si"/> ) }</td>
                                         <td>{user.createdAccount ? <img className="img-fluid" style={{ width: '100px', height: '100px', objectFit: 'cover' }} src={'http://localhost:5000\\user\\pfp\\' + user.companyID + '\\' + user.dni} alt={user.username} /> : (<p>no hay :(</p>)}</td>
                                         {/* para la IP LOCAL poner 192.168.1.203:5000 */}
 
                                         <td><p>{user.role}</p></td>
                                         <td><p onClick={() => wipeFotos(user)}>{user.cantidadFotos}</p></td>
 
-                                        <td> {user.role !== "admin" ? (<button className="btn btn-danger" onClick={() => chau(user._id)}>X</button>) : user.role !== "mod" ? ((<button className="btn btn-danger" onClick={() => chau(user._id)}>X</button>)) : (<p>es admin bro</p>)} </td>
+                                        <td> {user.role !== "admin" ? (<img className="btn-elim" src={Eliminar} onClick={() => chau(user._id)}/>) : user.role !== "mod" ? ((<img className="btn-elim" src={Eliminar} onClick={() => chau(user._id)}/>)) : (<p>es admin bro</p>)} </td>
                                     </tr>)
 
                             ) : (<tr><td>No content...</td></tr>)}
