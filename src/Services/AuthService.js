@@ -74,7 +74,7 @@ export default {
 
     },
     wipeFotos: async (dni, companyid) => {
-        return await axios.post('http://192.168.1.204:5000/api/upload/wipeFotos/' + dni, { companyid })
+        return await axios.post(`http://${ip}/api/upload/wipeFotos/${companyid}/${dni}`)
             .then(res => res)
 
     },
