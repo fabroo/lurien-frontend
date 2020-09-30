@@ -222,7 +222,7 @@ const Admin = props => {
                                         <td ><p>{user.dni}</p></td>
                                         <td>{user.createdAccount ? (<p><a rel="noopener noreferrer" href={"https://mail.google.com/mail/u/0/?view=cm&fs=1&to=" + user.mail + "&tf=1"} target="_blank">{user.mail}</a></p>) : (<p>no creada</p>)}</td>
                                         <td> {user.createdAccount ? (!user.modeloEntrenado ? <p>no</p> : <p>si</p>) : (<p>no creada</p>)}</td>
-                                        <td>{user.createdAccount ? <img className="img-fluid" style={{ width: '100px' }} src={'http://localhost:8080\\user\\pfp\\' + user.companyID + '\\' + user.dni} alt={user.username} /> : (<p>no creada</p>)}</td>
+                                        <td>{user.createdAccount ? <img className="img-fluid" style={{ width: '100px' }} src={'https://test-lurien.rj.r.appspot.com/api/user/pfp/' + user.companyID + '/' + user.dni} alt={user.username} /> : (<p>no creada</p>)}</td>
                                         {/* para la IP LOCAL poner 192.168.0.106:8080 */}
 
                                         <td><p>{user.role}</p></td>

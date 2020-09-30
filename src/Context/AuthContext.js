@@ -28,7 +28,7 @@ export default ({ children }) => {
                     <div style={{ display: "table", height: "100vh", width: "100vw", textAlign: "center",overflowY:'hidden', overflow: "hidden" }}>
                         <div style={{ display: "table-cell", "verticalAlign": "middle" }}>
                             <div >
-                                <h1 style={{ fontSize: "2.7em" }}>Loading...</h1>
+                                <h1 style={{ fontSize: "2.7em" }}>Phite..</h1>
                                 <br/>
                                 <img src={Uwu} alt=""/>
 

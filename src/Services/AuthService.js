@@ -1,5 +1,6 @@
 import axios from 'axios'
-const ip = "192.168.0.106:8080"
+// const ip = "192.168.0.106:8080"
+const ip = "test-lurien.rj.r.appspot.com"
 
 export default {
     login: user => {
@@ -18,11 +19,11 @@ export default {
     },
     register: async user => {
 
-        return await axios.put('http://' + ip + '/api/user/register', user)
+        return await axios.put('https://' + ip + '/api/user/register', user)
             .then(res => res)
     },
     registerNew: async user => {
-        return await axios.post('http://' + ip + '/api/user/registerNew', user)
+        return await axios.post('https://' + ip + '/api/user/registerNew', user)
             .then(res => res)
     },
 
@@ -33,61 +34,62 @@ export default {
     },
     getData: async (companyid) => {
         //cambiar con la ip de tu casa
-        return await axios.get('http://' + ip + '/api/user/users/' + companyid)
+        return await axios.get('https://' + ip + '/api/user/users/' + companyid)
             .then(res => res)
 
     },
 
     downloadP: async (companyid) => {
         //cambiar con la ip de tu casa
-        return await axios.get('http://' + ip + '/api/user/download/' + companyid)
+        return await axios.get('https://' + ip + '/api/user/download/' + companyid)
             .then(res => res)
 
     },
 
     getMod: async () => {
         //cambiar con la ip de tu casa
-        return await axios.get('http://' + ip + '/api/user/mod')
+        return await axios.get('https://' + ip + '/api/user/mod')
             .then(res => res)
 
     },
     upload: async (data, user,companyid,dni) => {
-        return await axios.post('http://' + ip + '/api/upload/upload/'+companyid+'/'+dni, data)
+        return await axios.post('https://' + ip + '/api/upload/upload/'+companyid+'/'+dni, data)
             .then(res => res)
 
     },
 
     uploadPfp: async (data, user) => {
-        return await axios.post('http://' + ip + '/api/upload/uploadPfp/', data)
+        return await axios.post('https://' + ip + '/api/upload/uploadPfp/', data)
             .then(res => res)
 
     },
     removeUser: async (id) => {
         //cambiar con la ip de tu casa
-        return await axios.get('http://' + ip + '/api/user/delete/' + id)
+        return await axios.get('https://' + ip + '/api/user/delete/' + id)
             .then(res => res)
 
     },
     getFotos: async (dni) => {
-        return await axios.get('http://' + ip + '/api/user/getFotos/' + dni)
+        return await axios.get('https://' + ip + '/api/user/getFotos/' + dni)
             .then(res => res)
 
     },
     wipeFotos: async (dni, companyid) => {
-        return await axios.post('http://' + ip + '/api/upload/wipeFotos/' + dni, { companyid })
+        return await axios.post('https://' + ip + '/api/upload/wipeFotos/' + dni, { companyid })
             .then(res => res)
 
     },
     addFotos: async (dni, cantidad) => {
-        return await axios.post('http://' + ip + '/api/upload/addFotos/' + dni, cantidad)
+        return await axios.post('https://' + ip + '/api/upload/addFotos/' + dni, cantidad)
             .then(res => res)
 
     },
-    isAuthenticated: () => {
+    isAuthenticated: async() => {
         return fetch('/api/user/authenticated')
             .then(res => {
-                if (res.status !== 401)
+                if (res.status !== 401){
                     return res.json().then(data => data);
+                }
                 else
                     return { isAuthenticated: false, user: { username: "", role: "", dni: "", mail: "", companyid: "" }, error: true };
             });
