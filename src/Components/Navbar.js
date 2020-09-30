@@ -15,8 +15,15 @@ import { ReactComponent as Profile } from '../images/profile.svg';
 import { ReactComponent as Mod } from '../images/modsvg.svg';
 import { CSSTransition } from 'react-transition-group';
 
+/*socketss*/
+import socketIOClient from "socket.io-client";
+
+export let socket = socketIOClient("http://localhost:3005/");
+
 /**/
-const Navbar = props => {
+let Navbar;
+export  default  Navbar = props => {
+    const [endpoint,setEndpoint] = useState("http://localhost:3005/")
     const { isAuthenticated, user, setIsAuthenticated, setOpenn, open2, setUser } = useContext(AuthContext);
     const [dark, setdark] = useState(true);
     const authContext = useContext(AuthContext);
@@ -112,6 +119,16 @@ const Navbar = props => {
                                 <>
                                     {
                                         user.role === "admin" ?
+                                            <Link to="/admin" className="nav-link" style={!dark ? ({ color: '#282828' ,padding:'0'}) : ({ color: '#D3D3D3' ,padding:'0'})}>
+
+                                                <DropdownItem leftIcon={<Admin />}><div>
+                                                    Admin
+                                            </div> </DropdownItem>
+                                            </Link> : null
+
+                                    }
+                                    {
+                                        user.role === "mod" ?
                                             <Link to="/admin" className="nav-link" style={!dark ? ({ color: '#282828' ,padding:'0'}) : ({ color: '#D3D3D3' ,padding:'0'})}>
 
                                                 <DropdownItem leftIcon={<Admin />}><div>
@@ -220,4 +237,4 @@ const Navbar = props => {
     )
 }
 
-export default Navbar;
+// export default {Navbar, socket};
