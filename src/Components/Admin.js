@@ -57,7 +57,7 @@ const Admin = props => {
             });
 
             var channel = pusher.subscribe(user.companyID);
-            channel.bind('my-event', (data) => {
+            channel.bind('updateEntrada', (data) => {
                 // alert(`nuevo ingreso de ${data.name} a las ${data.hora}`)
                 console.log(data)
                 let entradass = entradas
@@ -250,7 +250,7 @@ const Admin = props => {
             }}>
                 {/* <div className="botonera" style={{ display: 'flex' }} >
 
-                <button className="btn btn-info m-2" ><a style={{ color: 'white' }} href={"http://localhost:5000/api/upload/download/" + user.companyID}>DOWNLOAD DATA</a></button>
+                <button className="btn btn-info m-2" ><a style={{ color: 'white' }} href={"http://localhost:8080/api/upload/download/" + user.companyID}>DOWNLOAD DATA</a></button>
                 <button className="btn btn-primary m-2 none" style={registradoClass} onClick={() => showWich(true)}>REGISTRADOS</button>
                 <button className="btn btn-secondary m-2 none" style={noregistradoClass} onClick={() => showWich(false)}>NO REGISTRADOS</button>
                 <button type="button" className="btn btn-info m-2" data-toggle="modal" data-target="#exampleModalCenter"> +</button>
@@ -314,8 +314,8 @@ const Admin = props => {
                                             <td ><p>{user.dni}</p></td>
                                             <td>{user.createdAccount ? (<p><a rel="noopener noreferrer" href={"https://mail.google.com/mail/u/0/?view=cm&fs=1&to=" + user.mail + "&tf=1"} target="_blank">{user.mail}</a></p>) : (<p>No creada</p>)}</td>
                                             <td> {!user.modeloEntrenado ? (<img src={No} alt="no" />) : (<img src={Si} alt="si" />)}</td>
-                                            <td>{user.createdAccount ? <img className="img-fluid profile-imgs" src={'http://192.168.1.204:5000/api/user/pfp/' + user.companyID + '\\' + user.dni} alt={user.username} /> : (<p>no hay :(</p>)}</td>
-                                            {/* para la IP LOCAL poner 192.168.1.204:5000 */}
+                                            <td>{user.createdAccount ? <img className="img-fluid profile-imgs" src={'http://192.168.1.204:8080/api/user/pfp/' + user.companyID + '\\' + user.dni} alt={user.username} /> : (<p>no hay :(</p>)}</td>
+                                            {/* para la IP LOCAL poner 192.168.1.204:8080 */}
 
                                             <td><p>{user.role}</p></td>
                                             <td><p onClick={() => wipeFotos(user)}>{user.cantidadFotos}</p></td>
@@ -331,7 +331,7 @@ const Admin = props => {
                 ) : (<h1>It is loading!</h1>)}
 
             </div>
-            <div id="testttt" style={{ backgroundColor: 'red' }}>
+            <div id="testttt" className="container" style={{ backgroundColor: 'red' }}>
                 <h1>ENTRADAS</h1>
                 {entradas ? (entradas.map(entrada =>
                     <div key={entrada.hora}>

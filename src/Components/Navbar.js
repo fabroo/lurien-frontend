@@ -16,14 +16,15 @@ import { ReactComponent as Mod } from '../images/modsvg.svg';
 import { CSSTransition } from 'react-transition-group';
 
 /*socketss*/
-import socketIOClient from "socket.io-client";
+// import socketIOClient from "socket.io-client";
 
-export let socket = socketIOClient("http://localhost:3005/");
+// export let socket = socketIOClient("http://localhost:3005/");
+
 
 /**/
 let Navbar;
 export  default  Navbar = props => {
-    const [endpoint,setEndpoint] = useState("http://localhost:3005/")
+    // const [endpoint,setEndpoint] = useState("http://localhost:3005/")
     const { isAuthenticated, user, setIsAuthenticated, setOpenn, open2, setUser } = useContext(AuthContext);
     const [dark, setdark] = useState(true);
     const authContext = useContext(AuthContext);

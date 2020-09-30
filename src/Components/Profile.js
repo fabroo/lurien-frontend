@@ -29,11 +29,11 @@ const Profile = (props) => {
                             <div className="whole-body">
                                 <div className="profile-picture">
                                     <p className="profile-text">Profile Picture</p>
-                                    <img src={"http://localhost:5000/api/user/pfp/"+user.companyID+'/'+user.dni} alt="pfp" className="profile-picture-img" />
+                                    <img src={"http://localhost:8080/api/user/pfp/"+user.companyID+'/'+user.dni} alt="pfp" className="profile-picture-img" />
                                     <input type="button" value="Change" className="change-profile-picture" />
                                     <p className="profile-name">{user.username}</p>
                                     <p className="qr-code-text">QR Code:</p>
-                                    <img src={"http://localhost:5000/api/user/qr/"+user.companyID+'/'+user.dni} alt="qr code" className="qr-code-imag"/>
+                                    <img src={"http://localhost:8080/api/user/qr/"+user.companyID+'/'+user.dni} alt="qr code" className="qr-code-imag"/>
                                 </div>
 <div className="c1">
     <div className="c2"></div>
