@@ -51,9 +51,7 @@ const Register = props => {
         // }
         // AuthService.uploadPfp(data, user.username)
 
-        timerID = setTimeout(() => {
-            props.history.push('/');
-        }, 3000)
+      
     }
     const onChange = e => {
         setUser({ ...user, [e.target.name]: e.target.value });
