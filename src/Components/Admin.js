@@ -248,14 +248,14 @@ const Admin = props => {
 
                 }
             }}>
-                {/* <div className="botonera" style={{ display: 'flex' }} >
+                <div className="botonera" style={{ display: 'flex' }} >
 
                 <button className="btn btn-info m-2" ><a style={{ color: 'white' }} href={"http://localhost:8080/api/upload/download/" + user.companyID}>DOWNLOAD DATA</a></button>
                 <button className="btn btn-primary m-2 none" style={registradoClass} onClick={() => showWich(true)}>REGISTRADOS</button>
                 <button className="btn btn-secondary m-2 none" style={noregistradoClass} onClick={() => showWich(false)}>NO REGISTRADOS</button>
                 <button type="button" className="btn btn-info m-2" data-toggle="modal" data-target="#exampleModalCenter"> +</button>
 
-            </div> */}
+            </div>
                 <div className="arriba d-flex flex-row-reverse">
 
                     <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
