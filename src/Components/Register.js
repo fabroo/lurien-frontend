@@ -10,6 +10,7 @@ const Register = props => {
     const [user, setUser] = useState({ username: "", password: "", dni: "", companyID: "", mail: "" });
     const [message, setMessage] = useState(null);
     const [toggle, setToggle] = useState(false);
+    const [picture, setPicture] = useState(null)
     let timerID = useRef(null);
 
     const {dark} = useContext(AuthContext);
@@ -38,18 +39,18 @@ const Register = props => {
 
 
     const onClickHandler = () => {
-        // const data = new FormData()
-        // data.append('username', user.dni)
-        // data.append('companyID', user.companyID)
-        // for (var x = 0; x < picture.length; x++) {
-        //     let extensiones = ['.jpg', '.jpeg', '.png'];
-        //     for (let i = 0; i < extensiones.length; i++) {
-        //         if (picture[x].name.includes(extensiones[i])) {
-        //             data.append('file', picture[x])
-        //         }
-        //     }
-        // }
-        // AuthService.uploadPfp(data, user.username)
+        const data = new FormData()
+        data.append('username', user.dni)
+        data.append('companyID', user.companyID)
+        for (var x = 0; x < picture.length; x++) {
+            let extensiones = ['.jpg', '.jpeg', '.png'];
+            for (let i = 0; i < extensiones.length; i++) {
+                if (picture[x].name.includes(extensiones[i])) {
+                    data.append('file', picture[x])
+                }
+            }
+        }
+        AuthService.uploadPfp(data, user.username)
 
       
     }
@@ -88,10 +89,12 @@ const Register = props => {
                 </div>
                 <div className="campos">
                     {/* <h3>Please Register</h3> */}
-
+                    
                     <div className="inputs">
                         <div className="1"></div>
                         <div className="uwu" >
+                        
+    {/*<input required={true} type="file" onChange={onClickHandler} placeholder="no se" style = {!toggle ? {color:'#F8F8F8 '} : {color:'#272727'}} name="holu" className="aceptar" id="customFile" accept="image/png,image/jpg" />*/}
                             <input type="text"
                                 name="username"
                                 value={user.username}

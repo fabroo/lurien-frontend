@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import '../styles/profile.css'
 import Chart from '../images/chart.png'
-import { S3, config } from 'aws-sdk';
 import axios from 'axios'
 
 
@@ -12,7 +11,6 @@ const Profile = (props) => {
     const [qrimg,setQrmImg] = useState(null)
 
 
-    var s3 = new S3()
     useEffect(()=>{
         const uwu = async ()=>{
             var image = await axios.get(`http://localhost:8080/api/user/qr/${user.companyID}/${user.dni}`)
