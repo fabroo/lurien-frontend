@@ -159,6 +159,9 @@ height: 73.47px;
     line-height: 0%;
     color: #272727;
 }
+.hidden{
+    display: none;
+}
 .value-field{
     margin-left: 10px;
     border: none;

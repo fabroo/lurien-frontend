@@ -10,16 +10,22 @@ const Profile = (props) => {
 
     const { user, open2, setOpenn } = useContext(AuthContext);
     const [qrimg, setQrmImg] = useState(null)
-    const ip = "http://192.168.1.204:8080"
+    const [pfp, setPfp] = useState(null)
+    const ip = "http://192.168.0.106:8080"
     const [picture, setPicture] = useState(null)
     const onChangeHandler = (e) => {
         setPicture(e.target.files)
+        document.getElementById('btnCnfm').classList.remove('hidden')
     }
     useEffect(() => {
         const uwu = async () => {
-            var image = await axios.get(`${ip}/api/user/qr/${user.companyID}/${user.dni}`)
+            
+            var qr = await axios.get(`${ip}/api/user/qr/${user.companyID}/${user.dni}`)
             //console.log("data:image/png;base64," + image.data.img)
-            setQrmImg("data:image/png;base64," + image.data.img);
+            setQrmImg(qr.data.img);
+            var prof = await axios.get(`${ip}/api/user/pfp/${user.companyID}/${user.dni}`)
+            //console.log("data:image/png;base64," + image.data.img)
+            setPfp(prof.data.img)
         }
         uwu()
     })
@@ -37,6 +43,7 @@ const Profile = (props) => {
             }
         }
         AuthService.uploadPfp(data, user.username)
+        document.getElementById('btnCnfm').classList.add('hidden')
 
 
     }
@@ -58,9 +65,9 @@ const Profile = (props) => {
                             <div className="whole-body">
                                 <div className="profile-picture">
                                     <p className="profile-text">Profile Picture</p>
-                                    <img src={`${ip}/api/user/pfp/` + user.companyID + '/' + user.dni} alt="pfp" className="profile-picture-img" />
+                                    <img src={pfp} alt="pfp" className="profile-picture-img" />
                                     <input required={true} type="file" onChange={onChangeHandler} name="holu" className="change-profile-picture" id="customFile" accept="image/png,image/jpg" />
-                                    <input type="button" onClick={() =>onClickHandler()}  className="change-profile-picture" />
+                                    <input type="button" id="btnCnfm" onClick={() =>onClickHandler()}  className="change-profile-picture hidden" />
 
 
                                     <p className="profile-name">{user.username}</p>

@@ -9,6 +9,8 @@ import Si from '../images/si.svg'
 import Eliminar from '../images/no-rojo.svg'
 import { socket } from "./Navbar";
 import Pusher from 'pusher-js'
+const axios = require('axios')
+const ip = "http://192.168.0.106:8080"
 
 const Admin = props => {
 
@@ -17,6 +19,7 @@ const Admin = props => {
     let [content, setContent] = useState(null) //list of company users
     let [elinput, setElInput] = useState({ dni: 0, role: "user" }) //create new company user 
     let [entradas, setEntradas] = useState([])
+    let [pfp, setPfp] = useState(null)
     //button classes
     let [registradoClass, setRegistradoClass] = useState({ style: { display: 'none', margin: 'auto .5rem' } })
     let [noregistradoClass, setNoRegistradoClass] = useState({ style: { display: 'none', margin: 'auto .5rem' } })
@@ -59,7 +62,7 @@ const Admin = props => {
             var channel = pusher.subscribe(user.companyID);
             channel.bind('updateEntrada', (data) => {
                 // alert(`nuevo ingreso de ${data.name} a las ${data.hora}`)
-                console.log(data)
+                //console.log(data)
                 let entradass = entradas
                 entradass.push(data)
                 setEntradas(entradass)
@@ -73,18 +76,18 @@ const Admin = props => {
         }
         funcion()
     }, [])
-    useEffect(() => { //fetch user list at the beggining
+    useEffect( () => { //fetch user list at the beggining
 
         isLoading(true) //begin to load
-
         async function showw() {
             AuthService.getData(user.companyID).then(res => {
                 //consts
                 const all = res.data;
                 const users = [];
 
-                all.forEach(user => { //only display registered users
+                all.forEach(async user => { //only display registered users
                     if (user.createdAccount) {
+                        
                         users.push(user)
                     }
                 })
@@ -185,6 +188,8 @@ const Admin = props => {
     const handleChange = (e) => { //handle the create user input
         setElInput({ ...elinput, [e.target.name]: e.target.value });
     }
+
+    
     const wipeFotos = async (user) => { //eliminar los datos del usuario en el pickle
         let dni = user.dni
         let companyID = user.companyID
@@ -307,21 +312,21 @@ const Admin = props => {
                             </thead>
                             <tbody>
                                 {content ? (
-                                    content.map(user =>
+                                    content.map( user =>
                                         <tr key={user._id}>
 
                                             <td>{!user.createdAccount ? (<p>No registrado</p>) : (<p>{user.username}</p>)}</td>
                                             <td ><p>{user.dni}</p></td>
                                             <td>{user.createdAccount ? (<p><a rel="noopener noreferrer" href={"https://mail.google.com/mail/u/0/?view=cm&fs=1&to=" + user.mail + "&tf=1"} target="_blank">{user.mail}</a></p>) : (<p>No creada</p>)}</td>
                                             <td> {!user.modeloEntrenado ? (<img src={No} alt="no" />) : (<img src={Si} alt="si" />)}</td>
-                                            <td>{user.createdAccount ? <img className="img-fluid profile-imgs" src={'http://192.168.0.106:8080/api/user/pfp/' + user.companyID + '\\' + user.dni} alt={user.username} /> : (<p>no hay :(</p>)}</td>
+                                            <td>{user.createdAccount ? <img className="img-fluid profile-imgs" src={user.pfp} alt={user.username} /> : (<p>no hay :(</p>)}</td>
                                             {/* para la IP LOCAL poner 192.168.0.106:8080 */}
 
                                             <td><p>{user.role}</p></td>
                                             <td><p onClick={() => wipeFotos(user)}>{user.cantidadFotos}</p></td>
 
                                             <td className="boton-elim-border"> {user.role !== "admin" ? (<img className="btn-elim" src={Eliminar} onClick={() => chau(user._id)} />) : user.role !== "mod" ? ((<img className="btn-elim" src={Eliminar} onClick={() => chau(user._id)} />)) : (<p>es admin bro</p>)} </td>
-                                        </tr>)
+                                    </tr>)
 
                                 ) : (<tr><td>No content...</td></tr>)}
                             </tbody>
