@@ -1,9 +1,10 @@
 import axios from 'axios'
-const ip = "http://localhost:8080"
+// const ip = "http://localhost:8080"
+const ip = "http://192.168.1.204:8080"
 
 export default {
     login: user => {
-        return fetch(`${ip}/api/user/login`, {
+        return fetch(`/api/user/login`, {
             method: "post",
             body: JSON.stringify(user),
             headers: {
@@ -27,7 +28,7 @@ export default {
     },
     
     logout: () => {
-        return fetch(`${ip}/api/user/logout`)
+        return fetch(`/api/user/logout`)
             .then(res => res.json())
             .then(data => data);
     },
@@ -84,7 +85,7 @@ export default {
 
     },
     isAuthenticated: () => {
-        return fetch(`${ip}/api/user/authenticated`)
+        return fetch(`/api/user/authenticated`)
             .then(res => {
                 if (res.status !== 401)
                     return res.json().then(data => data);

@@ -30,9 +30,6 @@ height: auto;
     border-radius: 18px;
 }
 
-input[type="file"] {
-    display: none;
-}
 .vacio{
     margin: 20px auto;
 }

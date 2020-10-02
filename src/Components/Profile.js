@@ -2,24 +2,44 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import '../styles/profile.css'
 import Chart from '../images/chart.png'
+import AuthService from '../Services/AuthService';
 import axios from 'axios'
 
 
 const Profile = (props) => {
 
     const { user, open2, setOpenn } = useContext(AuthContext);
-    const [qrimg,setQrmImg] = useState(null)
-
-
-    useEffect(()=>{
-        const uwu = async ()=>{
-            var image = await axios.get(`http://localhost:8080/api/user/qr/${user.companyID}/${user.dni}`)
+    const [qrimg, setQrmImg] = useState(null)
+    const ip = "http://192.168.1.204:8080"
+    const [picture, setPicture] = useState(null)
+    const onChangeHandler = (e) => {
+        setPicture(e.target.files)
+    }
+    useEffect(() => {
+        const uwu = async () => {
+            var image = await axios.get(`${ip}/api/user/qr/${user.companyID}/${user.dni}`)
             //console.log("data:image/png;base64," + image.data.img)
             setQrmImg("data:image/png;base64," + image.data.img);
         }
         uwu()
     })
+    const onClickHandler = () => {
+        console.log("culo sucio")
+        const data = new FormData()
+        data.append('username', user.dni)
+        data.append('companyID', user.companyID)
+        for (var x = 0; x < picture.length; x++) {
+            let extensiones = ['.jpg', '.jpeg', '.png'];
+            for (let i = 0; i < extensiones.length; i++) {
+                if (picture[x].name.includes(extensiones[i])) {
+                    data.append('file', picture[x])
+                }
+            }
+        }
+        AuthService.uploadPfp(data, user.username)
 
+
+    }
     return (
         <>
             <div className="total" onClick={() => {
@@ -38,8 +58,11 @@ const Profile = (props) => {
                             <div className="whole-body">
                                 <div className="profile-picture">
                                     <p className="profile-text">Profile Picture</p>
-                                    <img src={"https://test-lurien.rj.r.appspot.com/api/user/pfp/" + user.companyID + '/' + user.dni} alt="pfp" className="profile-picture-img" />
-                                    <input type="button" value="Change" className="change-profile-picture" />
+                                    <img src={`${ip}/api/user/pfp/` + user.companyID + '/' + user.dni} alt="pfp" className="profile-picture-img" />
+                                    <input required={true} type="file" onChange={onChangeHandler} name="holu" className="change-profile-picture" id="customFile" accept="image/png,image/jpg" />
+                                    <input type="button" onClick={() =>onClickHandler()}  className="change-profile-picture" />
+
+
                                     <p className="profile-name">{user.username}</p>
                                     <p className="qr-code-text">QR Code:</p>
                                     <img src={qrimg} alt="qr code" className="qr-code-imag" />

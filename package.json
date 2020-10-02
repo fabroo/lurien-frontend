@@ -42,5 +42,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://test-lurien.rj.r.appspot.com"
+  "proxy": "http://localhost:8080/"
 }
