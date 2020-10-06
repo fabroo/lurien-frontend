@@ -12,22 +12,23 @@ const Profile = (props) => {
     const [qrimg, setQrmImg] = useState(null)
     const [pfp, setPfp] = useState(null)
     const ip = "http://192.168.1.203:8080"
+
     const [picture, setPicture] = useState(null)
     const onChangeHandler = (e) => {
         setPicture(e.target.files)
         document.getElementById('btnCnfm').classList.remove('hidden')
     }
     useEffect(() => {
-        const uwu = async () => {
+        // const uwu = async () => {
             
-            var qr = await axios.get(`${ip}/api/user/qr/${user.companyID}/${user.dni}`)
-            //console.log("data:image/png;base64," + image.data.img)
-            setQrmImg(qr.data.img);
-            var prof = await axios.get(`${ip}/api/user/pfp/${user.companyID}/${user.dni}`)
-            //console.log("data:image/png;base64," + image.data.img)
-            setPfp(prof.data.img)
-        }
-        uwu()
+        //     var qr = await axios.get(`${ip}/api/user/qr/${user.companyID}/${user.dni}`)
+        //     //console.log("data:image/png;base64," + image.data.img)
+        //     setQrmImg(qr.data.img);
+        //     var prof = await axios.get(`${ip}/api/user/pfp/${user.companyID}/${user.dni}`)
+        //     //console.log("data:image/png;base64," + image.data.img)
+        //     setPfp(prof.data.img)
+        // }
+        // uwu()
     })
     const onClickHandler = () => {
         console.log("culo sucio")
@@ -65,14 +66,14 @@ const Profile = (props) => {
                             <div className="whole-body">
                                 <div className="profile-picture">
                                     <p className="profile-text">Profile Picture</p>
-                                    <img src={pfp} alt="pfp" className="profile-picture-img" />
+                                    <img src={`http://resources.lurien.team/${user.companyID}/pfp/${user.dni}.png`} alt="pfp" className="profile-picture-img" />
                                     <input required={true} type="file" onChange={onChangeHandler} name="holu" className="change-profile-picture" id="customFile" accept="image/png,image/jpg" />
                                     <input type="button" id="btnCnfm" onClick={() =>onClickHandler()}  className="change-profile-picture hidden" />
 
 
                                     <p className="profile-name">{user.username}</p>
                                     <p className="qr-code-text">QR Code:</p>
-                                    <img src={qrimg} alt="qr code" className="qr-code-imag" />
+                                    <img src={`http://resources.lurien.team/${user.companyID}/qrcodes/${user.dni}.png`} alt="qr code" className="qr-code-imag" />
                                 </div>
                                 <div className="c1">
                                     <div className="c2"></div>
