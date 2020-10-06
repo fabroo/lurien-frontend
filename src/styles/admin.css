@@ -59,3 +59,24 @@ td p a{
 .thead-style{
     background-color: #FFFEFE !important;
 }
+
+.entradas-panel{
+    background-color: #d3d3d3;
+    height: 500px;
+}
+.entrada{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    width: 90%;
+/*    padding: 10px;
+     */
+     /* text-align: center !important; */
+    height: 70px;
+    background-color: #FFFEFE ;
+    margin: 9px auto;
+    justify-content: center;
+    border-radius: 10px;
+}
+.entrada p{
+    margin: 0 !important;
+}

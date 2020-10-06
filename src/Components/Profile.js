@@ -11,7 +11,7 @@ const Profile = (props) => {
     const { user, open2, setOpenn } = useContext(AuthContext);
     const [qrimg, setQrmImg] = useState(null)
     const [pfp, setPfp] = useState(null)
-    const ip = "http://192.168.0.106:8080"
+    const ip = "http://192.168.1.203:8080"
     const [picture, setPicture] = useState(null)
     const onChangeHandler = (e) => {
         setPicture(e.target.files)

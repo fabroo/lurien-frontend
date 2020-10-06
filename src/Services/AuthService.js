@@ -1,6 +1,6 @@
 import axios from 'axios'
 // const ip = "http://localhost:8080"
-const ip = "http://192.168.0.106:8080"
+const ip = "http://192.168.1.203:8080"
 
 export default {
     login: user => {
