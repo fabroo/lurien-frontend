@@ -101,8 +101,7 @@ export  default  Navbar = props => {
                                 <Link to="/login" className="nav-link" style={!dark ? ({ color: '#282828' ,padding:'0'}) : ({ color: '#D3D3D3' ,padding:'0'})}>
 
                                     <DropdownItem icon={<Admin />}><div>
-
-                                        Login
+                                    <p style={!dark ? ({ color: '#282828',margin:'0' }) : ({ color: '#D3D3D3',margin:'0' })}>Login</p>
                                 </div>
                                     </DropdownItem>
                                 </Link>
@@ -110,7 +109,7 @@ export  default  Navbar = props => {
                                 <Link to="/register" className="nav-link " style={!dark ? ({ color: '#282828' ,padding:'0'}) : ({ color: '#D3D3D3',padding:'0' })}>
 
                                     <DropdownItem icon={<Admin />}><div>
-                                        Register
+                                    <p style={!dark ? ({ color: '#282828',margin:'0' }) : ({ color: '#D3D3D3',margin:'0' })}>Register</p>
                                 </div>
                                     </DropdownItem>
                                 </Link>
@@ -123,7 +122,7 @@ export  default  Navbar = props => {
                                             <Link to="/admin" className="nav-link" style={!dark ? ({ color: '#282828' ,padding:'0'}) : ({ color: '#D3D3D3' ,padding:'0'})}>
 
                                                 <DropdownItem leftIcon={<Admin />}><div>
-                                                    Admin
+                                                <p style={!dark ? ({ color: '#282828',margin:'0' }) : ({ color: '#D3D3D3',margin:'0' })}>Admin</p>
                                             </div> </DropdownItem>
                                             </Link> : null
 
@@ -133,7 +132,7 @@ export  default  Navbar = props => {
                                             <Link to="/admin" className="nav-link" style={!dark ? ({ color: '#282828' ,padding:'0'}) : ({ color: '#D3D3D3' ,padding:'0'})}>
 
                                                 <DropdownItem leftIcon={<Admin />}><div>
-                                                    Admin
+                                                <p style={!dark ? ({ color: '#282828',margin:'0' }) : ({ color: '#D3D3D3',margin:'0' })}>Admin</p>
                                             </div> </DropdownItem>
                                             </Link> : null
 
@@ -143,7 +142,7 @@ export  default  Navbar = props => {
                                             <Link to="/mod" className="nav-link" style={!dark ? ({ color: '#282828',padding:'0' }) : ({ color: '#D3D3D3',padding:'0' })}>
 
                                                 <DropdownItem leftIcon={<Mod />}> <div >
-                                                    Mod
+                                                <p style={!dark ? ({ color: '#282828',margin:'0' }) : ({ color: '#D3D3D3',margin:'0' })}>Mod</p>
                                             </div>
                                                 </DropdownItem>
                                             </Link>
@@ -153,13 +152,13 @@ export  default  Navbar = props => {
                                     <Link to="/upload" className="nav-link" style={!dark ? ({ color: '#282828' ,padding:'0'}) : ({ color: '#D3D3D3',padding:'0' })}>
 
                                         <DropdownItem leftIcon={<Upload />}> <div >
-                                            Upload
+                                        <p style={!dark ? ({ color: '#282828',margin:'0' }) : ({ color: '#D3D3D3',margin:'0' })}>Upload</p>
                                     </div></DropdownItem>
                                     </Link>
 
                                     <Link to="/profile" className="nav-link" style={!dark ? ({ color: '#282828' ,padding:'0'}) : ({ color: '#D3D3D3' ,padding:'0'})}>
                                         <DropdownItem leftIcon={<Profile />}>  <div >
-                                            Profile
+                                        <p style={!dark ? ({ color: '#282828',margin:'0' }) : ({ color: '#D3D3D3',margin:'0' })}>Profile</p>
                                     </div></DropdownItem>
                                     </Link>
 
@@ -186,7 +185,7 @@ export  default  Navbar = props => {
             if (open2) {
                 setOpenn(!open2)
             }
-        }} style={!dark ? { background: '#D3D3D3' } : { background: '#282828' }}>
+        }} style={!dark ? { background: '#D3D3D3' } : { background: '#212121' }}>
             <div className="logo_section">
                 <img src={Logo} className="logo_img" alt="" />
                 <Link className="logo_name" to="/" >
@@ -196,22 +195,22 @@ export  default  Navbar = props => {
 
             <div className="culo">
                 <ul className="nav-links ul">
-                    <div className="theme_toggle" style={!dark ? { background: '#F8F8F8' } : { background: '#282828' }}>
+                    <div onClick={toggleTheme} className="theme_toggle" style={!dark ? { background: '#F8F8F8' } : { background: '#282828' }}>
                         {/* <div className="back_rec" style={!dark ? { background: '#282828', marginLeft: '4px' } : { background: '#F8F8F8', marginLeft: '47px' }}> */}
-                        <div className="icon_theme" style={!dark ? { marginLeft: '3px' } : { marginLeft: '46px' }}>
-                            <img onClick={toggleTheme} src={!dark ? Sol : Luna} alt="" />
+                        <div  className="icon_theme" style={!dark ? { marginLeft: '3px' } : { marginLeft: '46px' }}>
+                            <img  src={!dark ? Sol : Luna} alt="" />
                         </div>
                         {/* </div> */}
                     </div>
                     {!isAuthenticated ? (<>
-                        <div className="nav-rect botones-login-reg">
-                            <Link to="/login" className="nav-link" style={!dark ? ({ color: '#282828' }) : ({ color: '#D3D3D3' })}>
+                        <div className="nav-rect botones-login-reg" style={dark ? ({ backgroundColor: '#1E1E1E' }) : ({ backgroundColor: '#DADADA' })}>
+                            <Link to="/login" className="nav-link" style={dark ? ({ color: '#DADADA' }) : ({ color: '#1E1E1E' })}>
                                 Login
                                </Link>
                         </div>
 
-                        <div className="nav-rect botones-login-reg">
-                            <Link to="/register" className="nav-link " style={!dark ? ({ color: '#282828' }) : ({ color: '#D3D3D3' })}>
+                        <div className="nav-rect botones-login-reg" style={dark ? ({ backgroundColor: '#1E1E1E' }) : ({ backgroundColor: '#DADADA' })}>
+                            <Link to="/register" className="nav-link " style={dark ? ({ color: '#DADADA' }) : ({ color: '#1E1E1E' })}>
                                 Register
                                </Link>
                         </div>

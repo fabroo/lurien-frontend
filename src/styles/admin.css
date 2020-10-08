@@ -32,14 +32,29 @@ td p a{
     max-width: 1400px;
     padding: 0 !important;
 }
+.botonera-admin{
+    margin-top: 50px;
+    margin-left: 30px;
+    background-color: #E5E5E5;
+    height: 60px;
+    width: 264px;
+    display :flex;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+    border-radius: 30px;
+}
+#b1,#b2,#b3,#b4 {
+    cursor: pointer;
+}
 .botonera{
     background-color: rgba(190, 190, 190, 0.667);
 }
+
 .boton-elim-border{
     border-left:  1px solid #D3D3D3;;
 }
 .contenedor-de-tabla{
-    margin-top: 150px;
     background: #FFFEFE;
     border-radius: 0px 0px 22px 22px;
 }
@@ -61,10 +76,16 @@ td p a{
 }
 
 .entradas-panel{
+    overflow:auto;
     background-color: #d3d3d3;
-    height: 500px;
+    height: 300px;
+    border-radius:10px;
+}
+.entradas-recientes{
+    text-align: center;
 }
 .entrada{
+
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     width: 90%;
