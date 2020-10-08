@@ -14,7 +14,7 @@ const Profile = (props) => {
     const { user, open2, setOpenn } = useContext(AuthContext);
     //const [qrimg, setQrmImg] = useState(null)
     //const [pfp, setPfp] = useState(null)
-    const ip = "http://192.168.0.103:8080"
+    const ip = "http://192.168.1.203:8080"
     const [picture, setPicture] = useState(null)
     const onChangeHandler = (e) => {
         setPicture(e.target.files)
@@ -22,31 +22,8 @@ const Profile = (props) => {
     }
     useEffect(() => {
         console.log(user)
-        // const uwu = async () => {
-            
-        //     var qr = await axios.get(`${ip}/api/user/qr/${user.companyID}/${user.dni}`)
-        //     //console.log("data:image/png;base64," + image.data.img)
-        //     setQrmImg(qr.data.img);
-        //     var prof = await axios.get(`${ip}/api/user/pfp/${user.companyID}/${user.dni}`)
-        //     //console.log("data:image/png;base64," + image.data.img)
-        //     setPfp(prof.data.img)
-        // }
-        // uwu()
     })
     const onClickHandler = () => {
-        // console.log("culo sucio")
-        // const data = new FormData()
-        // data.append('username', user.dni)
-        // data.append('companyID', user.companyID)
-        // for (var x = 0; x < picture.length; x++) {
-        //     let extensiones = ['.jpg', '.jpeg', '.png'];
-        //     for (let i = 0; i < extensiones.length; i++) {
-        //         if (picture[x].name.includes(extensiones[i])) {
-        //             data.append('file', picture[x])
-        //         }
-        //     }
-        // }a
-        // AuthService.uploadPfp(data, user.usernaame)
         console.log(typeof(picture[0]))
         var str = firebase.storage().ref(`${user.companyID}/pfp/${user.dni}.jpg`)
         str.put(picture[0]).then(snap =>{
@@ -77,8 +54,8 @@ const Profile = (props) => {
                             <div className="whole-body">
                                 <div className="profile-picture">
                                     <p className="profile-text">Profile Picture</p>
-                                    <p>{JSON.stringify(user)}</p>
-                                    {/* <img src={user.pfp} alt="pfp" className="profile-picture-img" /> */}
+                                    {/* <p>{JSON.stringify(user)}</p> */}
+                                    <img src={user.pfp} alt="pfp" className="profile-picture-img" />
                                     <input required={true} type="file" onChange={onChangeHandler} name="holu" className="change-profile-picture" id="customFile" accept="image/png,image/jpg" />
                                     <input type="button" id="btnCnfm" onClick={() =>onClickHandler()}  className="change-profile-picture hidden" />
 
