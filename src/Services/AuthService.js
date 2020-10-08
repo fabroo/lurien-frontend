@@ -1,6 +1,6 @@
 import axios from 'axios'
 // const ip = "http://localhost:8080"
-const ip = "http://192.168.1.203:8080"
+const ip = "http://192.168.0.103:8080"
 
 export default {
     login: user => {
@@ -14,7 +14,7 @@ export default {
             if (res.status !== 401)
                 return res.json().then(data => data);
             else
-                return { isAuthenticated: false, user: { username: "", role: "", dni: "", mail: "", companyID: "" }, error: true };
+                return { isAuthenticated: false, user: { username: "", role: "", dni: "", mail: "", companyID: "", pfp:"" }, error: true };
         })
     },
     register: async user => {
@@ -58,8 +58,10 @@ export default {
 
     },
 
-    uploadPfp: async (data, user) => {
-        return await axios.post(`${ip}/api/upload/uploadPfp/`, data)
+    uploadPfp: async (data, cmp, dni) => {
+        return await axios.post(`${ip}/api/upload/uploadPfp/${cmp}/${dni}`, {
+            data
+        })
             .then(res => res)
 
     },
@@ -90,7 +92,7 @@ export default {
                 if (res.status !== 401)
                     return res.json().then(data => data);
                 else
-                    return { isAuthenticated: false, user: { username: "", role: "", dni: "", mail: "", companyid: "" }, error: true };
+                    return { isAuthenticated: false, user: { username: "", role: "", dni: "", mail: "", companyid: "",pfp:"" }, error: true };
             });
     }
 

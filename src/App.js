@@ -10,9 +10,23 @@ import Mod  from './Components/Mod';
 import PrivateRoute from './hocs/PrivateRoute';
 import UnPrivateRoute from './hocs/UnPrivateRoute';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/storage";
+global.XMLHttpRequest = require("xhr2");
  
 const App= ()=> {
-
+  var firebaseConfig = {
+    apiKey: "AIzaSyBvvZR8bjCKg8kGxXviw43j_iv2Kp3Zgtw",
+    authDomain: "test-lurien.firebaseapp.com",
+    databaseURL: "https://test-lurien.firebaseio.com",
+    projectId: "test-lurien",
+    storageBucket: "test-lurien.appspot.com",
+    messagingSenderId: "973221769406",
+    appId: "1:973221769406:web:2653edd347f49bda3ceeef",
+    measurementId: "G-HJ0BJ08H7L"
+  };
+  firebase.initializeApp(firebaseConfig)
   return (
     <Router>
       <Navbar/>

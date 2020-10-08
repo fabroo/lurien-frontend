@@ -2,7 +2,11 @@ import React, { useState, useContext, useEffect } from 'react';
 import AuthService from '../Services/AuthService';
 import Message from '../Components/Message';
 import { AuthContext } from '../Context/AuthContext';
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/storage";
 import '../styles/login.css'
+
 
 
 const Login = props => {
@@ -38,9 +42,12 @@ const Login = props => {
     const onSubmit = e => {
         e.preventDefault();
 
-        AuthService.login(user).then(data => {
-            const { isAuthenticated, user, error } = data;
+        AuthService.login(user).then(async data => {
+            const { isAuthenticated, user, error,fbToken } = data;
             if (isAuthenticated) {
+                
+                
+                await firebase.auth().signInWithCustomToken(fbToken)
                 authContext.setUser(user);
                 authContext.setIsAuthenticated(isAuthenticated);
                 props.history.push('/profile');
