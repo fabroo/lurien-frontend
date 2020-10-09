@@ -14,7 +14,7 @@ export default {
             if (res.status !== 401)
                 return res.json().then(data => data);
             else
-                return { isAuthenticated: false, user: { username: "", role: "", dni: "", mail: "", companyID: "", pfp:"" }, error: true };
+                return { isAuthenticated: false, user: { username: "", role: "", dni: "", mail: "", companyID: "", pfp:"", qrLink:"" }, error: true };
         })
     },
     register: async user => {
@@ -92,7 +92,7 @@ export default {
                 if (res.status !== 401)
                     return res.json().then(data => data);
                 else
-                    return { isAuthenticated: false, user: { username: "", role: "", dni: "", mail: "", companyid: "",pfp:"" }, error: true };
+                    return { isAuthenticated: false, user: { username: "", role: "", dni: "", mail: "", companyid: "",pfp:"",qrLink:"" }, error: true };
             });
     }
 

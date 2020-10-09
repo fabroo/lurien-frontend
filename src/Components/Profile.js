@@ -57,7 +57,7 @@ const Profile = (props) => {
 
                                     <p className="profile-name">{user.username}</p>
                                     <p className="qr-code-text">QR Code:</p>
-                                    <img src={`http://resources.lurien.team/${user.companyID}/qrcodes/${user.dni}.png`} alt="qr code" className="qr-code-imag" />
+                                    <img src={user.qrLink} alt="qr code" className="qr-code-imag" />
                                 </div>
                                 <div className="c1">
                                     <div className="c2"></div>
