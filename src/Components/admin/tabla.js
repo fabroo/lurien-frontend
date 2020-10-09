@@ -12,7 +12,7 @@ import "firebase/storage";
 
 const axios = require('axios')
 
-const ip = "http://192.168.0.103:8080"
+const ip = "http://192.168.1.203:8080"
 
 const Tabla = () => {
     //actual user
@@ -293,7 +293,7 @@ const Tabla = () => {
                                             <td>{user.createdAccount ? (<p><a rel="noopener noreferrer" href={"https://mail.google.com/mail/u/0/?view=cm&fs=1&to=" + user.mail + "&tf=1"} target="_blank">{user.mail}</a></p>) : (<p>No creada</p>)}</td>
                                             <td> {!user.modeloEntrenado ? (<img src={No} alt="no" />) : (<img src={Si} alt="si" />)}</td>
                                             <td>{user.createdAccount ? <img className="img-fluid profile-imgs" src={user.pfp} alt={user.username} /> : (<p>no hay :(</p>)}</td>
-                                            {/* para la IP LOCAL poner 192.168.0.103:8080 */}
+                                            {/* para la IP LOCAL poner 192.168.1.203:8080 */}
 
                                             <td><p>{user.role}</p></td>
                                             <td><p onClick={() => wipeFotos(user)}>{user.cantidadFotos}</p></td>

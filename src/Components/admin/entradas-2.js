@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../../styles/admin.css'
 import Pusher from 'pusher-js'
 import axios from 'axios'
-const ip = "http://192.168.0.103:8080"
+const ip = "http://192.168.1.203:8080"
 
 export default class Nose2 extends Component {
     constructor(props) {
@@ -39,7 +39,7 @@ export default class Nose2 extends Component {
                        </div>
                         )  ) : (<h1>No hay entradas nuevas hasta el momento</h1>)}
                 </div>
-                <button onClick={() => axios.post("http://192.168.0.103:8080/api/debug/companyid", { name: "fabro", hour: "11:20", companyid: "1a2b3c" })}>CAZCACACACACA</button>
+                <button onClick={() => axios.post("http://192.168.1.203:8080/api/debug/companyid", { name: "fabro", hour: "11:20", companyid: "1a2b3c" })}>CAZCACACACACA</button>
             </>
         )
     }
