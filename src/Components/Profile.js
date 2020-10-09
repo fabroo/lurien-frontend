@@ -6,25 +6,20 @@ import AuthService from '../Services/AuthService';
 import * as firebase from 'firebase'
 import "firebase/auth";
 import "firebase/storage";
-import axios from 'axios'
-
 
 const Profile = (props) => {
 
     const { user, open2, setOpenn } = useContext(AuthContext);
-    //const [qrimg, setQrmImg] = useState(null)
-    //const [pfp, setPfp] = useState(null)
-    const ip = "http://192.168.1.203:8080"
     const [picture, setPicture] = useState(null)
     const onChangeHandler = (e) => {
         setPicture(e.target.files)
         document.getElementById('btnCnfm').classList.remove('hidden')
     }
     useEffect(() => {
-        console.log(user)
+        //console.log(user)
     })
     const onClickHandler = () => {
-        console.log(typeof(picture[0]))
+        //console.log(typeof(picture[0]))
         var str = firebase.storage().ref(`${user.companyID}/pfp/${user.dni}.jpg`)
         str.put(picture[0]).then(snap =>{
             snap.ref.getDownloadURL().then(url=>{
@@ -41,7 +36,7 @@ const Profile = (props) => {
             <div className="total" onClick={() => {
                 if (open2) {
                     setOpenn(false)
-                    console.log("deja de tocarme")
+                    //console.log("deja de tocarme")
 
                 }
             }}>

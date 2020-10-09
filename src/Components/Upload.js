@@ -44,7 +44,7 @@ const Upload = props => {
                 urls_1.push({ url: URL.createObjectURL(fotos[i]), index: i })
             }
             setUrls(urls_1)
-            console.log("culo", urls_1)
+            //console.log("culo", urls_1)
             // console.log(e.target.files)
             setFotos({ cantidad })
 
@@ -100,7 +100,7 @@ const Upload = props => {
         <div className="contenedor-general" onClick={() => {
             if (open2) {
                 setOpenn(false)
-                console.log("deja de tocarme")
+                //console.log("deja de tocarme")
 
             }
         }}>

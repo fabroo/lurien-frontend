@@ -4,7 +4,7 @@ import AuthService from '../../Services/AuthService';
 import '../../styles/admin.css'
 import Pusher from 'pusher-js'
 import axios from 'axios'
-const ip = "http://192.168.1.203:8080"
+const ip = "http://192.168.0.103:8080"
 
 const Entradas = () => {
     //actual user
@@ -30,7 +30,7 @@ const Entradas = () => {
         owo()
     }, [dark])
     const hola = (data) => {
-        console.log("QUE NDA")
+        //console.log("QUE NDA")
         var divisor = document.createElement("DIV")
         //esto es para qeu el css quede bien
         var d1 = document.createElement("DIV")
@@ -52,7 +52,7 @@ const Entradas = () => {
     useEffect(() => {
         const funcion = () => {
             setEntradasNuevas(localStorage.getItem("entradas"))
-            console.log("NOSE A VER", entradasNuevas)
+            //console.log("NOSE A VER", entradasNuevas)
         }
         funcion()
     }, [localStorage.getItem("entradas")])
@@ -68,7 +68,7 @@ const Entradas = () => {
 
             channel.bind('updateEntrada', async (data) => {
                 setTest(test)
-            console.log("TEST",test)
+            //console.log("TEST",test)
 
             });
         }
@@ -80,7 +80,7 @@ const Entradas = () => {
             <div id="testttt" className="container entradas-panel" >
                 {/* {entradasNuevas ? ( <h1>data</h1> ) : (<h1>No hay entradas nuevas hasta el momento</h1>)} */}
             </div>
-            <button onClick={() => axios.post("http://192.168.1.203:8080/api/debug/companyid", { name: "fabro", hour: "14:20", companyid: "1a2b3c" })}>CAZCACACACACA</button>
+            <button onClick={() => axios.post("http://192.168.0.103:8080/api/debug/companyid", { name: "fabro", hour: "14:20", companyid: "1a2b3c" })}>CAZCACACACACA</button>
         </>
     )
 }
