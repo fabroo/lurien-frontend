@@ -6,6 +6,9 @@ import '../../styles/admin.css'
 import No from '../../images/no.svg'
 import Si from '../../images/si.svg'
 import Eliminar from '../../images/no-rojo.svg'
+import * as firebase from 'firebase'
+import "firebase/auth";
+import "firebase/storage";
 
 const axios = require('axios')
 
@@ -24,6 +27,7 @@ const Tabla = () => {
     const [toggle, setToggle] = useState(false);
     const { dark, open2, setOpenn } = useContext(AuthContext);
     useEffect(() => {
+        
         const owo = () => {
             if (dark) {
 
@@ -155,7 +159,8 @@ const Tabla = () => {
     const wipeFotos = async (user) => { //eliminar los datos del usuario en el pickle
         let dni = user.dni
         let companyID = user.companyID
-        if (user.modeloEntrenado && user.createdAccount) {
+        // if (user.modeloEntrenado && user.createdAccount) {
+        if (user.createdAccount) {
             swal("Estas seguro de ello? No podras volver atrás", {
                 buttons: {
                     cancel: "Cancelar",
@@ -170,8 +175,14 @@ const Tabla = () => {
 
                         case "borrar":
                             swal("Eliminado", "Imagenes eliminadas", "success");
-                            await AuthService.wipeFotos(dni, companyID).then(res => {
-                                //console.log(res)
+                            await AuthService.wipeFotos(dni, companyID).then(async res => {
+                                var storage = firebase.storage().ref(`${companyID}/model/${dni}/`)
+                                var str = await firebase.storage().ref(`${companyID}/model/${dni}/`).listAll()
+                                var length = str.items.length -1
+                                for (let i = 0; i <= length; i++) {
+                                    storage.child(`${i}.jpg`).delete()
+                                }
+
                             })
                             AuthService.getData(user.companyID).then(res => {
                                 const all = res.data;

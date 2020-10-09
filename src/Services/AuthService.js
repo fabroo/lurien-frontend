@@ -52,8 +52,8 @@ export default {
             .then(res => res)
 
     },
-    upload: async (data, user,companyid,dni) => {
-        return await axios.post(`${ip}/api/upload/upload/`+companyid+'/'+dni, data)
+    upload: async (data, companyid,dni) => {
+        return await axios.post(`${ip}/api/upload/upload/`+companyid+'/'+dni, {data})
             .then(res => res)
 
     },

@@ -4,6 +4,10 @@ import { AuthContext } from '../Context/AuthContext';
 import swal from 'sweetalert';
 import UploadLogo from '../images/upload-logo.svg'
 import '../styles/upload.css'
+import * as firebase from 'firebase'
+import "firebase/auth";
+import "firebase/storage";
+
 const Upload = props => {
     const [picture, setPicture] = useState(null);
     const { user } = useContext(AuthContext);
@@ -56,37 +60,55 @@ const Upload = props => {
 
     const onClickHandler = () => {
         if (fotos.cantidad > 0) {
-            AuthService.getFotos(user.dni).then(res => {
-                if (res <= 20 || res.data.cantidad + fotos.cantidad <= 20) {
-                    const data = new FormData()
-                    data.append('username', user.dni)
-                    data.append('companyID', user.companyID)
-                    for (var x = 0; x < picture.length; x++) {
-                        let extensiones = ['.jpg', '.jpeg', '.png'];
-                        for (let i = 0; i < extensiones.length; i++) {
-                            if (picture[x].name.includes(extensiones[i])) {
-                                data.append('file', picture[x])
-                            }
+            console.log("entramos")
+            var str = firebase.storage().ref(`${user.companyID}/model/${user.dni}/`)
+            var arr = []
+            for (let i = 0; i < fotos.cantidad; i++) {
+                console.log("foto n")
+                const pic = picture[i];
+                var child = str.child(`${i}.jpg`)
+                child.put(pic).then(snap =>{
+                    snap.ref.getDownloadURL().then(url=>{
+                        arr.push(url)
+                        if(arr.length==3){
+                            console.log(arr)
+                            AuthService.upload(arr, user.companyID, user.dni)
                         }
-                        setStyle({ width: ((x + 1) / picture.length) * 100 + '%' })
-                        setPorcentaje({ porcentaje: ((x + 1) / picture.length) * 100 + '%' })
-                    }
-                    AuthService.upload(data, user.username, user.companyID, user.dni).then(res => {
-                        swal(res.data.message)
                     })
+                })
+                
+            }
+            // AuthService.getFotos(user.dni).then(res => {
+            //     if (res <= 20 || res.data.cantidad + fotos.cantidad <= 20) {
+            //         const data = new FormData()
+            //         data.append('username', user.dni)
+            //         data.append('companyID', user.companyID)
+            //         for (var x = 0; x < picture.length; x++) {
+            //             let extensiones = ['.jpg', '.jpeg', '.png'];
+            //             for (let i = 0; i < extensiones.length; i++) {
+            //                 if (picture[x].name.includes(extensiones[i])) {
+            //                     data.append('file', picture[x])
+            //                 }
+            //             }
+            //             setStyle({ width: ((x + 1) / picture.length) * 100 + '%' })
+            //             setPorcentaje({ porcentaje: ((x + 1) / picture.length) * 100 + '%' })
+            //         }
+            //         AuthService.upload(data, user.username, user.companyID, user.dni).then(res => {
+            //             swal(res.data.message)
+            //         })
 
 
 
-                } else {
-                    swal({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: "Estas intentando subir mas fotos de las que puedes, llevas: " + res.data.cantidad + " y quisiste subir " + fotos.cantidad + ", el maximo es 20",
-                        footer: 'Volve a intentar'
-                    })
+            //     } else {
+            //         swal({
+            //             icon: 'error',
+            //             title: 'Oops...',
+            //             text: "Estas intentando subir mas fotos de las que puedes, llevas: " + res.data.cantidad + " y quisiste subir " + fotos.cantidad + ", el maximo es 20",
+            //             footer: 'Volve a intentar'
+            //         })
 
-                }
-            })
+            //     }
+            // })
         } else {
             swal({
                 icon: 'error',
