@@ -98,8 +98,6 @@ export default class Tabla_mod extends Component {
                     this.setState({ open: false })
                 }
             }}>
-                <br/>
-                <br/>
                  <button type="button" className="btn btn-info m-2 " data-toggle="modal" data-target="#exampleModalCenter"> +</button>
                     <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div className="modal-dialog modal-dialog-centered" role="document">

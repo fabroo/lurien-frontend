@@ -16,7 +16,7 @@
 justify-content: space-around;
 align-items: center;
     display: grid;
-    grid-template-rows: .1fr 1fr .1fr;
+    grid-template-rows: .1fr .8fr .1fr;
 }
 .card-body p{
     margin-top:1rem !important;
@@ -49,7 +49,9 @@ align-items: center;
 height: 426.94px;
 }
 .el-grafico-img{
-    width: 100%;
+
+    /* width: 100% !important; */
+    width: 500px !important;
     height: 199.01px;
 }
 .c1{

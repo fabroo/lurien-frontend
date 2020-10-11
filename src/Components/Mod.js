@@ -1,137 +1,75 @@
 import React, { useState, useEffect, useContext } from 'react'
-import AuthService from '../Services/AuthService';
-import swal from 'sweetalert';
 import { AuthContext } from '../Context/AuthContext';
 import Tabla_mod from '../Components/mod/tabla-mod'
+import Nose2 from '../Components/admin/nose2'
+import Nose1 from '../Components/admin/nose1'
+import Entradas from '../Components/admin/entradas-2'
 
+import b1 from '../images/boton1.svg'
+import b2 from '../images/boton2.svg'
+import b3 from '../images/boton3.svg'
+import b4 from '../images/boton4.svg'
 
 const Mod = props => {
-    const [search, setSearch] = useState("");
-    let [elinput, setElInput] = useState({ dni: 0, comapnyid: "", role: "user", username: "" })
-    let [loading, isLoading] = useState(false)
-    let [viewmore, setViewmore] = useState({ display: 'block' })
-    
-    const handleInput = e => {
-        setSearch(e.target.value);
-    };
-
-    let [content, setContent] = useState(null)
-    let [contenido, setContenido] = useState(null)
     const [toggle,setToggle] = useState(false);
+    const {user,dark,open2,setOpenn} = useContext(AuthContext);
+    
+    
+  const setAll = () =>{
+    setTabla(false)
+    setEntradas(false)
+    setNose1(false)
+    setNose2(false)
+  }
+  const showTabla = () =>{
+    setAll()
+    setTabla(true)
+    //console.log("tabla")
+  }
+  const showEntradas = () =>{
+    setAll()
+    setEntradas(true)
+  }
+  const showNose1 = () =>{
+    setAll()
+    setNose1(true)
+  }
+  const showNose2 = () =>{
+    setAll()
+    setNose2(true)
+  }
 
-
-    const {dark,open2,setOpenn} = useContext(AuthContext);
+  const [tabla,setTabla] = useState(true)
+  const [entradas,setEntradas] = useState(false)
+  const [nose1,setNose1] = useState(false)
+  const [nose2,setNose2] = useState(false)
 
     useEffect(() => {
         const owo = () => {
             if (dark) {
-
                 document.body.classList.remove('dark-bg')
                 document.body.classList.add('light-bg')
             }
             else {
-
                 document.body.classList.remove('light-bg')
                 document.body.classList.add('dark-bg')
             }
             setToggle(dark)
-
         }
         owo()
-
     }, [dark])
-
-    useEffect(() => {
-        isLoading(true)
-
-        async function showw() {
-            AuthService.getMod().then(res => {
-                setContent(res.data.sort(function (a, b) {
-                    if (a.companyID < b.companyID) { return -1; }
-                    if (a.companyID > b.companyID) { return 1; }
-                    return 0;
-                }));
-                var contendio = res.data.sort(function (a, b) {
-                    if (a.companyID < b.companyID) { return -1; }
-                    if (a.companyID > b.companyID) { return 1; }
-                    return 0;
-                })
-                setContenido(contendio.slice(0, 7));
-                isLoading(false)
-            }, [])
-        }
-        showw()
-    }, []);
-
-    const searchh = (e) => {
-        if (content) {
-            e.preventDefault();
-            var contenido = content.filter(function (username) {
-                return username.username.includes(search)
-            })
-            setContenido(contenido)
-        }
-    }
-    const chau = (dni) => {
-        swal("Estas seguro de ello? No podras volver atrás", {
-            buttons: {
-                cancel: "Cancelar",
-                catch: {
-                    text: "Eliminar",
-                    value: "borrar",
-                }
-            },
-        })
-            .then((value) => {
-                switch (value) {
-
-                    case "borrar":
-                        swal("Eliminado", "El trabajador no forma mas parte de la empresa", "success");
-                        AuthService.removeUser(dni).then(res => {
-                            showData()
-                        }, [])
-                        break;
-
-                    default:
-
-                }
-            });
-    }
-    const registrarNuevo = async () => {
-        const dni = elinput.dni;
-        const role = elinput.role;
-        const username = String(dni);
-        const companyid = elinput.companyid;
-        await AuthService.registerNew({ dni: dni, companyID: companyid, role: role, username: username, companyid: companyid }).then(res => {
-            //console.log(res)
-        }, [])
-
-        showData()
-
-    }
-    const handleChange = (e) => {
-        setElInput({ ...elinput, [e.target.name]: e.target.value });
-    }
-    const showData = () => {
-
-        AuthService.getMod().then(res => {
-            setContent(res.data.sort(function (a, b) {
-                if (a.companyID < b.companyID) { return -1; }
-                if (a.companyID > b.companyID) { return 1; }
-                return 0;
-            }));
-            setContenido(res.data.sort(function (a, b) {
-                if (a.companyID < b.companyID) { return -1; }
-                if (a.companyID > b.companyID) { return 1; }
-                return 0;
-            }));
-            setViewmore({ display: "none" });
-        }, [])
-    }
 
     return (
        <>
-       <Tabla_mod/>
+       <div className="botonera-admin" style ={{marginBottom:'80px'}}>
+      <div id="b1" onClick={() => showTabla()}> <img src={b1} alt="boton1"/> </div>
+      <div id="b2" onClick={() => showEntradas()}><img src={b2} alt="boton2"/></div>
+      <div id="b3" onClick={() => showNose1()}><img src={b3} alt="boton3"/></div>
+      <div id="b4" onClick={() => showNose2()}><img src={b4} alt="boton4"/></div>
+    </div>
+      
+    {tabla ? (<Tabla_mod/>) : (entradas ? (<Entradas user = {user}/>) : (nose1 ? (<Nose1/>) : (nose2 ? (<Nose2/>) : (null)) ))}
+
        </>
 
     )
