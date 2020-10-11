@@ -222,8 +222,6 @@ const Tabla = () => {
             <div className="contenedor-de-tabla container" onClick={() => {
                 if (open2) {
                     setOpenn(false)
-                   // console.log("deja de tocarme")
-
                 }
             }}>
                 <div className="botonera" style={{ display: 'flex' }} >

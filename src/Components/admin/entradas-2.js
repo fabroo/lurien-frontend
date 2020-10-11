@@ -2,14 +2,17 @@ import React, { Component } from 'react'
 import '../../styles/admin.css'
 import Pusher from 'pusher-js'
 import axios from 'axios'
+
 const ip = "http://192.168.1.203:8080"
+
 
 export default class Nose2 extends Component {
     constructor(props) {
         super(props)
         this.state = {
             entradas:[],
-            user:this.props.user
+            user:this.props.user,
+            names: ["fabro","bren","baritexz","tievo","dasdasd","gati"]
         }
     }
     componentDidMount() {
@@ -39,7 +42,7 @@ export default class Nose2 extends Component {
                        </div>
                         )  ) : (<h1>No hay entradas nuevas hasta el momento</h1>)}
                 </div>
-                <button onClick={() => axios.post("http://192.168.1.203:8080/api/debug/companyid", { name: "fabro", hour: "11:20", companyid: "1a2b3c" })}>CAZCACACACACA</button>
+                <button onClick={() => axios.post("http://192.168.1.203:8080/api/debug/companyid", { name: `${this.state.names[Math.floor(Math.random()*this.state.names.length)]}`, hour: `${Math.floor(Math.random()*12)}:${Math.floor(Math.random(11)*59)}`, companyid: "1a2b3c" })}>CAZCACACACACA</button>
             </>
         )
     }
