@@ -7,6 +7,7 @@ import Profile from './Components/Profile';
 import Register from './Components/Register';
 import Admin  from './Components/Admin';
 import Mod  from './Components/Mod';
+import Notifications from './Components/Notifications'
 import PrivateRoute from './hocs/PrivateRoute';
 import UnPrivateRoute from './hocs/UnPrivateRoute';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
@@ -28,8 +29,11 @@ const App= ()=> {
   };
   firebase.initializeApp(firebaseConfig)
   return (
+    <>
+
     <Router>
       <Navbar/>
+
       <Route exact path="/" component={Home}/>
       <UnPrivateRoute  path="/login" component={Login}/>
       <UnPrivateRoute path="/register" component={Register}/>
@@ -38,6 +42,7 @@ const App= ()=> {
       <PrivateRoute path="/upload" roles={["user","admin","mod"]} component={Upload}/>
       <PrivateRoute path="/profile" roles={["user","admin","mod"]} component={Profile}/>
     </Router>
+</>
   );
 }
 

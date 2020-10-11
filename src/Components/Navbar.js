@@ -67,10 +67,6 @@ export  default  Navbar = props => {
         const [activeMenu, setActiveMenu] = useState('main');
         const dropdownRef = useRef(null);
 
-        // useEffect(() => {
-        //     setMenuHeight(dropdownRef.current?.firstChild.offsetHeight)
-        // }, [])
-
         function calcHeight(el) {
             const height = el.offsetHeight;
             setMenuHeight(height);

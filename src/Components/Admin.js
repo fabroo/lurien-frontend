@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import { AuthContext } from '../Context/AuthContext';
 import AuthService from '../Services/AuthService';
 import '../styles/admin.css'
-
+import Notifications from './Notifications'
 import Tabla from '../Components/admin/tabla'
 import Nose2 from '../Components/admin/nose2'
 import Nose1 from '../Components/admin/nose1'
@@ -47,6 +47,8 @@ const Admin = props => {
 
   return (
     <>
+      <Notifications/>
+
     <div className="botonera-admin" style ={{marginBottom:'80px'}}>
       <div id="b1" onClick={() => showTabla()}> <img src={b1} alt="boton1"/> </div>
       <div id="b2" onClick={() => showEntradas()}><img src={b2} alt="boton2"/></div>

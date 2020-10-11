@@ -10,7 +10,7 @@ export default ({ children }) => {
     const [user, setUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [dark,setdarkk] = useState(false);
+    const [dark,setdarkk] = useState(true);
     const [open2,setOpenn] = useState(false);
     
     useEffect(() => {
