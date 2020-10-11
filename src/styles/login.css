@@ -8,6 +8,12 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr ;
 }
+button:focus {outline:0;}
+.alert-danger{
+    color: #4d4d4d;
+    background-color: #cacaca;
+    border-color: #cecece;
+}
 .login_text{
     margin-top: 71px;
     font-family: Montserrat;

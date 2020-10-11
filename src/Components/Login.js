@@ -6,14 +6,16 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
 import '../styles/login.css'
+import Loading from '../images/img.gif'
 
-
+import swal from 'sweetalert';
 
 const Login = props => {
     const [user, setUser] = useState({ username: "", password: "" });
     const [message, setMessage] = useState(null);
     const [toggle, setToggle] = useState(false);
     const authContext = useContext(AuthContext);
+    const [loading, setLoading] = useState(false);
 
     const { dark } = useContext(AuthContext);
 
@@ -38,6 +40,7 @@ const Login = props => {
         setUser({ ...user, [e.target.name]: e.target.value });
     }
     const onSubmit = e => {
+        setLoading(true)
         e.preventDefault();
 
         AuthService.login(user).then(async data => {
@@ -51,14 +54,21 @@ const Login = props => {
                 props.history.push('/profile');
             }
             if (error) {
-                setMessage('usuario incorrecto');
+                    swal({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: `Usuario Incorrecto, vuelve a intentar`,
+                        footer: 'Volve a intentar'
+                    })
             }
+            setLoading(false)
         });
     }
     return (
         <div className="body" style={toggle ? { background: '#F8F8F8 ' } : { background: '#272727' }} >
             <div></div>
             <form onSubmit={onSubmit}>
+{/* {loading ? (<img src={Loading} alt="loading" style={{width:'60px'}}/>) : (null)} */}
 
                 <div>
                     {message ? <Message message={message} /> : null}
@@ -84,7 +94,7 @@ const Login = props => {
                                 <div>
                                 </div>
                                 <div>
-                                    <button className="aceptar" type="submit" style={toggle ? { background: '#272727', color: '#F8F8F8' } : { background: '#F8F8F8', color: '#272727' }}>Enter</button>
+                                    <button className="aceptar" type="submit" style={toggle ? { background: '#272727', color: '#F8F8F8' } : { background: '#F8F8F8', color: '#272727' }}>{!loading ? ("Enter") :(<img src={Loading} alt="loading" style={{width:'60px',color:"white"}}/>)}</button>
                                 </div>
                                 <div>
                                 </div>
