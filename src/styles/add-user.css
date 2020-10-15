@@ -1,0 +1,96 @@
+.categoria-admin{
+    display:flex;
+    justify-content: center;
+}
+.modal ,.modal-header,.modal-footer{
+    border:none !important;
+}
+.modal-body{
+    padding:0 !important;
+}
+.modal{
+border: 2px solid #555555;
+box-sizing: border-box;
+border-radius: 14px;
+}
+textarea:focus, input:focus, button:focus,select:focus{
+    outline: none;
+}
+.unpit-dni-user{
+    width: 246.96px;
+    font-family: Montserrat;
+    height: 46.81px;
+    padding-left: 20px;
+    background: #363636;
+    border: 1px solid #555555;
+    box-sizing: border-box;
+    border-radius: 7px;
+    margin-bottom :40px;
+    color:white
+
+}
+.unpit-email-user{
+    width: 350px;
+    font-family: Montserrat;
+    height: 46.81px;
+    padding-left: 20px;
+    background: #363636;
+    border: 1px solid #555555;
+    box-sizing: border-box;
+    border-radius: 7px;
+    color:white;
+margin-top:0;
+}
+.btn-primary{
+    border:none;
+    background-color: rgba(85, 85, 85);
+}
+.btn-primary:hover{
+    background-color: rgb(42, 42, 42);
+}
+.dni-text{
+    
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    color: #DADADA;
+}
+.opeciones {
+    cursor: pointer;
+    width: 181px;
+    height: 202px;
+    background: #1E1E1E;
+    border-radius: 10px;
+    transition: all .4s;
+    margin: auto 40px
+}
+.option1 ,.option2{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.inside{
+    margin: auto !important;
+
+}
+.modal-content{
+    background-color: #272727;
+}
+.op-img{
+    color: #DADADA;
+    width:90px
+}
+.option2 img{
+    height: 101px !important;
+}
+.op-p{
+    margin: 0;
+    margin-top:20px;
+font-family: Montserrat;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+
+color: #DADADA !important;
+}
