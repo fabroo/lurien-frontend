@@ -22,12 +22,13 @@ const Tabla = () => {
     //button classes
     let [registradoClass, setRegistradoClass] = useState({ style: { display: 'none', margin: 'auto .5rem' } })
     let [noregistradoClass, setNoRegistradoClass] = useState({ style: { display: 'none', margin: 'auto .5rem' } })
+    let [modal, setModal] = useState({ username: "", dni: "" })
 
     let [loading, isLoading] = useState(false); //loading message
     const [toggle, setToggle] = useState(false);
     const { dark, open2, setOpenn } = useContext(AuthContext);
     useEffect(() => {
-        
+
         const owo = () => {
             if (dark) {
 
@@ -76,7 +77,7 @@ const Tabla = () => {
 
     }, [user.companyID]); //si se rompe saca lo de aca adentro
 
-    const showWich = (yesOrNo) => { //only users depending if they are registered or not
+     const showWich = (yesOrNo) => { //only users depending if they are registered or not
         if (yesOrNo) { //set the button classes
             setRegistradoClass({ display: 'none' })
             setNoRegistradoClass({ display: 'block' })
@@ -122,14 +123,16 @@ const Tabla = () => {
                 }
             },
         })
-            .then((value) => {
+            .then(async (value) => {
                 switch (value) {
 
                     case "borrar":
                         swal("Eliminado", "El trabajador no forma mas parte de la empresa", "success");
-                        AuthService.removeUser(dni).then(res => { //remove function
-                            showWich(true);
+                         AuthService.removeUser(dni).then(res => { //remove function
                         }, [])
+                        console.log("HOLA!!!")
+                        showWich(true);
+
                         break;
 
                     default:
@@ -145,12 +148,8 @@ const Tabla = () => {
         const username = String(dni); //until the user creates his account the username will be his DNI
         const companyid = user.companyID
 
-
-        await AuthService.registerNew({ dni: dni, companyID: user.companyID, role: role, username: username, companyid: companyid }).then(res => {
-            !res.data.message.msgError ? (swal('Nice!', res.data.message.msgBody)) : (swal('Error!', res.data.message.msgBody))
-        }, [])
-
-        showWich(false)
+        console.log("CAJOIJASCJASJASCJASJOIACCSOI FIAT")
+        showWich(true)
 
     }
     const handleChange = (e) => { //handle the create user input
@@ -178,7 +177,7 @@ const Tabla = () => {
                             await AuthService.wipeFotos(dni, companyID).then(async res => {
                                 var storage = firebase.storage().ref(`${companyID}/model/${dni}/`)
                                 var str = await firebase.storage().ref(`${companyID}/model/${dni}/`).listAll()
-                                var length = str.items.length -1
+                                var length = str.items.length - 1
                                 for (let i = 0; i <= length; i++) {
                                     storage.child(`${i}.jpg`).delete()
                                 }
@@ -232,7 +231,28 @@ const Tabla = () => {
                     <button type="button" className="btn btn-info m-2" data-toggle="modal" data-target="#exampleModalCenter"> +</button>
 
                 </div>
-              <AddUser companyid ={user.companyID}/>
+                <AddUser companyid={user.companyID} />
+
+                <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog-centered modal-lg">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title dni-text" id="exampleModalLabel">{modal.username}</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span style={{color:"white"}}aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <div className="form-group" style={{alignItems:"center",textAlign:'center'}}>
+                                    <img src={modal.pfp} style={{width:"600px"}} alt="pfp" />
+                                </div>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {!loading ? (
                     <div>
                         <table className="tabla-admin table table-hover text-center table-responsive-lg">
@@ -251,7 +271,7 @@ const Tabla = () => {
                             <tbody>
                                 {content ? (
                                     content.map(user =>
-                                        <tr key={user._id}>
+                                        <tr key={user._id} data-toggle="modal" data-target="#exampleModal" onClick={() => setModal({ username: user.username, dni: user.dni, pfp: user.pfp })} >
 
                                             <td>{!user.createdAccount ? (<p>No registrado</p>) : (<p>{user.username}</p>)}</td>
                                             <td ><p>{user.dni}</p></td>

@@ -37,11 +37,12 @@ export default class addUser extends Component {
 
 
         await AuthService.registerNew({ dni: dni, companyID: companyid, role: role, username: username, companyid: companyid }).then(res => {
-            console.log(res)
+            console.log("creado")
         }, [])
     }
     render() {
         return (
+            <>
             <div className="arriba d-flex flex-row-reverse">
 
                 <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -109,6 +110,8 @@ export default class addUser extends Component {
                     </div>
                 </div>
             </div>
+            
+            </>
         )
     }
 }
