@@ -101,3 +101,24 @@ td p a{
 .entrada p{
     margin: 0 !important;
 }
+
+
+
+.body-todo{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.parte-pagination{
+    margin-top: 20px;
+}
+.flecha-pagination{
+    background-color: #d3d3d3;
+    color: #333;
+    font-size: 20px;
+    text-align: center;
+    width: 50px;
+    height: 30px;
+    border: none;
+    margin: auto 10px
+}

@@ -15,7 +15,7 @@ const FormWithToasts = () => {
       });
       var channel = pusher.subscribe(user.companyID);
       channel.bind('updateEntrada', async (data) => {
-        addToast(`[${data.hora}]: Acaba de entrar ${data.name} `, { appearance: 'info', autoDismiss: true, autoDismissTimeout: 2100 })
+        addToast(`[${data.hour}]: Acaba de entrar ${data.name} `, { appearance: 'info', autoDismiss: true, autoDismissTimeout: 2100 })
       })
 
     }

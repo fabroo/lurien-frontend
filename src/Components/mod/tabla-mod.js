@@ -64,16 +64,14 @@ export default class Tabla_mod extends Component {
         const companyid = this.state.companyid;
 
         await AuthService.registerNew({ dni: dni, companyID: companyid, role: role, username: username, companyid: companyid }).then(res => {
-            // console.log(res)
+            console.log(res)
         }, [])
 
         this.showData()
 
     }
     handleChange = (e) => {
-
         this.setState({ [e.target.name]: e.target.value });
-        // console.log(this.state)
     }
     showData = () => {
 

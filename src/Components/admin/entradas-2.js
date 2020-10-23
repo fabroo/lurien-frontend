@@ -11,18 +11,15 @@ export default class Nose2 extends Component {
             user: this.props.user,
             names: ["fabro", "bren", "baritexz", "tievo", "dasdasd", "gati"],
             username: "",
-            img: ""
+            img: "",
+            companyid :this.props.user.companyID
         }
     }
     async componentDidMount() {
-
-        const entradas = await axios.get('http://192.168.1.126:8080/api/entradas/historial')
+        const entradas = await axios.get('http://192.168.1.126:8080/api/entradas/historial/'+this.state.companyid)
         let dbEntries = entradas.data.entradas
 
         this.setState({ entradas: dbEntries })
-        console.log("[TODAS]", this.state.entradas)
-
-
         var pusher = new Pusher('b103ad2b1e20a1198455', {
             cluster: 'us2'
         });
@@ -31,7 +28,6 @@ export default class Nose2 extends Component {
 
         channel.bind('updateEntrada', async (data) => {
             this.setState({ entradas: [data, ...this.state.entradas] })
-            // console.log("[STATE]",this.state)
         })
     }
     setOpenModelSi = (uno, dos) => {
@@ -42,7 +38,7 @@ export default class Nose2 extends Component {
         return (
             <>
                 <div className="body-todo">
-                    <div className="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal fade" id="exampleModal1" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div className="modal-dialog modal-dialog-centered modal-lg">
                             <div className="modal-content">
                                 <div className="modal-header">
@@ -71,9 +67,9 @@ export default class Nose2 extends Component {
                             </div>
                         )) : (<h1>No hay entradas nuevas hasta el momento</h1>)}
                     </div>
-                    <div>
-                        <button>&#x3c;</button>
-                        <button>&#x3e;</button>
+                    <div className="parte-pagination">
+                        <button className="flecha-pagination">&#x3c;</button>
+                        <button className="flecha-pagination">&#x3e;</button>
                     </div>
                 </div>
                 <button onClick={() => axios.post("http://192.168.1.126:8080/api/entradas/new", { name: `${this.state.names[Math.floor(Math.random() * this.state.names.length)]}`, hour: `${Math.floor(Math.random() * 12)}:${Math.floor(Math.random(11) * 59)}`, companyid: "1a2b3c", img: "https://i1.sndcdn.com/avatars-000703402813-kzxmda-t500x500.jpg" })}>CAZCACACACACA</button>

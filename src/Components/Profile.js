@@ -46,18 +46,14 @@ const Profile = (props) => {
         setPicture(e.target.files)
         document.getElementById('btnCnfm').classList.remove('hidden')
     }
-    useEffect(() => {
-        //console.log(user)
-    })
+   
     const onClickHandler = () => {
-        //console.log(typeof(picture[0]))
         var str = firebase.storage().ref(`${user.companyID}/pfp/${user.dni}.jpg`)
         if (picture.length > 0) {
             str.put(picture[0]).then(snap => {
                 snap.ref.getDownloadURL().then(url => {
                     AuthService.uploadPfp(url, user.companyID, user.dni)
                     setUsuario({ pfp: url })
-                    console.log("[USUARI]", usuario)
                 })
             })
             document.getElementById('btnCnfm').classList.add('hidden')
@@ -72,8 +68,6 @@ const Profile = (props) => {
             <div className="total" onClick={() => {
                 if (open2) {
                     setOpenn(false)
-                    //console.log("deja de tocarme")
-
                 }
             }}>
                 <div className="container container1">
@@ -85,18 +79,10 @@ const Profile = (props) => {
                             <div className="whole-body">
                                 <div className="profile-picture">
                                     <p className="profile-text">Profile Picture</p>
-                                    {/* <p>{JSON.stringify(user)}</p> */}
                                     <img src={usuario.pfp} alt="pfp" className="profile-picture-img" />
-                                    {/* <label htmlFor="customFile">Cambiar Foto</label> */}
-
                                     <button className="change-profile-picture" style={{ display: "block", width: "120px", height: "30px" }} onClick={() => document.getElementById('getFile').click()}>Change Photo</button>
                                     <input required={true} type="file" onChange={onChangeHandler} name="holu" style={{ display: 'none' }} id="getFile" accept="image/png,image/jpg" />
-
-
-
                                     <input type="button" id="btnCnfm" value="Confirmar" onClick={() => onClickHandler()} className="change-profile-picture hidden" />
-
-
                                     <p className="profile-name">{user.username}</p>
                                     <p className="qr-code-text">QR Code:</p>
                                     <img src={user.qrLink} alt="qr code" className="qr-code-imag" />

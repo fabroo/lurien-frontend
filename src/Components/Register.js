@@ -35,13 +35,6 @@ const Register = props => {
         owo()
     }, [dark])
 
-    useEffect(() => {
-        return () => {
-            clearTimeout(timerID);
-        }
-    }, []);
-
-
 
     const onChange = e => {
         setUser({ ...user, [e.target.name]: e.target.value });
@@ -53,16 +46,17 @@ const Register = props => {
 
     const onSubmit = e => {
         e.preventDefault();
-        //console.log('user: ' + JSON.stringify(user))
-
         AuthService.register(user).then(data => {
             const { message } = data.data;
 
             resetForm();
             if (!message.msgError) {
-                timerID = setTimeout(() => {
-                    props.history.push('/login');
-                }, 1000)
+                swal({
+                    icon: 'success',
+                    title: 'Registered!',
+                    text: `${message.msgBody}`,
+                    footer: 'Ahora inicia sesion'
+                })
             } else {
                 swal({
                     icon: 'error',

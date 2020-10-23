@@ -46,8 +46,6 @@ const Login = props => {
         AuthService.login(user).then(async data => {
             const { isAuthenticated, user, error,fbToken } = data;
             if (isAuthenticated) {
-                //console.log("[USER PADRE]",user)
-                
                 await firebase.auth().signInWithCustomToken(fbToken)
                 authContext.setUser(user);
                 authContext.setIsAuthenticated(isAuthenticated);

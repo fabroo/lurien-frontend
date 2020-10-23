@@ -50,8 +50,6 @@ const Upload = props => {
                 urls_1.push({ url: URL.createObjectURL(fotos[i]), index: i })
             }
             setUrls(urls_1)
-            //console.log("culo", urls_1)
-            // console.log(e.target.files)
             setFotos({ cantidad })
 
         } else {
@@ -62,18 +60,15 @@ const Upload = props => {
 
     const onClickHandler = () => {
         if (fotos.cantidad > 0) {
-            console.log("entramos")
             var str = firebase.storage().ref(`${user.companyID}/model/${user.dni}/`)
             var arr = []
             for (let i = 0; i < fotos.cantidad; i++) {
-                console.log("foto n")
                 const pic = picture[i];
                 var child = str.child(`${i}.jpg`)
                 child.put(pic).then(snap =>{
                     snap.ref.getDownloadURL().then(url=>{
                         arr.push(url)
                         if(arr.length===3){
-                            console.log(arr)
                             AuthService.upload(arr, user.companyID, user.dni)
                         }
                     })
@@ -94,8 +89,6 @@ const Upload = props => {
         <div className="contenedor-general" onClick={() => {
             if (open2) {
                 setOpenn(false)
-                //console.log("deja de tocarme")
-
             }
         }}>
             <div className="">

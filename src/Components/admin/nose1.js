@@ -1,7 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { AuthContext } from '../../Context/AuthContext';
 const Nose1 = () => {
-    const {setToggle} = useState(false);
+    
+    // eslint-disable-next-line
+    const [toggle, setToggle] = useState(false);
     const { dark} = useContext(AuthContext);
     useEffect(() => {
         const owo = () => {
