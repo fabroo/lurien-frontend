@@ -262,7 +262,7 @@ const setOpenModelSi = (user) =>{
                                             <td data-toggle="modal" data-target="#exampleModal" onClick={() => setOpenModelSi(user)} >{user.createdAccount ? (<p><a rel="noopener noreferrer" href={"https://mail.google.com/mail/u/0/?view=cm&fs=1&to=" + user.mail + "&tf=1"} target="_blank">{user.mail}</a></p>) : (<p>No creada</p>)}</td>
                                             <td data-toggle="modal" data-target="#exampleModal" onClick={() => setOpenModelSi(user)} > {!user.modeloEntrenado ? (<img src={No} alt="no" />) : (<img src={Si} alt="si" />)}</td>
                                             <td data-toggle="modal" data-target="#exampleModal" onClick={() => setOpenModelSi(user)} >{user.createdAccount ? <img className="img-fluid profile-imgs" src={user.pfp} alt={user.username} /> : (<p>no hay :(</p>)}</td>
-                                            {/* para la IP LOCAL poner 192.168.1.126:8080 */}
+                                            
 
                                             <td data-toggle="modal" data-target="#exampleModal" onClick={() => setOpenModelSi(user)} ><p>{user.role}</p></td>
                                             <td data-toggle="modal" data-target="#exampleModal" onClick={() => setOpenModelSi(user)} ><p onClick={() => wipeFotos(user)}>{user.cantidadFotos}</p></td>

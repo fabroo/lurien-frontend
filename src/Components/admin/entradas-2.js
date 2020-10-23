@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../../styles/admin.css'
 import Pusher from 'pusher-js'
 import axios from 'axios'
+require('dotenv').config()
 
 export default class Nose2 extends Component {
     constructor(props) {
@@ -16,7 +17,7 @@ export default class Nose2 extends Component {
     }
     async componentDidMount() {
 
-        const entradas = await axios.get('http://192.168.1.126:8080/api/entradas/historial')
+        const entradas = await axios.get(`http://${process.env.REACT_APP_IP}:8080/api/entradas/historial`)
         let dbEntries = entradas.data.entradas
 
         this.setState({ entradas: dbEntries })
@@ -76,7 +77,7 @@ export default class Nose2 extends Component {
                         <button>&#x3e;</button>
                     </div>
                 </div>
-                <button onClick={() => axios.post("http://192.168.1.126:8080/api/entradas/new", { name: `${this.state.names[Math.floor(Math.random() * this.state.names.length)]}`, hour: `${Math.floor(Math.random() * 12)}:${Math.floor(Math.random(11) * 59)}`, companyid: "1a2b3c", img: "https://i1.sndcdn.com/avatars-000703402813-kzxmda-t500x500.jpg" })}>CAZCACACACACA</button>
+                <button onClick={() => axios.post(`http://${process.env.REACT_APP_IP}:8080/api/entradas/new`, { name: `${this.state.names[Math.floor(Math.random() * this.state.names.length)]}`, hour: `${Math.floor(Math.random() * 12)}:${Math.floor(Math.random(11) * 59)}`, companyid: "1a2b3c", img: "https://i1.sndcdn.com/avatars-000703402813-kzxmda-t500x500.jpg" })}>CAZCACACACACA</button>
             </>
         )
     }

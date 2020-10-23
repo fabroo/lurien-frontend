@@ -1,6 +1,7 @@
 import axios from 'axios'
 // const ip = "http://localhost:8080"
-const ip = "http://192.168.1.126:8080"
+require('dotenv').config()
+const ip = `http://${process.env.REACT_APP_IP}:8080`
 
 export default {
     login: user => {
