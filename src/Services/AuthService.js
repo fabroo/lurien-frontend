@@ -40,6 +40,13 @@ export default {
 
     },
     
+    getManUser: async (companyId) => {
+        //cambiar con la ip de tu casa
+        return await axios.get(`${ip}/api/user/manUser`,{companyId})
+            .then(res => res)
+
+    },
+    
     downloadP: async (companyid) => {
         //cambiar con la ip de tu casa
         return await axios.get(`${ip}/api/user/download/` + companyid)

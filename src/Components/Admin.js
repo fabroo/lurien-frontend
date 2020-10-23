@@ -13,7 +13,6 @@ import b3 from '../images/boton3.svg'
 import b4 from '../images/boton4.svg'
 const Admin = props => {
   const { user } = useContext(AuthContext);
-  //console.log("[QCYO EL ADMIN]",user)
 
   const setAll = () =>{
     setTabla(false)
@@ -24,7 +23,6 @@ const Admin = props => {
   const showTabla = () =>{
     setAll()
     setTabla(true)
-    //console.log("tabla")
   }
   const showEntradas = () =>{
     setAll()

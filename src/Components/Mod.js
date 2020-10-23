@@ -26,7 +26,6 @@ const Mod = props => {
   const showTabla = () =>{
     setAll()
     setTabla(true)
-    //console.log("tabla")
   }
   const showEntradas = () =>{
     setAll()

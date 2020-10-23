@@ -36,10 +36,10 @@ const App= ()=> {
       <Route exact path="/" component={Home}/>
       <UnPrivateRoute  path="/login" component={Login}/>
       <UnPrivateRoute path="/register" component={Register}/>
-      <PrivateRoute path="/admin" roles={["admin","mod"]} component={Admin}/>
+      <PrivateRoute path="/admin" roles={["admin","mod","manager"]} component={Admin}/>
       <PrivateRoute path="/mod" roles={["mod"]} component={Mod}/>
-      <PrivateRoute path="/upload" roles={["user","admin","mod"]} component={Upload}/>
-      <PrivateRoute path="/profile" roles={["user","admin","mod"]} component={Profile}/>
+      <PrivateRoute path="/upload" roles={["user","admin","mod","manager"]} component={Upload}/>
+      <PrivateRoute path="/profile" roles={["user","admin","mod","manager"]} component={Profile}/>
     </Router>
 </>
   );

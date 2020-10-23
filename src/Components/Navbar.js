@@ -33,7 +33,6 @@ const Navbar = props => {
     const toggleTheme = () => {
         setdark(!dark)
         authContext.setdarkk(dark)
-        console.log(dark)
     }
 
 
@@ -105,7 +104,7 @@ const Navbar = props => {
                         ) : (
                                 <>
                                     {
-                                        user.role === "admin" ?
+                                        user.role !== "user" ?
                                             <Link to="/admin" className="nav-link" style={!dark ? ({ color: '#282828' ,padding:'0'}) : ({ color: '#D3D3D3' ,padding:'0'})}>
 
                                                 <DropdownItem leftIcon={<Admin />}><div>
@@ -114,16 +113,7 @@ const Navbar = props => {
                                             </Link> : null
 
                                     }
-                                    {
-                                        user.role === "mod" ?
-                                            <Link to="/admin" className="nav-link" style={!dark ? ({ color: '#282828' ,padding:'0'}) : ({ color: '#D3D3D3' ,padding:'0'})}>
-
-                                                <DropdownItem leftIcon={<Admin />}><div>
-                                                <p style={!dark ? ({ color: '#282828',margin:'0' }) : ({ color: '#D3D3D3',margin:'0' })}>Admin</p>
-                                            </div> </DropdownItem>
-                                            </Link> : null
-
-                                    }
+                                    
                                     {
                                         user.role === "mod" ? (
                                             <Link to="/mod" className="nav-link" style={!dark ? ({ color: '#282828',padding:'0' }) : ({ color: '#D3D3D3',padding:'0' })}>

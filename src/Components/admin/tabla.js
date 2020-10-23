@@ -9,9 +9,9 @@ import Eliminar from '../../images/no-rojo.svg'
 import * as firebase from 'firebase'
 import "firebase/auth";
 import "firebase/storage";
-import AddUser from './addUser'
+import AddUser from './addManager'
 
-const Tabla = () => {
+const Tabla = (areas) => {
     //actual user
     const { user } = useContext(AuthContext);
     let [content, setContent] = useState(null) //list of company users
@@ -19,11 +19,13 @@ const Tabla = () => {
     let [registradoClass, setRegistradoClass] = useState({ style: { display: 'none', margin: 'auto .5rem' } })
     let [noregistradoClass, setNoRegistradoClass] = useState({ style: { display: 'none', margin: 'auto .5rem' } })
     let [modal, setModal] = useState({ username: "", dni: "" })
-
+    // let caca = ["hola","admin","tu vieja"];
     let [loading, isLoading] = useState(false); //loading message
     // eslint-disable-next-line 
     const [toggle, setToggle] = useState(false);
     const { dark, open2, setOpenn } = useContext(AuthContext);
+    
+    
     useEffect(() => {
 
         const owo = () => {
@@ -47,28 +49,49 @@ const Tabla = () => {
 
         isLoading(true) //begin to load
         async function showw() {
-            AuthService.getData(user.companyID).then(res => {
-                //consts
-                const all = res.data;
-                const users = [];
-
-                all.forEach(async user => { //only display registered users
-                    if (user.createdAccount) {
-
-                        users.push(user)
-                    }
-                })
-
-                setContent(users.sort(function (a, b) { //sort users alphabetically
-                    if (a.username < b.username) { return -1; }
-                    if (a.username > b.username) { return 1; }
-                    return 0;
-                }));
-                isLoading(false) //done loading
-
-                setRegistradoClass({ display: 'block' })
-                setNoRegistradoClass({ display: 'block' })
-            }, [])
+            if(user.role === "admin" || user.role==="mod"){
+                AuthService.getData(user.companyID).then(async res => {
+                    //consts
+                    const all = res.data;
+                    const users = [];
+                    all.forEach(async user => { //only display registered users
+                        if (user.createdAccount) {
+    
+                            users.push(user)
+                        }
+                    })
+                    setContent(users.sort(function (a, b) { //sort users alphabetically
+                        if (a.username < b.username) { return -1; }
+                        if (a.username > b.username) { return 1; }
+                        return 0;
+                    }));
+                    
+                    isLoading(false) //done loading
+                    setRegistradoClass({ display: 'block' })
+                    setNoRegistradoClass({ display: 'block' })
+                }, [])
+            }else if(user.role === "manager"){
+                AuthService.getManUser(user.companyID).then(async res => {
+                    //consts
+                    const all = res.data;
+                    const users = [];
+                    all.forEach(async user => { //only display registered users
+                        if (user.createdAccount) {
+    
+                            users.push(user)
+                        }
+                    })
+                    setContent(users.sort(function (a, b) { //sort users alphabetically
+                        if (a.username < b.username) { return -1; }
+                        if (a.username > b.username) { return 1; }
+                        return 0;
+                    }));
+                    
+                    isLoading(false) //done loading
+                    setRegistradoClass({ display: 'block' })
+                    setNoRegistradoClass({ display: 'block' })
+                }, [])
+            }
         }
         showw()
 
@@ -213,11 +236,10 @@ const setOpenModelSi = (user) =>{
                     <button className="btn btn-primary m-2 none" style={registradoClass} onClick={() => showWich(true)}>REGISTRADOS</button>
                     <button className="btn btn-secondary m-2 none" style={noregistradoClass} onClick={() => showWich(false)}>NO REGISTRADOS</button>
                     <button type="button" className="btn btn-info m-2" data-toggle="modal" data-target="#exampleModalCenter"> +</button>
-
                 </div>
-                <AddUser companyid={user.companyID} />
+                <AddUser prueba1={["caca"]} user={user} />
 
-                <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered modal-lg">
                         <div className="modal-content">
                             <div className="modal-header">
@@ -249,6 +271,7 @@ const setOpenModelSi = (user) =>{
                                     <th>Profile Picture</th>
                                     <th>Rol</th>
                                     <th>Fotos</th>
+                                    <th>Area</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -264,8 +287,9 @@ const setOpenModelSi = (user) =>{
                                             <td data-toggle="modal" data-target="#exampleModal" onClick={() => setOpenModelSi(user)} >{user.createdAccount ? <img className="img-fluid profile-imgs" src={user.pfp} alt={user.username} /> : (<p>no hay :(</p>)}</td>
                                             
 
-                                            <td data-toggle="modal" data-target="#exampleModal" onClick={() => setOpenModelSi(user)} ><p>{user.role}</p></td>
-                                            <td data-toggle="modal" data-target="#exampleModal" onClick={() => setOpenModelSi(user)} ><p onClick={() => wipeFotos(user)}>{user.cantidadFotos}</p></td>
+                                            <td data-toggle="modal" data-target="#exampleModal"><p>{user.role}</p></td>
+                                            <td data-toggle="modal" data-target="#exampleModal"><p onClick={() => wipeFotos(user)}>{user.cantidadFotos}</p></td>
+                                            <td data-toggle="modal" data-target="#exampleModal"><p>{String(user.area)}</p></td>
 
                                             <td className="boton-elim-border"> {user.role !== "admin" ? (<img alt="remove"className="btn-elim" src={Eliminar} onClick={() => chau(user._id)} />) : user.role !== "mod" ? ((<img alt="remove"className="btn-elim" src={Eliminar} onClick={() => chau(user._id)} />)) : (<p>es admin bro</p>)} </td>
                                         </tr>)
