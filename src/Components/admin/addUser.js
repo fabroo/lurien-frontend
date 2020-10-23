@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import AuthService from '../../Services/AuthService';
-import swal from 'sweetalert';
 import '../../styles/add-user.css'
 import Admin from '../../images/admin1.svg'
 import Profile from '../../images/profile1.svg'
@@ -22,7 +21,7 @@ export default class addUser extends Component {
     }
 
     handleRole = (e) => {
-        if (e.target.name == "manager") {
+        if (e.target.name === "manager") {
             this.setState({ manager: true })
         } else {
             this.setState({ manager: false })

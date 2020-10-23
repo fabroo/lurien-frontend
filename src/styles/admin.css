@@ -78,7 +78,7 @@ td p a{
 .entradas-panel{
     overflow:auto;
     background-color: #d3d3d3;
-    height: 300px;
+    height: 400px;
     border-radius:10px;
 }
 .entradas-recientes{

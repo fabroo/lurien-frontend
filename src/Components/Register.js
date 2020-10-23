@@ -12,9 +12,9 @@ import Loading from '../images/img.gif'
 
 const Register = props => {
     const [user, setUser] = useState({ username: "", password: "", dni: "", companyID: "", mail: "" });
-    const [message, setMessage] = useState(null);
+    const [message] = useState(null);
     const [toggle, setToggle] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [loading] = useState(false);
     let timerID = useRef(null);
 
     const { dark } = useContext(AuthContext);
@@ -142,7 +142,7 @@ const Register = props => {
 
                         </div>
                         <div>
-                            <p className="registrar" style={toggle ? { color: '#272727' } : { color: '#F8F8F8' }}>Ya tenes cuenta? <Link style={toggle ? { color: '#272727' } : { color: '#F8F8F8' }} style={{ color: '##000000', textDecoration: 'none' }} to="/login">Inicia Sesion</Link></p>
+                            <p className="registrar" style={toggle ? { color: '#272727' } : { color: '#F8F8F8' }}>Ya tenes cuenta? <Link style={toggle ? { color: '#272727', textDecoration: 'none' } : { color: '#F8F8F8' , textDecoration: 'none'}} to="/login">Inicia Sesion</Link></p>
 
                         </div>
                         <div>

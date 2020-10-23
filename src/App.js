@@ -7,7 +7,6 @@ import Profile from './Components/Profile';
 import Register from './Components/Register';
 import Admin  from './Components/Admin';
 import Mod  from './Components/Mod';
-import Notifications from './Components/Notifications'
 import PrivateRoute from './hocs/PrivateRoute';
 import UnPrivateRoute from './hocs/UnPrivateRoute';
 import {BrowserRouter as Router, Route} from 'react-router-dom';

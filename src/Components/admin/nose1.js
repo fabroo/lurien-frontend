@@ -1,9 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { AuthContext } from '../../Context/AuthContext';
-import AuthService from '../../Services/AuthService';
 const Nose1 = () => {
-    const [toggle, setToggle] = useState(false);
-    const { dark, open2, setOpenn } = useContext(AuthContext);
+    const {setToggle} = useState(false);
+    const { dark} = useContext(AuthContext);
     useEffect(() => {
         const owo = () => {
             if (dark) {
@@ -19,7 +18,7 @@ const Nose1 = () => {
             setToggle(dark)
         }
         owo()
-    }, [dark])
+    }, [dark,setToggle])
     return (
         <>
             <h1>NOSE 1</h1>

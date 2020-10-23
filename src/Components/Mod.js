@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { AuthContext } from '../Context/AuthContext';
-import Tabla_mod from '../Components/mod/tabla-mod'
+import TablaMod from '../Components/mod/tabla-mod'
 import Nose2 from '../Components/admin/nose2'
 import Nose1 from '../Components/admin/nose1'
 import Entradas from '../Components/admin/entradas-2'
@@ -11,8 +11,10 @@ import b3 from '../images/boton3.svg'
 import b4 from '../images/boton4.svg'
 
 const Mod = props => {
+  
+  // eslint-disable-next-line 
     const [toggle,setToggle] = useState(false);
-    const {user,dark,open2,setOpenn} = useContext(AuthContext);
+    const {user,dark} = useContext(AuthContext);
     
     
   const setAll = () =>{
@@ -57,7 +59,7 @@ const Mod = props => {
             setToggle(dark)
         }
         owo()
-    }, [dark])
+    }, [dark,setToggle])
 
     return (
        <>
@@ -68,7 +70,7 @@ const Mod = props => {
       <div id="b4" onClick={() => showNose2()}><img src={b4} alt="boton4"/></div>
     </div>
       
-    {tabla ? (<Tabla_mod/>) : (entradas ? (<Entradas user = {user}/>) : (nose1 ? (<Nose1/>) : (nose2 ? (<Nose2/>) : (null)) ))}
+    {tabla ? (<TablaMod/>) : (entradas ? (<Entradas user = {user}/>) : (nose1 ? (<Nose1/>) : (nose2 ? (<Nose2/>) : (null)) ))}
 
        </>
 

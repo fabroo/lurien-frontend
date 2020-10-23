@@ -20,7 +20,7 @@ const FormWithToasts = () => {
 
     }
     hola()
-  }, [])
+  }, [addToast,user.companyID]) //SI TIRA ERROR BUSCAR ACA Y SACAR LAS COSAS DE LOS BRACKETS
 
   return (
     <>

@@ -10,21 +10,18 @@ import * as firebase from 'firebase'
 import "firebase/auth";
 import "firebase/storage";
 import AddUser from './addUser'
-const axios = require('axios')
-
-const ip = "http://192.168.1.203:8080"
 
 const Tabla = () => {
     //actual user
     const { user } = useContext(AuthContext);
     let [content, setContent] = useState(null) //list of company users
-    let [elinput, setElInput] = useState({ dni: 0, role: "user" }) //create new company user 
     //button classes
     let [registradoClass, setRegistradoClass] = useState({ style: { display: 'none', margin: 'auto .5rem' } })
     let [noregistradoClass, setNoRegistradoClass] = useState({ style: { display: 'none', margin: 'auto .5rem' } })
     let [modal, setModal] = useState({ username: "", dni: "" })
 
     let [loading, isLoading] = useState(false); //loading message
+    // eslint-disable-next-line 
     const [toggle, setToggle] = useState(false);
     const { dark, open2, setOpenn } = useContext(AuthContext);
     useEffect(() => {
@@ -140,21 +137,6 @@ const Tabla = () => {
                 }
             });
     }
-    //create new user
-    const registrarNuevo = async () => {
-        //user data
-        const dni = elinput.dni;
-        const role = elinput.role;
-        const username = String(dni); //until the user creates his account the username will be his DNI
-        const companyid = user.companyID
-
-        console.log("CAJOIJASCJASJASCJASJOIACCSOI FIAT")
-        showWich(true)
-
-    }
-    const handleChange = (e) => { //handle the create user input
-        setElInput({ ...elinput, [e.target.name]: e.target.value });
-    }
     const wipeFotos = async (user) => { //eliminar los datos del usuario en el pickle
         let dni = user.dni
         let companyID = user.companyID
@@ -215,7 +197,9 @@ const Tabla = () => {
             })
         }
     }
-
+const setOpenModelSi = (user) =>{
+    setModal({ username: user.username, dni: user.dni, pfp: user.pfp })
+}
     return (
         <>
             <div className="contenedor-de-tabla container" onClick={() => {
@@ -271,19 +255,19 @@ const Tabla = () => {
                             <tbody>
                                 {content ? (
                                     content.map(user =>
-                                        <tr key={user._id} data-toggle="modal" data-target="#exampleModal" onClick={() => setModal({ username: user.username, dni: user.dni, pfp: user.pfp })} >
+                                        <tr key={user._id} >
 
-                                            <td>{!user.createdAccount ? (<p>No registrado</p>) : (<p>{user.username}</p>)}</td>
-                                            <td ><p>{user.dni}</p></td>
-                                            <td>{user.createdAccount ? (<p><a rel="noopener noreferrer" href={"https://mail.google.com/mail/u/0/?view=cm&fs=1&to=" + user.mail + "&tf=1"} target="_blank">{user.mail}</a></p>) : (<p>No creada</p>)}</td>
-                                            <td> {!user.modeloEntrenado ? (<img src={No} alt="no" />) : (<img src={Si} alt="si" />)}</td>
-                                            <td>{user.createdAccount ? <img className="img-fluid profile-imgs" src={user.pfp} alt={user.username} /> : (<p>no hay :(</p>)}</td>
-                                            {/* para la IP LOCAL poner 192.168.1.203:8080 */}
+                                            <td data-toggle="modal" data-target="#exampleModal" onClick={() => setOpenModelSi(user)} >{!user.createdAccount ? (<p>No registrado</p>) : (<p>{user.username}</p>)}</td>
+                                            <td  data-toggle="modal" data-target="#exampleModal" onClick={() => setOpenModelSi(user)} ><p>{user.dni}</p></td>
+                                            <td data-toggle="modal" data-target="#exampleModal" onClick={() => setOpenModelSi(user)} >{user.createdAccount ? (<p><a rel="noopener noreferrer" href={"https://mail.google.com/mail/u/0/?view=cm&fs=1&to=" + user.mail + "&tf=1"} target="_blank">{user.mail}</a></p>) : (<p>No creada</p>)}</td>
+                                            <td data-toggle="modal" data-target="#exampleModal" onClick={() => setOpenModelSi(user)} > {!user.modeloEntrenado ? (<img src={No} alt="no" />) : (<img src={Si} alt="si" />)}</td>
+                                            <td data-toggle="modal" data-target="#exampleModal" onClick={() => setOpenModelSi(user)} >{user.createdAccount ? <img className="img-fluid profile-imgs" src={user.pfp} alt={user.username} /> : (<p>no hay :(</p>)}</td>
+                                            {/* para la IP LOCAL poner 192.168.1.126:8080 */}
 
-                                            <td><p>{user.role}</p></td>
-                                            <td><p onClick={() => wipeFotos(user)}>{user.cantidadFotos}</p></td>
+                                            <td data-toggle="modal" data-target="#exampleModal" onClick={() => setOpenModelSi(user)} ><p>{user.role}</p></td>
+                                            <td data-toggle="modal" data-target="#exampleModal" onClick={() => setOpenModelSi(user)} ><p onClick={() => wipeFotos(user)}>{user.cantidadFotos}</p></td>
 
-                                            <td className="boton-elim-border"> {user.role !== "admin" ? (<img className="btn-elim" src={Eliminar} onClick={() => chau(user._id)} />) : user.role !== "mod" ? ((<img className="btn-elim" src={Eliminar} onClick={() => chau(user._id)} />)) : (<p>es admin bro</p>)} </td>
+                                            <td className="boton-elim-border"> {user.role !== "admin" ? (<img alt="remove"className="btn-elim" src={Eliminar} onClick={() => chau(user._id)} />) : user.role !== "mod" ? ((<img alt="remove"className="btn-elim" src={Eliminar} onClick={() => chau(user._id)} />)) : (<p>es admin bro</p>)} </td>
                                         </tr>)
 
                                 ) : (<tr><td>No content...</td></tr>)}

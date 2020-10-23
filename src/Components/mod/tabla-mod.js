@@ -13,7 +13,6 @@ export default class Tabla_mod extends Component {
             contenido: null,
             loading: true,
             search: "",
-            dni: "",
             role: "user",
             username: "",
             dni: 0
@@ -221,12 +220,12 @@ export default class Tabla_mod extends Component {
                                             <td>{!user.createdAccount ? (<p>No registrado</p>) : (<p>{user.username}</p>)}</td>
                                             <td ><p>{user.dni}</p></td>
                                             <td>{user.createdAccount ? (<p><a rel="noopener noreferrer" href={"https://mail.google.com/mail/u/0/?view=cm&fs=1&to=" + user.mail + "&tf=1"} target="_blank">{user.mail}</a></p>) : (<p>No creada</p>)}</td>
-                                            <td> {!user.modeloEntrenado ? (<img src={No} alt="no" />) : (<img src={Si} alt="si" />)}</td>
+                                            <td> {!user.modeloEntrenado ? (<img alt="no" src={No}  />) : (<img src={Si} alt="si" />)}</td>
                                             <td>{user.createdAccount ? <img className="img-fluid profile-imgs" src={user.pfp} alt={user.username} /> : (<p>no hay :(</p>)}</td>
                                             <td><p>{user.role}</p></td>
                                             <td><p >{user.cantidadFotos}</p></td>
 
-                                            <td className="boton-elim-border"> <img className="btn-elim" src={Eliminar} onClick={() => this.chau(user._id)} /></td>
+                                            <td className="boton-elim-border"> <img alt ="eliminar"className="btn-elim" src={Eliminar} onClick={() => this.chau(user._id)} /></td>
                                         </tr>)
 
                                 ) : (<tr><td>No content...</td></tr>)}

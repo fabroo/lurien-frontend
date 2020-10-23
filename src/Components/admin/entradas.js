@@ -4,7 +4,7 @@ import AuthService from '../../Services/AuthService';
 import '../../styles/admin.css'
 import Pusher from 'pusher-js'
 import axios from 'axios'
-const ip = "http://192.168.1.203:8080"
+const ip = "http://192.168.1.126:8080"
 
 const Entradas = () => {
     //actual user
@@ -80,7 +80,7 @@ const Entradas = () => {
             <div id="testttt" className="container entradas-panel" >
                 {/* {entradasNuevas ? ( <h1>data</h1> ) : (<h1>No hay entradas nuevas hasta el momento</h1>)} */}
             </div>
-            <button onClick={() => axios.post("http://192.168.1.203:8080/api/debug/companyid", { name: "fabro", hour: "14:20", companyid: "1a2b3c" })}>CAZCACACACACA</button>
+            <button onClick={() => axios.post("http://192.168.1.126:8080/api/entradas/new", { name: "fabro", hour: "14:20", companyid: "1a2b3c",img:"https://i1.sndcdn.com/avatars-000703402813-kzxmda-t500x500.jpg" })}>CAZCACACACACA</button>
         </>
     )
 }

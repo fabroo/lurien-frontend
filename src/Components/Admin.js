@@ -1,6 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 import { AuthContext } from '../Context/AuthContext';
-import AuthService from '../Services/AuthService';
 import '../styles/admin.css'
 import Notifications from './Notifications'
 import Tabla from '../Components/admin/tabla'

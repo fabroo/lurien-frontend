@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef, useEffect } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from '../Services/AuthService';
 import { AuthContext } from '../Context/AuthContext';
@@ -14,16 +14,7 @@ import { ReactComponent as Logout } from '../images/logout.svg';
 import { ReactComponent as Profile } from '../images/profile.svg';
 import { ReactComponent as Mod } from '../images/modsvg.svg';
 import { CSSTransition } from 'react-transition-group';
-
-/*socketss*/
-// import socketIOClient from "socket.io-client";
-
-// export let socket = socketIOClient("http://localhost:3005/");
-
-
-/**/
-let Navbar;
-export  default  Navbar = props => {
+const Navbar = props => {
     // const [endpoint,setEndpoint] = useState("http://localhost:3005/")
     const { isAuthenticated, user, setIsAuthenticated, setOpenn, open2, setUser } = useContext(AuthContext);
     const [dark, setdark] = useState(true);
@@ -51,12 +42,12 @@ export  default  Navbar = props => {
         return (
             <li className="nav-item">
                 {/* eslint-disable-next-line*/}
-                <a href="#" className="icon-button a" style={!dark ? ({ background: '#979797' }) : ({ background: '#484a4d' })} onClick={() => {
+                <button  className="icon-button a" style={!dark ? ({ background: '#979797',border:'none' }) : ({ background: '#484a4d',border:'none' })} onClick={() => {
                     setOpen(!open)
                     authContext.setOpenn(true);
                 }}>
                     {props.icon}
-                </a>
+                </button>
 
                 {open2 && props.children}
             </li>
@@ -75,11 +66,11 @@ export  default  Navbar = props => {
         function DropdownItem(props) {
             return (
 
-                <a href="#" className="menu-item a" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
+                <button style={{background:'none',border:"none"}} className="menu-item a" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
                     <span className="icon-button" style={!dark ? ({ background: '#979797' }) : ({ background: '#484a4d' })}>{props.leftIcon}</span>
                     {props.children}
                     <span className="icon-right" style={!dark ? ({ background: '#979797' }) : ({ background: '#484a4d' })}>{props.rightIcon}</span>
-                </a>
+                </button>
             );
         }
 
@@ -233,4 +224,4 @@ export  default  Navbar = props => {
     )
 }
 
-// export default {Navbar, socket};
+export default Navbar;

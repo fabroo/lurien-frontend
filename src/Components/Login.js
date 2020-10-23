@@ -12,7 +12,7 @@ import swal from 'sweetalert';
 
 const Login = props => {
     const [user, setUser] = useState({ username: "", password: "" });
-    const [message, setMessage] = useState(null);
+    const [message] = useState(null);
     const [toggle, setToggle] = useState(false);
     const authContext = useContext(AuthContext);
     const [loading, setLoading] = useState(false);

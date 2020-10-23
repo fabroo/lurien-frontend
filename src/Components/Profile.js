@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import '../styles/profile.css'
-import Chart1 from '../images/chart.png'
 import AuthService from '../Services/AuthService';
 import * as firebase from 'firebase'
 import "firebase/auth";
