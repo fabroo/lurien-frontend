@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import '../styles/profile.css'
 import AuthService from '../Services/AuthService';

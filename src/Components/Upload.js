@@ -7,6 +7,7 @@ import '../styles/upload.css'
 import * as firebase from 'firebase'
 import "firebase/auth";
 import "firebase/storage";
+import Loading from '../images/img.gif'
 
 const Upload = props => {
     const [picture, setPicture] = useState(null);
@@ -14,7 +15,8 @@ const Upload = props => {
     const [style, setStyle] = useState({ width: '0%' })
     const [porcentaje] = useState({ porcentaje: '0%' })
     const [fotos, setFotos] = useState({ cantidad: 0 })
-   
+    const [loading, setLoading] = useState(false);
+
     
     // eslint-disable-next-line
     const [toggle,setToggle] = useState(false);
@@ -59,6 +61,8 @@ const Upload = props => {
 
 
     const onClickHandler = () => {
+        setLoading(true)
+
         if (fotos.cantidad > 0) {
             var str = firebase.storage().ref(`${user.companyID}/model/${user.dni}/`)
             var arr = []
@@ -69,7 +73,24 @@ const Upload = props => {
                     snap.ref.getDownloadURL().then(url=>{
                         arr.push(url)
                         if(arr.length===3){
-                            AuthService.upload(arr, user.companyID, user.dni)
+                            AuthService.upload(arr, user.companyID, user.dni).then(res=>{
+                            setLoading(false)
+
+                                if(res.data.messageError){
+                                    swal({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Intentaste entregar vacio pa',
+                                        footer: 'Volve a intentar'
+                                    })
+                                }else{
+                                    swal({
+                                        icon: 'success',
+                                        title: 'Subidas!',
+                                        text: 'Fotos cargadas al sistema'
+                                                                        })
+                                }
+                            })
                         }
                     })
                 })
@@ -96,7 +117,7 @@ const Upload = props => {
                     <img src={UploadLogo} alt="" className="logo-upload" />
                     <p className="drag-n-drop">Drag &amp; Drop</p>
                     <p className="or-text">Or</p>
-                        <label for="customFile" class="custom-file-upload">
+                        <label htmlFor="customFile" className="custom-file-upload">
                              Browse Files
 </label>
                         <input  type="file" multiple onChange={onChangeHandler}  id="customFile" accept="image/png, image/jpeg,image/jpg"/>
@@ -107,13 +128,13 @@ const Upload = props => {
                         <div className="img-zone">
                             {urls ? (
                                 urls.map((url0) => {
-                                    return <div className="cover-img"><img alt="prof-img"id={url0.index} className="image-preview" key={url0.index} src={url0.url} /></div>
+                                    return <div key={url0} className="cover-img"><img alt="prof-img"id={url0.index} className="image-preview" key={url0.index} src={url0.url} /></div>
                                 })
                             ) : (null)}
                         </div>
                         <div className="vacio"></div>
                 </div>
-                <button type="button" className="boton-aceptar" onClick={onClickHandler}>Upload</button>
+                <button type="button" className="boton-aceptar" onClick={onClickHandler}>{!loading ? ("Enter") :(<img src={Loading} alt="loading" style={{width:'60px',color:"white"}}/>)}</button>
 
             </div>
         </div>

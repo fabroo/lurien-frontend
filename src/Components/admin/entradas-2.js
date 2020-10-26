@@ -18,7 +18,7 @@ export default class Nose2 extends Component {
     }
     async componentDidMount() {
 
-        const entradas = await axios.get(`http://${process.env.REACT_APP_IP}:8080/api/entradas/historial`)
+        const entradas = await axios.get(`http://${process.env.REACT_APP_IP}:8080/api/entradas/historial/${this.state.companyid}`)
         let dbEntries = entradas.data.entradas
 
         this.setState({ entradas: dbEntries })

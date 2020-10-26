@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import AuthService from '../Services/AuthService';
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../Context/AuthContext';
@@ -15,7 +15,6 @@ const Register = props => {
     const [message] = useState(null);
     const [toggle, setToggle] = useState(false);
     const [loading] = useState(false);
-    let timerID = useRef(null);
 
     const { dark } = useContext(AuthContext);
     useEffect(() => {

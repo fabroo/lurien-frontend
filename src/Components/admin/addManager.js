@@ -14,12 +14,13 @@ export default class addUser extends Component {
             user: this.props.user,
             manager: false,
             areas: [],
-            areaUser: ""
+            areaUser: "",
+            companyid:"1a2b3c"
         }
     }
     async componentDidMount() {
         let array = [];
-        array = await axios.get('http://192.168.1.126:8080/api/user/retrieveArea/' + "1a2b3c")
+        array = await axios.get(`http://192.168.1.126:8080/api/user/retrieveArea/${this.state.companyid}`)
         array = array.data.message.msgBody
         this.setState({ areas: array })
     }
