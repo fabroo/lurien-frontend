@@ -17,9 +17,9 @@ const Upload = props => {
     const [fotos, setFotos] = useState({ cantidad: 0 })
     const [loading, setLoading] = useState(false);
 
-    
+
     // eslint-disable-next-line
-    const [toggle,setToggle] = useState(false);
+    const [toggle, setToggle] = useState(false);
     const [urls, setUrls] = useState(null)
 
     const { dark, open2, setOpenn } = useContext(AuthContext);
@@ -61,42 +61,42 @@ const Upload = props => {
 
 
     const onClickHandler = () => {
-        setLoading(true)
 
+        fotos.length > 0 ? setLoading(true) : setLoading(false)
         if (fotos.cantidad > 0) {
             var str = firebase.storage().ref(`${user.companyID}/model/${user.dni}/`)
             var arr = []
             for (let i = 0; i < fotos.cantidad; i++) {
                 const pic = picture[i];
                 var child = str.child(`${i}.jpg`)
-                child.put(pic).then(snap =>{
-                    snap.ref.getDownloadURL().then(url=>{
+                child.put(pic).then(snap => {
+                    snap.ref.getDownloadURL().then(url => {
                         arr.push(url)
-                        if(arr.length===3){
-                            AuthService.upload(arr, user.companyID, user.dni).then(res=>{
-                            setLoading(false)
+                        if (arr.length === 3) {
+                            AuthService.upload(arr, user.companyID, user.dni).then(res => {
+                                setLoading(false)
 
-                                if(res.data.messageError){
+                                if (res.data.messageError) {
                                     swal({
                                         icon: 'error',
                                         title: 'Oops...',
                                         text: 'Intentaste entregar vacio pa',
                                         footer: 'Volve a intentar'
                                     })
-                                }else{
+                                } else {
                                     swal({
                                         icon: 'success',
                                         title: 'Subidas!',
                                         text: 'Fotos cargadas al sistema'
-                                                                        })
+                                    })
                                 }
                             })
                         }
                     })
                 })
-                
+
             }
-            
+
         } else {
             swal({
                 icon: 'error',
@@ -117,24 +117,24 @@ const Upload = props => {
                     <img src={UploadLogo} alt="" className="logo-upload" />
                     <p className="drag-n-drop">Drag &amp; Drop</p>
                     <p className="or-text">Or</p>
-                        <label htmlFor="customFile" className="custom-file-upload">
-                             Browse Files
-</label>
-                        <input  type="file" multiple onChange={onChangeHandler}  id="customFile" accept="image/png, image/jpeg,image/jpg"/>
+                    <label htmlFor="customFile" className="custom-file-upload">
+                        Browse Files
+                    </label>
+                    <input type="file" multiple onChange={onChangeHandler} style={{visibility:'hidden'}} id="customFile" accept="image/png, image/jpeg,image/jpg" />
 
-                        <div className="progress">
-                            <div className="progress-bar" role="progressbar" style={style} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{porcentaje.porcentaje}</div>
-                        </div>
-                        <div className="img-zone">
-                            {urls ? (
-                                urls.map((url0) => {
-                                    return <div key={url0} className="cover-img"><img alt="prof-img"id={url0.index} className="image-preview" key={url0.index} src={url0.url} /></div>
-                                })
-                            ) : (null)}
-                        </div>
-                        <div className="vacio"></div>
+                    <div className="progress">
+                        <div className="progress-bar" role="progressbar" style={style} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{porcentaje.porcentaje}</div>
+                    </div>
+                    <div className="img-zone">
+                        {urls ? (
+                            urls.map((url0) => {
+                                return <div key={url0} className="cover-img"><img alt="prof-img" id={url0.index} className="image-preview" key={url0.index} src={url0.url} /></div>
+                            })
+                        ) : (null)}
+                    </div>
+                    <div className="vacio"></div>
                 </div>
-                <button type="button" className="boton-aceptar" onClick={onClickHandler}>{!loading ? ("Enter") :(<img src={Loading} alt="loading" style={{width:'60px',color:"white"}}/>)}</button>
+                <button type="button" className="boton-aceptar" onClick={onClickHandler}>{!loading ? ("Enter") : (<img src={Loading} alt="loading" style={{ width: '60px', color: "white" }} />)}</button>
 
             </div>
         </div>
