@@ -23,6 +23,7 @@ export default class addUser extends Component {
         array = await axios.get(`http://192.168.1.126:8080/api/user/retrieveArea/${this.state.companyid}`)
         array = array.data.message.msgBody
         this.setState({ areas: array })
+        console.log("[USER[",this.state.user)
     }
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
@@ -94,7 +95,7 @@ export default class addUser extends Component {
                                     <p className="dni-text">Area</p>
                                     <div className="modal-body">
                                         <select name={this.state.manager ? "role" : "areaUser"} className="unpit-email-user" onChange={(e) => this.handleChange(e)} value={this.state.role} defaultValue={this.state.areas[0]}>
-                                           {this.state.manager ? (
+                                           {this.state.user.manArea === null ? (
                                                 this.state.areas.length > 0 ? (
                                                     this.state.areas.map(area =>
                                                         <option key={area} value={area}>{area}</option>

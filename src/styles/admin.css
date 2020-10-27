@@ -88,11 +88,11 @@ td p a{
 
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
-    width: 90%;
+    width: 60%;
 /*    padding: 10px;
      */
      /* text-align: center !important; */
-    height: 70px;
+    height: 100px;
     background-color: #FFFEFE ;
     margin: 9px auto;
     justify-content: center;
@@ -101,9 +101,32 @@ td p a{
 .entrada p{
     margin: 0 !important;
 }
+.contenido-entrada{
+align-items: center;
+    display: flex;
+}
+.contenido-entrada p{
+    margin-left: 30px !important;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+}
+.foto-contenido-entrada{
+    cursor: pointer;
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 15px;
+}
 
-
-
+.grafico-stats{
+margin: auto auto;
+    width: 1000px;
+}
+.contenedor-stats {
+width: 100%;
+}
 .body-todo{
     align-items: center;
     display: flex;

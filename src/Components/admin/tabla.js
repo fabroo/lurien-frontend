@@ -9,7 +9,13 @@ import Eliminar from '../../images/no-rojo.svg'
 import * as firebase from 'firebase'
 import "firebase/auth";
 import "firebase/storage";
+import Loading from '../../images/img.gif'
 import AddUser from './addManager'
+
+import Btn_nuevoUser from '../../images/boton-agregarusuario.svg';
+import Btn_noregistrado from '../../images/boton-noregistrado.svg';
+import Btn_siregistrado from '../../images/boton-siregistrado.svg';
+import Btn_download from '../../images/boton-download.svg';
 
 const Tabla = (areas) => {
     //actual user
@@ -24,8 +30,8 @@ const Tabla = (areas) => {
     // eslint-disable-next-line 
     const [toggle, setToggle] = useState(false);
     const { dark, open2, setOpenn } = useContext(AuthContext);
-    
-    
+
+
     useEffect(() => {
 
         const owo = () => {
@@ -49,14 +55,15 @@ const Tabla = (areas) => {
 
         isLoading(true) //begin to load
         async function showw() {
-            if(user.role === "admin" || user.role==="mod"){
+            if (user.role === "admin" || user.role === "mod") {
+                console.log("admin o mod")
                 AuthService.getData(user.companyID).then(async res => {
                     //consts
                     const all = res.data;
                     const users = [];
                     all.forEach(async user => { //only display registered users
                         if (user.createdAccount) {
-    
+
                             users.push(user)
                         }
                     })
@@ -65,19 +72,22 @@ const Tabla = (areas) => {
                         if (a.username > b.username) { return 1; }
                         return 0;
                     }));
-                    
+
                     isLoading(false) //done loading
                     setRegistradoClass({ display: 'block' })
                     setNoRegistradoClass({ display: 'block' })
                 }, [])
-            }else if(user.role === "manager"){
-                AuthService.getManUser(user.companyID).then(async res => {
+            } else if (user.role === "manager") {
+                console.log("manager", user.manArea)
+
+                AuthService.getManUser(user.manArea).then(async res => {
                     //consts
-                    const all = res.data;
+                    const all = res.data.message.msgBody;
+                    console.log("[LA DATA QUE LLEGA]", all)
                     const users = [];
                     all.forEach(async user => { //only display registered users
                         if (user.createdAccount) {
-    
+
                             users.push(user)
                         }
                     })
@@ -86,7 +96,7 @@ const Tabla = (areas) => {
                         if (a.username > b.username) { return 1; }
                         return 0;
                     }));
-                    
+
                     isLoading(false) //done loading
                     setRegistradoClass({ display: 'block' })
                     setNoRegistradoClass({ display: 'block' })
@@ -95,9 +105,9 @@ const Tabla = (areas) => {
         }
         showw()
 
-    }, [user.companyID,user.role]); //si se rompe saca lo de aca adentro
+    }, [user.companyID, user.role,user.manArea]); //si se rompe saca lo de aca adentro
 
-     const showWich = (yesOrNo) => { //only users depending if they are registered or not
+    const showWich = (yesOrNo) => { //only users depending if they are registered or not
         if (yesOrNo) { //set the button classes
             setRegistradoClass({ display: 'none' })
             setNoRegistradoClass({ display: 'block' })
@@ -148,7 +158,7 @@ const Tabla = (areas) => {
 
                     case "borrar":
                         swal("Eliminado", "El trabajador no forma mas parte de la empresa", "success");
-                         AuthService.removeUser(dni).then(res => { //remove function
+                        AuthService.removeUser(dni).then(res => { //remove function
                         }, [])
                         console.log("HOLA!!!")
                         showWich(true);
@@ -220,9 +230,9 @@ const Tabla = (areas) => {
             })
         }
     }
-const setOpenModelSi = (user) =>{
-    setModal({ username: user.username, dni: user.dni, pfp: user.pfp })
-}
+    const setOpenModelSi = (user) => {
+        setModal({ username: user.username, dni: user.dni, pfp: user.pfp })
+    }
     return (
         <>
             <div className="contenedor-de-tabla container" onClick={() => {
@@ -245,12 +255,12 @@ const setOpenModelSi = (user) =>{
                             <div className="modal-header">
                                 <h5 className="modal-title dni-text" id="exampleModalLabel">{modal.username}</h5>
                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                    <span style={{color:"white"}}aria-hidden="true">&times;</span>
+                                    <span style={{ color: "white" }} aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div className="modal-body">
-                                <div className="form-group" style={{alignItems:"center",textAlign:'center'}}>
-                                    <img src={modal.pfp} style={{width:"600px"}} alt="pfp" />
+                                <div className="form-group" style={{ alignItems: "center", textAlign: 'center' }}>
+                                    <img src={modal.pfp} style={{ width: "600px" }} alt="pfp" />
                                 </div>
                             </div>
                             <div className="modal-footer">
@@ -280,18 +290,18 @@ const setOpenModelSi = (user) =>{
                                     content.map(user =>
                                         <tr key={user._id} >
 
-                                            <td data-toggle="modal" data-target="#exampleModal" style={{cursor:'pointer'}} onClick={() => setOpenModelSi(user)} >{!user.createdAccount ? (<p>No registrado</p>) : (<p>{user.username}</p>)}</td>
-                                           <td  ><p>{user.dni}</p></td>
+                                            <td data-toggle="modal" data-target="#exampleModal" style={{ cursor: 'pointer' }} onClick={() => setOpenModelSi(user)} >{!user.createdAccount ? (<p>No registrado</p>) : (<p>{user.username}</p>)}</td>
+                                            <td  ><p>{user.dni}</p></td>
                                             <td >{user.createdAccount ? (<p><a rel="noopener noreferrer" href={"https://mail.google.com/mail/u/0/?view=cm&fs=1&to=" + user.mail + "&tf=1"} target="_blank">{user.mail}</a></p>) : (<p>No creada</p>)}</td>
                                             <td > {!user.modeloEntrenado ? (<img src={No} alt="no" />) : (<img src={Si} alt="si" />)}</td>
                                             <td >{user.createdAccount ? <img className="img-fluid profile-imgs" src={user.pfp} alt={user.username} /> : (<p>no hay :(</p>)}</td>
-                                            
+
 
                                             <td><p>{user.role}</p></td>
                                             <td><p onClick={() => wipeFotos(user)}>{user.cantidadFotos}</p></td>
                                             <td><p>{String(user.area)}</p></td>
 
-                                            <td className="boton-elim-border"> {user.role !== "admin" ? (<img alt="remove"className="btn-elim" src={Eliminar} onClick={() => chau(user._id)} />) : user.role !== "mod" ? ((<img alt="remove"className="btn-elim" src={Eliminar} onClick={() => chau(user._id)} />)) : (<p>es admin bro</p>)} </td>
+                                            <td className="boton-elim-border"> {user.role !== "admin" ? (<img alt="remove" className="btn-elim" src={Eliminar} onClick={() => chau(user._id)} />) : user.role !== "mod" ? ((<img alt="remove" className="btn-elim" src={Eliminar} onClick={() => chau(user._id)} />)) : (<p>es admin bro</p>)} </td>
                                         </tr>)
 
                                 ) : (<tr><td>No content...</td></tr>)}
@@ -299,7 +309,11 @@ const setOpenModelSi = (user) =>{
                         </table>
 
                     </div>
-                ) : (<h1>It is loading!</h1>)}
+                ) : (
+                    <div className="a" style={{alignItems:'center',textAlign:'center'}}>
+                        <img src={Loading} alt="loading" style={{width:'200px',color:"white"}}/>
+                    </div>
+                )}
 
             </div>
 

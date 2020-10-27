@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { AuthContext } from '../Context/AuthContext';
 import '../styles/admin.css'
 import Notifications from './Notifications'
+
 import Tabla from '../Components/admin/tabla'
 import Nose2 from '../Components/admin/nose2'
 import Nose1 from '../Components/admin/nose1'
@@ -14,46 +15,46 @@ import b4 from '../images/boton4.svg'
 const Admin = props => {
   const { user } = useContext(AuthContext);
 
-  const setAll = () =>{
+  const setAll = () => {
     setTabla(false)
     setEntradas(false)
     setNose1(false)
     setNose2(false)
   }
-  const showTabla = () =>{
+  const showTabla = () => {
     setAll()
     setTabla(true)
   }
-  const showEntradas = () =>{
+  const showEntradas = () => {
     setAll()
     setEntradas(true)
   }
-  const showNose1 = () =>{
+  const showNose1 = () => {
     setAll()
     setNose1(true)
   }
-  const showNose2 = () =>{
+  const showNose2 = () => {
     setAll()
     setNose2(true)
   }
 
-  const [tabla,setTabla] = useState(true)
-  const [entradas,setEntradas] = useState(false)
-  const [nose1,setNose1] = useState(false)
-  const [nose2,setNose2] = useState(false)
+  const [tabla, setTabla] = useState(true)
+  const [entradas, setEntradas] = useState(false)
+  const [nose1, setNose1] = useState(false)
+  const [nose2, setNose2] = useState(false)
 
   return (
     <>
-      <Notifications/>
+      <Notifications />
 
-    <div className="botonera-admin" style ={{marginBottom:'80px'}}>
-      <div id="b1" onClick={() => showTabla()}> <img src={b1} alt="boton1"/> </div>
-      <div id="b2" onClick={() => showEntradas()}><img src={b2} alt="boton2"/></div>
-      <div id="b3" onClick={() => showNose1()}><img src={b3} alt="boton3"/></div>
-      <div id="b4" onClick={() => showNose2()}><img src={b4} alt="boton4"/></div>
-    </div>
-      
-    {tabla ? (<Tabla/>) : (entradas ? (<Entradas user = {user}/>) : (nose1 ? (<Nose1/>) : (nose2 ? (<Nose2/>) : (null)) ))}
+      <div className="botonera-admin" style={{ marginBottom: '80px' }}>
+        <div id="b1" onClick={() => showTabla()}> <img src={b4} alt="boton1" /> </div>
+        <div id="b2" onClick={() => showEntradas()}><img src={b2} alt="boton2" /></div>
+        <div id="b3" onClick={() => showNose1()}><img src={b3} alt="boton3" /></div>
+        <div id="b4" onClick={() => showNose2()}><img src={b1} alt="boton4" /></div>
+      </div>
+
+      {tabla ? (<Tabla />) : (entradas ? (<Entradas user={user} />) : (nose1 ? (<Nose1 />) : (nose2 ? (<Nose2 />) : (null))))}
     </>
   )
 }
