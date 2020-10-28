@@ -16,17 +16,7 @@ import "firebase/storage";
 global.XMLHttpRequest = require("xhr2");
  
 const App= ()=> {
-  var firebaseConfig = {
-    apiKey: "AIzaSyBvvZR8bjCKg8kGxXviw43j_iv2Kp3Zgtw",
-    authDomain: "test-lurien.firebaseapp.com",
-    databaseURL: "https://test-lurien.firebaseio.com",
-    projectId: "test-lurien",
-    storageBucket: "test-lurien.appspot.com",
-    messagingSenderId: "973221769406",
-    appId: "1:973221769406:web:2653edd347f49bda3ceeef",
-    measurementId: "G-HJ0BJ08H7L"
-  };
-  firebase.initializeApp(firebaseConfig)
+  firebase.initializeApp(JSON.parse(process.env.REACT_APP_FIREBASE))
   return (
     <>
 

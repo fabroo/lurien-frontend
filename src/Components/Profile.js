@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import '../styles/profile.css'
 import AuthService from '../Services/AuthService';
-import * as firebase from 'firebase'
+import firebase from 'firebase/app'
 import "firebase/auth";
 import "firebase/storage";
 import { Line } from 'react-chartjs-2';
@@ -48,9 +48,11 @@ const Profile = (props) => {
     }
    
     const onClickHandler = () => {
-        var str = firebase.storage().ref(`${user.companyID}/pfp/${user.dni}.jpg`)
+        var str = firebase.storage().ref(`${user.companyID}/pfp/${user.dni}.png`)
         if (picture.length > 0) {
-            str.put(picture[0]).then(snap => {
+            str.put(picture[0], {
+                contentType: 'image/png'
+            }).then(snap => {
                 snap.ref.getDownloadURL().then(url => {
                     AuthService.uploadPfp(url, user.companyID, user.dni)
                     setUsuario({ pfp: url })
