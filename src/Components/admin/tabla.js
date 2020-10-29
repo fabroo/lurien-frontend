@@ -6,16 +6,16 @@ import '../../styles/admin.css'
 import No from '../../images/no.svg'
 import Si from '../../images/si.svg'
 import Eliminar from '../../images/no-rojo.svg'
-import firebase from 'firebase/app'
+import * as firebase from 'firebase'
 import "firebase/auth";
 import "firebase/storage";
 import Loading from '../../images/img.gif'
 import AddUser from './addManager'
 
-// import Btn_nuevoUser from '../../images/boton-agregarusuario.svg';
-// import Btn_noregistrado from '../../images/boton-noregistrado.svg';
-// import Btn_siregistrado from '../../images/boton-siregistrado.svg';
-// import Btn_download from '../../images/boton-download.svg';
+import Btn_nuevoUser from '../../images/boton-agregarusuario.svg';
+import Btn_noregistrado from '../../images/boton-noregistrado.svg';
+import Btn_siregistrado from '../../images/boton-siregistrado.svg';
+import Btn_download from '../../images/boton-download.svg';
 
 const Tabla = (areas) => {
     //actual user
@@ -194,7 +194,7 @@ const Tabla = (areas) => {
                                 var str = await firebase.storage().ref(`${companyID}/model/${dni}/`).listAll()
                                 var length = str.items.length - 1
                                 for (let i = 0; i <= length; i++) {
-                                    storage.child(`${i}.png`).delete()
+                                    storage.child(`${i}.jpg`).delete()
                                 }
 
                             })

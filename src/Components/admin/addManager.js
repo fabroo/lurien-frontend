@@ -4,9 +4,6 @@ import '../../styles/add-user.css'
 import Admin from '../../images/admin1.svg'
 import Profile from '../../images/profile1.svg'
 import axios from 'axios'
-import firebase from 'firebase/app'
-import "firebase/auth";
-import "firebase/storage";
 export default class addUser extends Component {
     constructor(props) {
         super(props)
@@ -49,7 +46,6 @@ export default class addUser extends Component {
         const role = this.state.manager ? "manager" : "user"
         
         await AuthService.registerNew({ dni, companyID, manArea, area, mail, role }).then(res => {
-            firebase.storage().ref()
             alert("usuario creado ahcer alo mas")
         }, [])
     }

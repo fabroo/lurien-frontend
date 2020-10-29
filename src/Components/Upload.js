@@ -4,7 +4,7 @@ import { AuthContext } from '../Context/AuthContext';
 import swal from 'sweetalert';
 import UploadLogo from '../images/upload-logo.svg'
 import '../styles/upload.css'
-import firebase from 'firebase/app'
+import * as firebase from 'firebase'
 import "firebase/auth";
 import "firebase/storage";
 import Loading from '../images/img.gif'
@@ -68,10 +68,8 @@ const Upload = props => {
             var arr = []
             for (let i = 0; i < fotos.cantidad; i++) {
                 const pic = picture[i];
-                var child = str.child(`${i}.png`)
-                child.put(pic, {
-                    contentType: 'image/png'
-                }).then(snap => {
+                var child = str.child(`${i}.jpg`)
+                child.put(pic).then(snap => {
                     snap.ref.getDownloadURL().then(url => {
                         arr.push(url)
                         if (arr.length === 3) {
