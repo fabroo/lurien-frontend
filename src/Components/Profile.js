@@ -48,9 +48,11 @@ const Profile = (props) => {
     }
    
     const onClickHandler = () => {
-        var str = firebase.storage().ref(`${user.companyID}/pfp/${user.dni}.jpg`)
+        var str = firebase.storage().ref(`${user.companyID}/pfp/${user.dni}.png`)
         if (picture.length > 0) {
-            str.put(picture[0]).then(snap => {
+            str.put(picture[0], {
+                contentType:"image/png"
+            }).then(snap => {
                 snap.ref.getDownloadURL().then(url => {
                     AuthService.uploadPfp(url, user.companyID, user.dni)
                     setUsuario({ pfp: url })

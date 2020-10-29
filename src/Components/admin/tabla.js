@@ -194,7 +194,7 @@ const Tabla = (areas) => {
                                 var str = await firebase.storage().ref(`${companyID}/model/${dni}/`).listAll()
                                 var length = str.items.length - 1
                                 for (let i = 0; i <= length; i++) {
-                                    storage.child(`${i}.jpg`).delete()
+                                    storage.child(`${i}.png`).delete()
                                 }
 
                             })
