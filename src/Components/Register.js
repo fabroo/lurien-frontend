@@ -88,7 +88,7 @@ const Register = props => {
                                 style={!toggle ? { color: '#F8F8F8 ' } : { color: '#272727' }}
                                 onChange={onChange} className="input"
                                 required={true}
-                                placeholder="Username" />
+                                placeholder="Nombre completo" />
                             <input type="password"
                                 name="password"
                                 style={!toggle ? { color: '#F8F8F8 ' } : { color: '#272727' }}
@@ -96,13 +96,6 @@ const Register = props => {
                                 required={true}
                                 onChange={onChange} className="input"
                                 placeholder="Password" />
-                            <input type="text"
-                                name="mail"
-                                style={!toggle ? { color: '#F8F8F8 ' } : { color: '#272727' }}
-                                value={user.mail}
-                                required={true}
-                                onChange={onChange} className="input"
-                                placeholder="Email " />
                             <input type="number"
                                 name="dni"
                                 style={!toggle ? { color: '#F8F8F8 ' } : { color: '#272727' }}
