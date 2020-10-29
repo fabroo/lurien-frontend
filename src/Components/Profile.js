@@ -81,7 +81,7 @@ const Profile = (props) => {
                                     <p className="profile-text">Profile Picture</p>
                                     <img src={usuario.pfp} alt="pfp" className="profile-picture-img" />
                                     <button className="change-profile-picture" style={{ display: "block", width: "120px", height: "30px" }} onClick={() => document.getElementById('getFile').click()}>Change Photo</button>
-                                    <input required={true} type="file" onChange={onChangeHandler} name="holu" style={{ display: 'none' }} id="getFile" accept="image/png,image/jpg" />
+                                    <input required={true} type="file" onChange={onChangeHandler} name="holu" style={{ display: 'none' }} id="getFile" accept="image/jpeg,image/png,image/jpg" />
                                     <input type="button" id="btnCnfm" value="Confirmar" onClick={() => onClickHandler()} className="change-profile-picture hidden" />
                                     <p className="profile-name">{user.username}</p>
                                     <p className="qr-code-text">QR Code:</p>
