@@ -44,7 +44,7 @@ const Login = props => {
         e.preventDefault();
 
         AuthService.login(user).then(async data => {
-            const { isAuthenticated, user, error,fbToken } = data;
+            const { isAuthenticated, user, error, fbToken } = data;
             if (isAuthenticated) {
                 await firebase.auth().signInWithCustomToken(fbToken)
                 authContext.setUser(user);
@@ -52,12 +52,12 @@ const Login = props => {
                 props.history.push('/profile');
             }
             if (error) {
-                    swal({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: `Usuario Incorrecto, vuelve a intentar`,
-                        footer: 'Volve a intentar'
-                    })
+                swal({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `Usuario Incorrecto, vuelve a intentar`,
+                    footer: 'Volve a intentar'
+                })
             }
             setLoading(false)
         });
@@ -66,7 +66,7 @@ const Login = props => {
         <div className="body" style={toggle ? { background: '#F8F8F8 ' } : { background: '#272727' }} >
             <div></div>
             <form onSubmit={onSubmit}>
-{/* {loading ? (<img src={Loading} alt="loading" style={{width:'60px'}}/>) : (null)} */}
+                {/* {loading ? (<img src={Loading} alt="loading" style={{width:'60px'}}/>) : (null)} */}
 
                 <div>
                     {message ? <Message message={message} /> : null}
@@ -86,13 +86,13 @@ const Login = props => {
                                 name="password"
                                 className="input"
                                 onChange={onChange}
-                                placeholder="Password" style={!toggle ? { color: '#F8F8F8 ' , marginBottom: '40px' } : { color: '#272727' , marginBottom: '40px' }}
+                                placeholder="Password" style={!toggle ? { color: '#F8F8F8 ', marginBottom: '40px' } : { color: '#272727', marginBottom: '40px' }}
                             />
                             <div className="boton">
                                 <div>
                                 </div>
                                 <div>
-                                    <button className="aceptar" type="submit" style={toggle ? { background: '#272727', color: '#F8F8F8' } : { background: '#F8F8F8', color: '#272727' }}>{!loading ? ("Enter") :(<img src={Loading} alt="loading" style={{width:'60px',color:"white"}}/>)}</button>
+                                    <button className="aceptar" type="submit" style={toggle ? { background: '#272727', color: '#F8F8F8' } : { background: '#F8F8F8', color: '#272727' }}>{!loading ? ("Enter") : (<img src={Loading} alt="loading" style={{ width: '60px', color: "white" }} />)}</button>
                                 </div>
                                 <div>
                                 </div>

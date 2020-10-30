@@ -48,10 +48,10 @@ const Admin = props => {
       <Notifications />
 
       <div className="botonera-admin" style={{ marginBottom: '80px' }}>
-        <div id="b1" onClick={() => showTabla()}> <img src={b4} alt="boton1" /> </div>
-        <div id="b2" onClick={() => showEntradas()}><img src={b2} alt="boton2" /></div>
-        <div id="b3" onClick={() => showNose1()}><img src={b3} alt="boton3" /></div>
-        <div id="b4" onClick={() => showNose2()}><img src={b1} alt="boton4" /></div>
+        <div id="b1" onClick={() => showTabla()}> <img src={b4} alt="boton1" data-toggle="tooltip" data-placement="bottom" title="Tabla de usuarios" /> </div>
+        <div id="b2" onClick={() => showEntradas()}><img src={b2} alt="boton2" data-toggle="tooltip" data-placement="bottom" title="Registro de entradas" /></div>
+        <div id="b3" onClick={() => showNose1()}><img src={b3} alt="boton3" data-toggle="tooltip" data-placement="bottom" title="Análisis de entradas" /></div>
+        <div id="b4" onClick={() => showNose2()}><img src={b1} alt="boton4" data-toggle="tooltip" data-placement="bottom" title="Proximamente..." /></div>
       </div>
 
       {tabla ? (<Tabla />) : (entradas ? (<Entradas user={user} />) : (nose1 ? (<Nose1 />) : (nose2 ? (<Nose2 />) : (null))))}

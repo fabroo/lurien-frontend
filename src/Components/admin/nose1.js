@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import '../../styles/admin.css'
-import Loading from '../../images/img.gif'
-import axios from 'axios'
-import { Line } from 'react-chartjs-2';
 import { Bar } from 'react-chartjs-2';
 
 require('dotenv').config()

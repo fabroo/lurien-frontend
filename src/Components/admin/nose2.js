@@ -1,31 +1,50 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { AuthContext } from '../../Context/AuthContext';
-const Nose2 = () => {
+import React, { Component } from 'react'
+import '../../styles/admin.css'
+import { Bar } from 'react-chartjs-2';
 
-    // eslint-disable-next-line
-    const [toggle, setToggle] = useState(false);
-    const { dark} = useContext(AuthContext);
-    useEffect(() => {
-        const owo = () => {
-            if (dark) {
+require('dotenv').config()
 
-                document.body.classList.remove('dark-bg')
-                document.body.classList.add('light-bg')
+export default class Nose2 extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+               
+            state: {
+                labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'],
+
+                datasets: [
+                    {
+                        label: 'Promedio de entradas',
+                        backgroundColor: 'rgba(191,191,191,1)',
+                        data: [11.30,8.25,18.32,9.43,10.26,12.21,15.36]
+                    }
+                ]
             }
-            else {
-
-                document.body.classList.remove('light-bg')
-                document.body.classList.add('dark-bg')
-            }
-            setToggle(dark)
         }
-        owo()
-    }, [dark,setToggle])
-    return (
-        <>
-            <h1>NOSE 2</h1>
-        </>
-    )
-}
+    }
+    render() {
 
-export default Nose2
+        return (
+            <>
+                <div className="contenedor-stats">
+                    <div className=" body-todo grafico-stats">
+                    <Bar
+                        data={this.state.state}
+                        options={{
+                            title: {
+                                display: true,
+                                text: 'Ultima semana',
+                                fontSize: 20
+                            },
+                            legend: {
+                                display: true,
+                            }
+                        }}
+                    />
+
+                    </div>
+                </div>
+            </>
+        )
+    }
+}

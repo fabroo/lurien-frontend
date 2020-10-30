@@ -41,7 +41,7 @@ height: auto;
     cursor: pointer;
     width: 205px;
     height: 52px;
-    margin-bottom: 48px;
+    margin-bottom: 18px;
     background: #DADADA;
     border-radius: 20px;
 
@@ -93,4 +93,10 @@ height: auto;
     width: 140.59px;
 height: 112.82px;
 object-fit: cover;
+}
+.browse-files-container{
+    text-align: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }

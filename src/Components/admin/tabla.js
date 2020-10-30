@@ -15,7 +15,6 @@ import AddUser from './addManager'
 import Btn_nuevoUser from '../../images/boton-agregarusuario.svg';
 import Btn_noregistrado from '../../images/boton-noregistrado.svg';
 import Btn_siregistrado from '../../images/boton-siregistrado.svg';
-import Btn_download from '../../images/boton-download.svg';
 
 const Tabla = (areas) => {
     //actual user
@@ -105,7 +104,7 @@ const Tabla = (areas) => {
         }
         showw()
 
-    }, [user.companyID, user.role,user.manArea]); //si se rompe saca lo de aca adentro
+    }, [user.companyID, user.role, user.manArea]); //si se rompe saca lo de aca adentro
 
     const showWich = (yesOrNo) => { //only users depending if they are registered or not
         if (yesOrNo) { //set the button classes
@@ -235,88 +234,106 @@ const Tabla = (areas) => {
     }
     return (
         <>
-            <div className="contenedor-de-tabla container" onClick={() => {
+            <div onClick={() => {
                 if (open2) {
                     setOpenn(false)
                 }
-            }}>
-                <div className="botonera" style={{ display: 'flex' }} >
+            }} >
+                <div className="botonera flex-row-reverse container" style={{ display: 'flex' }} >
+                    <button className="btn boton-tabla m-2 none" style={registradoClass} onClick={() => showWich(true)}>
+                        <img src={Btn_siregistrado} alt="reg" />
 
-                    <button className="btn btn-info m-2" ><a style={{ color: 'white' }} href={"http://localhost:8080/api/upload/download/" + user.companyID}>DOWNLOAD DATA</a></button>
-                    <button className="btn btn-primary m-2 none" style={registradoClass} onClick={() => showWich(true)}>REGISTRADOS</button>
-                    <button className="btn btn-secondary m-2 none" style={noregistradoClass} onClick={() => showWich(false)}>NO REGISTRADOS</button>
-                    <button type="button" className="btn btn-info m-2" data-toggle="modal" data-target="#exampleModalCenter"> +</button>
+                        <p>Registrados</p>
+                    </button>
+                    <button className="btn boton-tabla m-2 none" style={noregistradoClass} onClick={() => showWich(false)}>
+                        <img src={Btn_noregistrado} alt="no_reg" />
+
+                        <p>No registrados</p>
+                    </button>
+                    <button type="button" className="btn boton-tabla m-2" data-toggle="modal" data-target="#exampleModalCenter">
+                        <img src={Btn_nuevoUser} alt="nuevo_user" />
+
+                        <p>Crear usuario</p>
+                    </button>
+                    <AddUser prueba1={["caca"]} user={user} />
+
                 </div>
-                <AddUser prueba1={["caca"]} user={user} />
 
-                <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div className="modal-dialog modal-dialog-centered modal-lg">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title dni-text" id="exampleModalLabel">{modal.username}</h5>
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                    <span style={{ color: "white" }} aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body">
-                                <div className="form-group" style={{ alignItems: "center", textAlign: 'center' }}>
-                                    <img src={modal.pfp} style={{ width: "600px" }} alt="pfp" />
+                <div className="contenedor-de-tabla container" onClick={() => {
+                    if (open2) {
+                        setOpenn(false)
+                    }
+                }}>
+
+                    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog modal-dialog-centered modal-lg">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title dni-text" id="exampleModalLabel">{modal.username}</h5>
+                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                        <span style={{ color: "white" }} aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-                            </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <div className="modal-body">
+                                    <div className="form-group" style={{ alignItems: "center", textAlign: 'center' }}>
+                                        <img src={modal.pfp} style={{ width: "600px" }} alt="pfp" />
+                                    </div>
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    {!loading ? (
+                        <div>
+                            <table className="tabla-admin table table-hover text-center table-responsive-lg">
+                                <thead className="thead thead-style">
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>DNI</th>
+                                        <th>E-Mail</th>
+                                        <th>Modelo Entrenado</th>
+                                        <th>Profile Picture</th>
+                                        <th>Rol</th>
+                                        <th>Fotos</th>
+                                        <th>Area</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {content ? (
+                                        content.map(user =>
+                                            <tr key={user._id} >
+
+                                                <td data-toggle="modal" data-target="#exampleModal" style={{ cursor: 'pointer' }} onClick={() => setOpenModelSi(user)} >{!user.createdAccount ? (<p>No registrado</p>) : (<p>{user.username}</p>)}</td>
+                                                <td  ><p>{user.dni}</p></td>
+                                                <td >{user.createdAccount ? (<p><a rel="noopener noreferrer" href={"https://mail.google.com/mail/u/0/?view=cm&fs=1&to=" + user.mail + "&tf=1"} target="_blank">{user.mail}</a></p>) : (<p>No creada</p>)}</td>
+                                                <td > {!user.modeloEntrenado ? (<img src={No} alt="no" />) : (<img src={Si} alt="si" />)}</td>
+                                                <td >{user.createdAccount ? <img className="img-fluid profile-imgs" src={user.pfp} alt={user.username} /> : (<p>no hay :(</p>)}</td>
+
+
+                                                <td><p>{user.role}</p></td>
+                                                <td><p onClick={() => wipeFotos(user)}>{user.cantidadFotos}</p></td>
+                                                <td><p>{String(user.area)}</p></td>
+
+                                                <td className="boton-elim-border"> {user.role !== "admin" ? (<img alt="remove" className="btn-elim" src={Eliminar} onClick={() => chau(user._id)} />) : user.role !== "mod" ? ((<img alt="remove" className="btn-elim" src={Eliminar} onClick={() => chau(user._id)} />)) : (<p>es admin bro</p>)} </td>
+                                            </tr>)
+
+                                    ) : (<tr><td>No content...</td></tr>)}
+                                </tbody>
+                            </table>
+
+                        </div>
+                    ) : (
+                            <div className="a" style={{ alignItems: 'center', textAlign: 'center' }}>
+                                <img src={Loading} alt="loading" style={{ width: '200px', color: "white" }} />
+                            </div>
+                        )}
+
                 </div>
-                {!loading ? (
-                    <div>
-                        <table className="tabla-admin table table-hover text-center table-responsive-lg">
-                            <thead className="thead thead-style">
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>DNI</th>
-                                    <th>E-Mail</th>
-                                    <th>Modelo Entrenado</th>
-                                    <th>Profile Picture</th>
-                                    <th>Rol</th>
-                                    <th>Fotos</th>
-                                    <th>Area</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {content ? (
-                                    content.map(user =>
-                                        <tr key={user._id} >
-
-                                            <td data-toggle="modal" data-target="#exampleModal" style={{ cursor: 'pointer' }} onClick={() => setOpenModelSi(user)} >{!user.createdAccount ? (<p>No registrado</p>) : (<p>{user.username}</p>)}</td>
-                                            <td  ><p>{user.dni}</p></td>
-                                            <td >{user.createdAccount ? (<p><a rel="noopener noreferrer" href={"https://mail.google.com/mail/u/0/?view=cm&fs=1&to=" + user.mail + "&tf=1"} target="_blank">{user.mail}</a></p>) : (<p>No creada</p>)}</td>
-                                            <td > {!user.modeloEntrenado ? (<img src={No} alt="no" />) : (<img src={Si} alt="si" />)}</td>
-                                            <td >{user.createdAccount ? <img className="img-fluid profile-imgs" src={user.pfp} alt={user.username} /> : (<p>no hay :(</p>)}</td>
-
-
-                                            <td><p>{user.role}</p></td>
-                                            <td><p onClick={() => wipeFotos(user)}>{user.cantidadFotos}</p></td>
-                                            <td><p>{String(user.area)}</p></td>
-
-                                            <td className="boton-elim-border"> {user.role !== "admin" ? (<img alt="remove" className="btn-elim" src={Eliminar} onClick={() => chau(user._id)} />) : user.role !== "mod" ? ((<img alt="remove" className="btn-elim" src={Eliminar} onClick={() => chau(user._id)} />)) : (<p>es admin bro</p>)} </td>
-                                        </tr>)
-
-                                ) : (<tr><td>No content...</td></tr>)}
-                            </tbody>
-                        </table>
-
-                    </div>
-                ) : (
-                    <div className="a" style={{alignItems:'center',textAlign:'center'}}>
-                        <img src={Loading} alt="loading" style={{width:'200px',color:"white"}}/>
-                    </div>
-                )}
 
             </div>
-
         </>
     )
 }

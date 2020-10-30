@@ -119,11 +119,16 @@ const Upload = props => {
                     <img src={UploadLogo} alt="" className="logo-upload" />
                     <p className="drag-n-drop">Drag &amp; Drop</p>
                     <p className="or-text">Or</p>
-                    <label htmlFor="customFile" className="custom-file-upload">
+                   <div className="browse-files-container">
+                       <span></span>
+                   <label htmlFor="customFile" className="custom-file-upload">
                         Browse Files
                     </label>
+                    <span></span>
+
                     <input type="file" multiple onChange={onChangeHandler} style={{visibility:'hidden'}} id="customFile" accept="image/png, image/jpeg,image/jpg" />
 
+                   </div>
                     <div className="progress">
                         <div className="progress-bar" role="progressbar" style={style} aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{porcentaje.porcentaje}</div>
                     </div>
@@ -136,7 +141,7 @@ const Upload = props => {
                     </div>
                     <div className="vacio"></div>
                 </div>
-                <button type="button" className="boton-aceptar" onClick={onClickHandler}>{!loading ? ("Enter") : (<img src={Loading} alt="loading" style={{ width: '60px', color: "white" }} />)}</button>
+                <button type="button" className="boton-aceptar" onClick={onClickHandler}>{!loading ? ("Upload!") : (<img src={Loading} alt="loading" style={{ width: '60px', color: "white" }} />)}</button>
 
             </div>
         </div>

@@ -66,7 +66,10 @@ export default class Nose2 extends Component {
                             <div key={entrada.hour + Math.random(50) * 50} className="entrada">
                                 <div className="1"></div>
                                 <div className="contenido-entrada">
-                                    <img data-toggle="modal" data-target="#exampleModal1" onClick={() => this.setOpenModelSi(entrada.name, entrada.img,entrada.hour)} className="foto-contenido-entrada" src={entrada.img} alt="" />
+                                    <div className="img-container">
+                                    <img data-toggle="modal" data-target="#exampleModal1" onClick={() => this.setOpenModelSi(entrada.name, entrada.img,entrada.hour)} className="foto-contenido-entrada" src={entrada.img} alt="entrada" />
+
+                                    </div>
                                     <p>{`[${entrada.hour}] entrada de: ${entrada.name}`}</p>
 
                                 </div>

@@ -48,7 +48,7 @@ td p a{
     cursor: pointer;
 }
 .botonera{
-    background-color: rgba(190, 190, 190, 0.667);
+    margin-bottom: 15px !important;
 }
 
 .boton-elim-border{
@@ -102,8 +102,11 @@ td p a{
     margin: 0 !important;
 }
 .contenido-entrada{
+    width: 500px;
 align-items: center;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
 }
 .contenido-entrada p{
     margin-left: 30px !important;
@@ -144,4 +147,32 @@ width: 100%;
     height: 30px;
     border: none;
     margin: auto 10px
+}
+
+.boton-tabla{
+    width: 230px;
+height: 62px;
+    display: flex !important;
+    text-align: center;
+    align-items: center;
+    justify-content: space-around;
+    background-color:#E6E6E6 ;
+    border-radius: 17px;
+    transition: all .3s;
+}
+.boton-tabla:hover{
+    background-color:#c0c0c0 ;
+    
+}
+.boton-tabla p{
+    margin: 0 !important;
+    padding: 0 !important;
+
+        
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    color: #282828;
+    margin-left:10px !important ;
 }
