@@ -115,31 +115,60 @@ const Tabla = (areas) => {
             setNoRegistradoClass({ display: 'none' })
         }
         //get company users
-        AuthService.getData(user.companyID).then(res => {
-            const all = res.data;
-            const users = [];
+        if (user.role === "admin" || user.role === "mod") {
+            AuthService.getData(user.companyID).then(async res => {
+                const all = res.data;
+                const users = [];
+                    all.forEach(user => {
+                        if (yesOrNo) {
+                            if (user.createdAccount) {
+                                users.push(user)
+                            }
+                        } else {
+                            if (!user.createdAccount) {
+                                users.push(user)
+                            }
+                        }
+                    })
+                setContent(users.sort(function (a, b) { //sort users alphabetically
+                    if (a.username < b.username) { return -1; }
+                    if (a.username > b.username) { return 1; }
+                    return 0;
+                }));
 
-            all.forEach(user => {
-                if (yesOrNo) {
-                    if (user.createdAccount) {
-                        users.push(user)
-                    }
-                } else {
-                    if (!user.createdAccount) {
-                        users.push(user)
-                    }
-                }
-            })
-            //sort them
+                isLoading(false) //done loading
+                setRegistradoClass({ display: 'block' })
+                setNoRegistradoClass({ display: 'block' })
+            }, [])
+        } else if (user.role === "manager") {
+            AuthService.getManUser(user.manArea).then(async res => {
+                const all = res.data.message.msgBody;
+                const users = [];
+                    all.forEach(user => {
+                        if (yesOrNo) {
+                            if (user.createdAccount) {
+                                users.push(user)
+                            }
+                        } else {
+                            if (!user.createdAccount) {
+                                users.push(user)
+                            }
+                        }
+                    })
+                setContent(users.sort(function (a, b) { //sort users alphabetically
+                    if (a.username < b.username) { return -1; }
+                    if (a.username > b.username) { return 1; }
+                    return 0;
+                }));
 
-            setContent(users.sort(function (a, b) {
-                if (a.username < b.username) { return -1; }
-                if (a.username > b.username) { return 1; }
-                return 0;
-            }));
+                isLoading(false) //done loading
+                setRegistradoClass({ display: 'block' })
+                setNoRegistradoClass({ display: 'block' })
+            }, [])
+        }
 
 
-        }, [])
+        
     }
     //delete users
     const chau = (dni) => {

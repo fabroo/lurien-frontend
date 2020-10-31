@@ -41,13 +41,15 @@ export default class addUser extends Component {
         const dni = this.state.dni;
         const mail = this.state.mail;
         const { companyID } = this.state.user
-        const manArea = this.state.user.role !== "manager" ? this.state.role : null;
+        const manArea = this.state.user.role !== "manager" ? this.state.areaUser : null;
         const area = this.state.manager ? null : this.state.user.manArea
         const role = this.state.manager ? "manager" : "user"
-        
         await AuthService.registerNew({ dni, companyID, manArea, area, mail, role }).then(res => {
             alert("usuario creado ahcer alo mas")
         }, [])
+        console.log("[USER]",this.state.user)
+        console.log("[STATE]",this.state)
+        console.log("[CREASTE]",{ dni, companyID, manArea, area, mail, role })
     }
     render() {
         return (
