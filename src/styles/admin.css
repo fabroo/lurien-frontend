@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
-
+body{
+    overflow-x: hidden;
+}
 .tabla-admin{
     font-family: 'Montserrat', sans-serif;
 }
@@ -78,7 +80,7 @@ td p a{
 .entradas-panel{
     overflow:auto;
     background-color: #d3d3d3;
-    height: 400px;
+    height: 500px;
     border-radius:10px;
 }
 .entradas-recientes{
@@ -138,7 +140,22 @@ width: 100%;
 .parte-pagination{
     margin-top: 20px;
 }
+.b1{
+    height: 100%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.a1{
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
 .flecha-pagination{
+    border-radius: 5px;
     background-color: #d3d3d3;
     color: #333;
     font-size: 20px;
@@ -148,7 +165,10 @@ width: 100%;
     border: none;
     margin: auto 10px
 }
-
+.botones-paginas-tabla{
+background: transparent;
+border: none;
+}
 .boton-tabla{
     width: 230px;
 height: 62px;

@@ -40,9 +40,9 @@ export default {
 
     },
     
-    getManUser: async (companyId) => {
+    getManUser: async (area) => {
         //cambiar con la ip de tu casa
-        return await axios.get(`${ip}/api/user/manUser`,{companyId})
+        return await axios.get(`${ip}/api/user/manUser/${area}`)
             .then(res => res)
 
     },

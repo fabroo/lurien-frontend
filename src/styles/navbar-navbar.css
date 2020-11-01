@@ -58,7 +58,7 @@
     --button-size: calc(var(--nav-size) * 0.5);
     width: var(--button-size);
     height: var(--button-size);
-    background-color: #484a4d;
+    background-color: #8b8b8b !important;
     border-radius: 50%;
     padding: 5px;
     margin: 2px;
@@ -66,6 +66,9 @@
     align-items: center;
     justify-content: center;
     transition: filter 300ms;
+  }
+  .i-b-2 {
+    background-color: #636363 !important;
   }
   
   .icon-button:hover {
