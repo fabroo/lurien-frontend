@@ -4,7 +4,6 @@
 .navbar{
     text-align: center;
     align-items: center;
-    height: 75px;
     display: grid;
     grid-template-columns: .3fr .7fr ;
     width: 100%;
@@ -64,7 +63,7 @@ div .nav-links{
     margin-right: 31px !important; 
 }
 .nav-rect{
-    margin: auto  15px !important;
+    margin: auto  10px !important;
     background-color: #1E1E1E;
     width: 141px;
     /* height: 520px; */

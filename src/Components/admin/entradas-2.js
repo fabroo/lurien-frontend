@@ -17,12 +17,15 @@ export default class Nose2 extends Component {
             username: "",
             img: "",
             companyid: this.props.user.companyID,
-            page: true
+            page: true,
+           
+
         }
     }
     async componentDidMount() {
-
-        const entradas = await axios.get(`http://${process.env.REACT_APP_IP}:8080/api/entradas/historial/${this.state.companyid}`)
+        // let direcc = "http://${process.env.REACT_APP_IP}:8080"
+        let direcc1 = "https://backend.lurien.team"
+        const entradas = await axios.get(`${direcc1}/api/entradas/historial/${this.state.companyid}`)
         let dbEntries = entradas.data.entradas
 
         let firstHalf = dbEntries.slice(0, Math.floor(dbEntries.length / 2))
@@ -72,7 +75,7 @@ export default class Nose2 extends Component {
                             </div>
                         </div>
                     </div>
-                    <div id="testttt" className="container entradas-panel" >
+                    <div id="testttt" className="container entradas-panel " >
                         {this.state.page ? (this.state.firstHalf.length > 0 ? (
                             this.state.firstHalf.map(entrada =>
                                 <div key={entrada.hour + Math.random(50) * 50} className="entrada">
@@ -89,8 +92,13 @@ export default class Nose2 extends Component {
                                 </div>
                             )
                         ) : (<div className="b1">
-                            <div className="a1" style={{ alignItems: 'center', textAlign: 'center', margin: 'auto auto' }}>
-                                <img src={Loading} alt="loading" style={{ width: '200px', color: "white" }} />
+                            <div className="a1" style={{ alignItems: 'center', textAlign: 'center', margin: 'auto auto', display: 'grid', gridTemplateRows: '1fr 1fr 1fr' }}>
+                                <div className="placeholder"></div>
+
+                                <div className="loader-entradas">
+                                    <img src={Loading} alt="loading" style={{ width: '200px', color: "white" }} />
+                                </div>
+                                <div className="placeholder"></div>
                             </div>
                         </div>)) : (
                                 this.state.secondHalf.length > 0 ? (
@@ -108,9 +116,16 @@ export default class Nose2 extends Component {
                                             <div className="3"></div>
                                         </div>
                                     )
-                                ) : (<div className="a1" style={{ alignItems: 'center', textAlign: 'center', margin: 'auto auto' }}>
-                                    <img src={Loading} alt="loading" style={{ width: '200px', color: "white" }} />
-                                </div>)
+                                ) : (<div className="b1">
+                                <div className="a1" style={{ alignItems: 'center', textAlign: 'center', margin: 'auto auto', display: 'grid', gridTemplateRows: '1fr 1fr 1fr' }}>
+                                    <div className="placeholder"></div>
+    
+                                    <div className="loader-entradas">
+                                        <img src={Loading} alt="loading" style={{ width: '200px', color: "white" }} />
+                                    </div>
+                                    <div className="placeholder"></div>
+                                </div>
+                            </div>)
                             )}
                     </div>
                     <div className="parte-pagination">

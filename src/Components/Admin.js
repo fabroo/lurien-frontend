@@ -10,8 +10,8 @@ import Nose1 from '../Components/admin/nose1'
 import Entradas from '../Components/admin/entradas-2'
 
 import b1 from '../images/boton4.svg'
-import b2 from '../images/boton2.svg'
-import b3 from '../images/boton3.svg'
+import b3 from '../images/boton2.svg'
+import b2 from '../images/boton3.svg'
 import b4 from '../images/boton1.svg'
 const Admin = props => {
   const { user } = useContext(AuthContext);

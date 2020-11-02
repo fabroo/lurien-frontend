@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import Brenda from '../photos/brenda.jpg'
-import Fabro from '../photos/fabro.png'
+import Brenda from '../photos/brenda.png'
+import Fabro from '../photos/fabro.jpg'
 import Tievo from '../photos/tievo.jpg'
 const Home = (props) => {
 

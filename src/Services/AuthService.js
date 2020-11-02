@@ -1,11 +1,12 @@
 import axios from 'axios'
 // const ip = "http://localhost:8080"
 require('dotenv').config()
-const ip = `http://${process.env.REACT_APP_IP}:8080`
+// const ip = `http://${process.env.REACT_APP_IP}:8080`
+const ip = `https://backend.lurien.team`
 
 export default {
     login: user => {
-        return fetch(`/api/user/login`, {
+        return fetch(`${ip}/api/user/login`, {
             method: "post",
             body: JSON.stringify(user),
             headers: {
@@ -95,7 +96,7 @@ export default {
 
     },
     isAuthenticated: () => {
-        return fetch(`/api/user/authenticated`)
+        return fetch(`${ip}/api/user/authenticated`)
             .then(res => {
                 if (res.status !== 401)
                     return res.json().then(data => data);

@@ -24,7 +24,7 @@ const Tabla = (areas) => {
     let [noregistradoClass, setNoRegistradoClass] = useState({ style: { display: 'none', margin: 'auto .5rem' } })
     let [modal, setModal] = useState({ username: "", dni: "" })
     let [loading, isLoading] = useState(false); //loading message
-
+// eslint-disable-next-line
     const [toggle, setToggle] = useState(false);
     const { dark, open2, setOpenn } = useContext(AuthContext);
 

@@ -16,12 +16,14 @@ export default class addUser extends Component {
             manager: false,
             areas: [],
             areaUser: "",
-            companyid:"1a2b3c"
+            companyid:"1a2b3c",
         }
     }
     async componentDidMount() {
         let array = [];
-        array = await axios.get(`http://${process.env.REACT_APP_IP}:8080/api/user/retrieveArea/${this.state.companyid}`)
+        // let direcc = "http://${process.env.REACT_APP_IP}:8080"
+        let direcc1 = "https://backend.lurien.team";
+        array = await axios.get(`${direcc1}/api/user/retrieveArea/${this.state.companyid}`)
         array = array.data.message.msgBody
         this.setState({ areas: array })
         this.setState({areaUser:array[0]})
