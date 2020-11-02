@@ -45,7 +45,7 @@ export default class Nose2 extends Component {
                         <div className="modal-dialog modal-dialog-centered modal-lg">
                             <div className="modal-content">
                                 <div className="modal-header">
-                                    <h5 className="modal-title dni-text" id="exampleModalLabel">{`[${this.state.hour}], ${this.state.username}`}</h5>
+                                    <h5 className="modal-title dni-text" id="exampleModalLabel">{`[${this.state.hour}] ${this.state.username}`}</h5>
                                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                         <span style={{ color: "white" }} aria-hidden="true">&times;</span>
                                     </button>
@@ -67,10 +67,10 @@ export default class Nose2 extends Component {
                                 <div className="1"></div>
                                 <div className="contenido-entrada">
                                     <div className="img-container">
-                                    <img data-toggle="modal" data-target="#exampleModal1" onClick={() => this.setOpenModelSi(entrada.name, entrada.img,entrada.hour)} className="foto-contenido-entrada" src={entrada.img} alt="entrada" />
+                                    <img data-toggle="modal" data-target="#exampleModal1" onClick={() => this.setOpenModelSi(entrada.name, entrada.img,`${entrada.hour}, ${entrada.fecha}`)} className="foto-contenido-entrada" src={entrada.img} alt="entrada" />
 
                                     </div>
-                                    <p>{`[${entrada.hour}] entrada de: ${entrada.name}`}</p>
+                                    <p>{`[${entrada.hour}, ${entrada.fecha}] entrada de: ${entrada.name}`}</p>
 
                                 </div>
                                 <div className="3"></div>
