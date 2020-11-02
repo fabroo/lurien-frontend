@@ -20,19 +20,16 @@ const Tabla = (areas) => {
     //actual user
     const { user } = useContext(AuthContext);
     let [content, setContent] = useState(null) //list of company users
-    //button classes
     let [registradoClass, setRegistradoClass] = useState({ style: { display: 'none', margin: 'auto .5rem' } })
     let [noregistradoClass, setNoRegistradoClass] = useState({ style: { display: 'none', margin: 'auto .5rem' } })
     let [modal, setModal] = useState({ username: "", dni: "" })
-    // let caca = ["hola","admin","tu vieja"];
     let [loading, isLoading] = useState(false); //loading message
-    // eslint-disable-next-line 
+
     const [toggle, setToggle] = useState(false);
     const { dark, open2, setOpenn } = useContext(AuthContext);
 
 
     useEffect(() => {
-
         const owo = () => {
             if (dark) {
 
@@ -55,7 +52,6 @@ const Tabla = (areas) => {
         isLoading(true) //begin to load
         async function showw() {
             if (user.role === "admin" || user.role === "mod") {
-                console.log("admin o mod")
                 AuthService.getData(user.companyID).then(async res => {
                     //consts
                     const all = res.data;
@@ -77,12 +73,8 @@ const Tabla = (areas) => {
                     setNoRegistradoClass({ display: 'block' })
                 }, [])
             } else if (user.role === "manager") {
-                console.log("manager", user.manArea)
-
                 AuthService.getManUser(user.manArea).then(async res => {
-                    //consts
                     const all = res.data.message.msgBody;
-                    console.log("[LA DATA QUE LLEGA]", all)
                     const users = [];
                     all.forEach(async user => { //only display registered users
                         if (user.createdAccount) {
@@ -115,31 +107,60 @@ const Tabla = (areas) => {
             setNoRegistradoClass({ display: 'none' })
         }
         //get company users
-        AuthService.getData(user.companyID).then(res => {
-            const all = res.data;
-            const users = [];
+        if (user.role === "admin" || user.role === "mod") {
+            AuthService.getData(user.companyID).then(async res => {
+                const all = res.data;
+                const users = [];
+                    all.forEach(user => {
+                        if (yesOrNo) {
+                            if (user.createdAccount) {
+                                users.push(user)
+                            }
+                        } else {
+                            if (!user.createdAccount) {
+                                users.push(user)
+                            }
+                        }
+                    })
+                setContent(users.sort(function (a, b) { //sort users alphabetically
+                    if (a.username < b.username) { return -1; }
+                    if (a.username > b.username) { return 1; }
+                    return 0;
+                }));
 
-            all.forEach(user => {
-                if (yesOrNo) {
-                    if (user.createdAccount) {
-                        users.push(user)
-                    }
-                } else {
-                    if (!user.createdAccount) {
-                        users.push(user)
-                    }
-                }
-            })
-            //sort them
+                isLoading(false) //done loading
+                setRegistradoClass({ display: 'block' })
+                setNoRegistradoClass({ display: 'block' })
+            }, [])
+        } else if (user.role === "manager") {
+            AuthService.getManUser(user.manArea).then(async res => {
+                const all = res.data.message.msgBody;
+                const users = [];
+                    all.forEach(user => {
+                        if (yesOrNo) {
+                            if (user.createdAccount) {
+                                users.push(user)
+                            }
+                        } else {
+                            if (!user.createdAccount) {
+                                users.push(user)
+                            }
+                        }
+                    })
+                setContent(users.sort(function (a, b) { //sort users alphabetically
+                    if (a.username < b.username) { return -1; }
+                    if (a.username > b.username) { return 1; }
+                    return 0;
+                }));
 
-            setContent(users.sort(function (a, b) {
-                if (a.username < b.username) { return -1; }
-                if (a.username > b.username) { return 1; }
-                return 0;
-            }));
+                isLoading(false) //done loading
+                setRegistradoClass({ display: 'block' })
+                setNoRegistradoClass({ display: 'block' })
+            }, [])
+        }
 
 
-        }, [])
+        
     }
     //delete users
     const chau = (dni) => {
@@ -158,9 +179,9 @@ const Tabla = (areas) => {
                     case "borrar":
                         swal("Eliminado", "El trabajador no forma mas parte de la empresa", "success");
                         AuthService.removeUser(dni).then(res => { //remove function
+                            showWich(true);
+                        
                         }, [])
-                        console.log("HOLA!!!")
-                        showWich(true);
 
                         break;
 

@@ -11,7 +11,7 @@ import Loading from '../images/img.gif'
 
 
 const Register = props => {
-    const [user, setUser] = useState({ username: "", password: "", dni: "", companyID: "", mail: "" });
+    const [user, setUser] = useState({ username: "", password: "", dni: "", companyID: ""});
     const [message] = useState(null);
     const [toggle, setToggle] = useState(false);
     const [loading] = useState(false);
@@ -40,7 +40,7 @@ const Register = props => {
     }
 
     const resetForm = () => {
-        setUser({ username: "", password: "", dni: "", companyID: "", mail: "" });
+        setUser({ username: "", password: "", dni: "", companyID: "" });
     }
 
     const onSubmit = e => {

@@ -4,6 +4,7 @@ import '../../styles/add-user.css'
 import Admin from '../../images/admin1.svg'
 import Profile from '../../images/profile1.svg'
 import axios from 'axios'
+import swal from 'sweetalert';
 export default class addUser extends Component {
     constructor(props) {
         super(props)
@@ -23,7 +24,7 @@ export default class addUser extends Component {
         array = await axios.get(`http://${process.env.REACT_APP_IP}:8080/api/user/retrieveArea/${this.state.companyid}`)
         array = array.data.message.msgBody
         this.setState({ areas: array })
-        console.log("[USER[",this.state.user)
+        this.setState({areaUser:array[0]})
     }
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
@@ -41,13 +42,26 @@ export default class addUser extends Component {
         const dni = this.state.dni;
         const mail = this.state.mail;
         const { companyID } = this.state.user
-        const manArea = this.state.user.role !== "manager" ? this.state.role : null;
-        const area = this.state.manager ? null : this.state.user.manArea
         const role = this.state.manager ? "manager" : "user"
+
+        const manArea = role === "manager" ? this.state.areaUser : null;
+
+        const area = role !== "user" ? null : this.state.areaUser
+        
         
         await AuthService.registerNew({ dni, companyID, manArea, area, mail, role }).then(res => {
-            alert("usuario creado ahcer alo mas")
+            swal({
+                icon: 'success',
+                title: 'Creado!',
+                text: `Se le notifico al usuario que cree su cuenta`,
+            })
         }, [])
+        
+        // console.log("[USER]",this.state.user)
+        // console.log("[STATE]",this.state)
+        // console.log("[CREASTE]",{ dni, companyID, manArea, area, mail, role })
+
+        this.setState({dni:0,mail:"",areaUser:this.state.areas[0]})
     }
     render() {
         return (
@@ -94,7 +108,7 @@ export default class addUser extends Component {
                                     <br />
                                     <p className="dni-text">Area</p>
                                     <div className="modal-body">
-                                        <select name={this.state.manager ? "role" : "areaUser"} className="unpit-email-user" onChange={(e) => this.handleChange(e)} value={this.state.role} defaultValue={this.state.areas[0]}>
+                                        <select name={this.state.manager ? "role" : "areaUser"} className="unpit-email-user" onChange={(e) => this.handleChange(e)} value={this.state.areaUser} >
                                            {this.state.user.manArea === null ? (
                                                 this.state.areas.length > 0 ? (
                                                     this.state.areas.map(area =>

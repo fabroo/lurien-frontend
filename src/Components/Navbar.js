@@ -6,7 +6,7 @@ import '../styles/navbar.css'
 import Logo from '../images/LurienIcon.png'
 import Sol from '../images/sol2.svg'
 import Luna from '../images/luna1.svg'
-import '../styles/owo.css';
+import '../styles/navbar-navbar.css';
 import { ReactComponent as CaretIcon } from '../icons/caret.svg';
 import { ReactComponent as Admin } from '../images/admin.svg';
 import { ReactComponent as Upload } from '../images/upload.svg';
@@ -41,7 +41,7 @@ const Navbar = props => {
         return (
             <li className="nav-item">
                 {/* eslint-disable-next-line*/}
-                <button  className="icon-button a" style={!dark ? ({ background: '#979797',border:'none' }) : ({ background: '#484a4d',border:'none' })} onClick={() => {
+                <button  className="icon-button i-b-2 a" style={!dark ? ({ background: '#979797',border:'none' }) : ({ background: '#484a4d',border:'none' })} onClick={() => {
                     setOpen(!open)
                     authContext.setOpenn(true);
                 }}>
