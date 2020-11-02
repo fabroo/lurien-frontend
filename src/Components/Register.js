@@ -53,14 +53,14 @@ const Register = props => {
                 swal({
                     icon: 'success',
                     title: 'Registered!',
-                    text: `${message.msgBody}`,
+                    text: `Cuenta creada, ve a mail a autenticarla!`,
                     footer: 'Ahora inicia sesion'
                 })
             } else {
                 swal({
                     icon: 'error',
                     title: 'Oops...',
-                    text: `${message.msgBody}`,
+                    text: `Chequea tus datos, capaz no te crearon la cuenta!`,
                     footer: 'Volve a intentar'
                 })
             }
