@@ -44,7 +44,7 @@ export default class Nose2 extends Component {
         var channel = pusher.subscribe(this.state.user.companyID);
 
         channel.bind('updateEntrada', async (data) => {
-            this.setState({ entradas: [data, ...this.state.entradas] })
+            this.setState({ firstHalf: [data, ...this.state.firstHalf] })
         })
     }
     setOpenModelSi = (uno, dos, tres) => {
@@ -129,8 +129,8 @@ export default class Nose2 extends Component {
                             )}
                     </div>
                     <div className="parte-pagination">
-                        <button style={this.state.page ? ({ background: '#e9e9e9' }) : ({ background: '#d3d3d3' })} onClick={() => this.setState({ page: true })} className="flecha-pagination">1</button>
-                        <button style={!this.state.page ? ({ background: '#e9e9e9' }) : ({ background: '#d3d3d3' })} onClick={() => this.setState({ page: false })} className="flecha-pagination">2</button>
+                        <button style={!this.state.page ? ({ background: '#e9e9e9' }) : ({ background: '#d3d3d3' })} onClick={() => this.setState({ page: true })} className="flecha-pagination">1</button>
+                        <button style={this.state.page ? ({ background: '#e9e9e9' }) : ({ background: '#d3d3d3' })} onClick={() => this.setState({ page: false })} className="flecha-pagination">2</button>
                     </div>
                 </div>
             </>
