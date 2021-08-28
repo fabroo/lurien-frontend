@@ -4,17 +4,20 @@
 }
 .total{
     display: flex;
+    flex-direction: column;
 }
 .card{
-    margin-top: 100px !important;
+    margin-top: 50px !important;
 }
 .card-body{
-    height: 550px;
+    height: auto;
+
+    padding: 50px;
 }
 .pelele{
     text-align: center;
-justify-content: space-around;
-align-items: center;
+    justify-content: space-around;
+    align-items: center;
     display: grid;
     grid-template-rows: .1fr .8fr .1fr;
 }
@@ -22,7 +25,7 @@ align-items: center;
     margin-top:1rem !important;
 }
 .registro-txt{
-    font-family: Montserrat;
+    font-family: 'Nunito', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -31,7 +34,7 @@ align-items: center;
     color: #282828;
 }
 .ultima-entrada-txt{
-    font-family: Montserrat;
+    font-family: 'Nunito', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -46,7 +49,7 @@ align-items: center;
 }
 .container1{
     width: 883.08px;
-height: 426.94px;
+/* height: 426.94px; */
 }
 .el-grafico-img{
 
@@ -67,15 +70,15 @@ height: 426.94px;
     align-items: center;
 }
 .profile-text{
-    font-family: Poppins;
+    font-family: 'Nunito', sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 25px;
     line-height: 0%;color: #676767;
 }
 .profile-picture-img{
-   width: 134.68px;;
-  height: 134.46px;
+   width: 100px;;
+  height: 100px;
   object-fit: cover;
     border-radius: 117px;
 }
@@ -85,9 +88,8 @@ height: 426.94px;
     border-radius: 50px;
     width: 84px;
     height: 24.56px;
-    margin-bottom: 23px;
     margin-top: 30px;
-    font-family: Montserrat;
+    font-family: 'Nunito', sans-serif;
     border: none;
     font-style: normal;
     font-weight: normal;
@@ -96,25 +98,22 @@ height: 426.94px;
     color: #D3D3D3;
 }
 .qr-code-text{
-    margin-top: 4px;
-    font-family: Poppins;
+    font-family: 'Nunito', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 0%;
     color: #282828;
 
 }
 .qr-code-imag{
-    width: 73.59px;
-height: 73.47px;
+    width: 90px;
+    height: 90px;
 }
 .profile-name{
     text-align: center;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 25px;
     font-weight: 600;
 }
 
@@ -124,12 +123,10 @@ height: 73.47px;
 }
 
 .datos-del-perfil-text{
-    margin-top: 10px;
-    margin-bottom: 60px;
-    
-    font-family: Montserrat;
-    font-style: normal;
-    font-size: 18px;
+    margin-bottom: 40px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 25px;
     line-height: 0%;
     color: #282828;
 }
@@ -154,10 +151,10 @@ height: 73.47px;
     display: flex;
 }
 .description{
-    font-family: Montserrat;
+    font-family: 'Nunito', sans-serif;
     font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
+    font-weight: 600;
+    font-size: 20px;
     line-height: 0%;
     color: #272727;
 }
@@ -167,10 +164,10 @@ height: 73.47px;
 .value-field{
     margin-left: 10px;
     border: none;
-    font-family: Montserrat;
+    font-family: 'Nunito', sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 13px;
+    font-size: 18px;
     line-height: 0%;
     width: 200px;
     color: #272727;
@@ -191,12 +188,6 @@ height: 73.47px;
         margin-left: 0;
 
         margin-bottom: 40px;
-    }
-    .datos-del-perfil, .fields{
-        text-align: center;
-    }
-    .datos-del-perfil .value-field{
-        border: none;
     }
     .second-row{
         display: flex;

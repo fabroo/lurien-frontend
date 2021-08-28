@@ -46,9 +46,12 @@ const Login = props => {
         AuthService.login(user).then(async data => {
             const { isAuthenticated, user, error, fbToken } = data;
             if (isAuthenticated) {
+                console.log(`[DATA]`,data)
                 await firebase.auth().signInWithCustomToken(fbToken)
                 authContext.setUser(user);
                 authContext.setIsAuthenticated(isAuthenticated);
+                // document.cookie = `access_token=${}`
+                console.log("ACCESS TOKEN ES",)
                 props.history.push('/profile');
             }
             if (error) {
@@ -92,7 +95,7 @@ const Login = props => {
                                 <div>
                                 </div>
                                 <div>
-                                    <button className="aceptar" type="submit" style={toggle ? { background: '#272727', color: '#F8F8F8' } : { background: '#F8F8F8', color: '#272727' }}>{!loading ? ("Enter") : (<img src={Loading} alt="loading" style={{ width: '60px', color: "white" }} />)}</button>
+                                    <button className="aceptar" type="submit" style={toggle ? { background: '#272727', color: '#F8F8F8' } : { background: '#F8F8F8', color: '#272727' }}>{!loading ? ("Login") : (<img src={Loading} alt="loading" style={{ width: '60px', color: "white" }} />)}</button>
                                 </div>
                                 <div>
                                 </div>

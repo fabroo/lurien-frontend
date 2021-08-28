@@ -17,7 +17,7 @@ import { CSSTransition } from 'react-transition-group';
 const Navbar = props => {
     // const [endpoint,setEndpoint] = useState("http://localhost:3005/")
     const { isAuthenticated, user, setIsAuthenticated, setOpenn, open2, setUser } = useContext(AuthContext);
-    const [dark, setdark] = useState(true);
+    const [dark, setdark] = useState(false);
     const authContext = useContext(AuthContext);
     const [open, setOpen] = useState(false);
     const [setMenuHeight] = useState(null);
@@ -32,6 +32,7 @@ const Navbar = props => {
     }
     const toggleTheme = () => {
         setdark(!dark)
+        console.log(dark)
         authContext.setdarkk(dark)
     }
 

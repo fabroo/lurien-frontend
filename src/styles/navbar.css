@@ -1,5 +1,6 @@
 /* FONTS*/
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;1,300;1,400&display=swap');
 
 .navbar{
     text-align: center;
@@ -29,7 +30,7 @@
     margin-left: 20px;
     font-size: 38px;
     text-decoration: none !important;
-    font-family: 'Montserrat', sans-serif !important;
+font-family: 'Nunito', sans-serif;
 }
 /*BUTTONS*/
 .nav-links{
@@ -46,7 +47,7 @@
     right:0; 
 }
 .nav-link{
-    font-family: 'Montserrat', sans-serif !important;
+font-family: 'Nunito', sans-serif;
     text-decoration: none !important;
     list-style: none;
     cursor: pointer;

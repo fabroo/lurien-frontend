@@ -10,13 +10,17 @@ export default {
             method: "post",
             body: JSON.stringify(user),
             headers: {
-                'Content-Type': 'application/json'
+                "Accept": 'application/json',
+        'Content-Type': 'application/json',
             }
-        }).then(res => {
-            if (res.status !== 401)
-                return res.json().then(data => data);
-            else
-                return { isAuthenticated: false, user: { username: "", role: "", dni: "", mail: "", companyID: "", pfp:"", qrLink:"" }, error: true };
+        }).then(async res => {
+            if (res.status !== 401) {
+                console.log("res", await res)
+                let data = await res.json().then(data => data);
+                localStorage.setItem("user", JSON.stringify(data))
+                return data;
+            } else
+                return { isAuthenticated: false, user: { username: "", role: "", dni: "", mail: "", companyID: "", pfp: "", qrLink: "" }, error: true };
         })
     },
     register: async user => {
@@ -28,7 +32,7 @@ export default {
         return await axios.post(`${ip}/api/user/registerNew`, user)
             .then(res => res)
     },
-    
+
     logout: () => {
         return fetch(`/api/user/logout`)
             .then(res => res.json())
@@ -40,29 +44,29 @@ export default {
             .then(res => res)
 
     },
-    
+
     getManUser: async (area) => {
         //cambiar con la ip de tu casa
         return await axios.get(`${ip}/api/user/manUser/${area}`)
             .then(res => res)
 
     },
-    
+
     downloadP: async (companyid) => {
         //cambiar con la ip de tu casa
         return await axios.get(`${ip}/api/user/download/` + companyid)
             .then(res => res)
 
     },
-    
+
     getMod: async () => {
         //cambiar con la ip de tu casa
         return await axios.get(`${ip}/api/user/mod`)
             .then(res => res)
 
     },
-    upload: async (data, companyid,dni) => {
-        return await axios.post(`${ip}/api/upload/upload/`+companyid+'/'+dni, {data})
+    upload: async (data, companyid, dni) => {
+        return await axios.post(`${ip}/api/upload/upload/` + companyid + '/' + dni, { data })
             .then(res => res)
 
     },
@@ -98,10 +102,14 @@ export default {
     isAuthenticated: () => {
         return fetch(`${ip}/api/user/authenticated`)
             .then(res => {
-                if (res.status !== 401)
+                if (res.status !== 401) {
+                    console.log("el authenticate me dio", res)
                     return res.json().then(data => data);
-                else
-                    return { isAuthenticated: false, user: { username: "", role: "", dni: "", mail: "", companyid: "",pfp:"",qrLink:"" }, error: true };
+                }
+                else {
+                    console.log("el authenticate me dio", res)
+                    return { isAuthenticated: false, user: { username: "", role: "", dni: "", mail: "", companyid: "", pfp: "", qrLink: "" }, error: true };
+                }
             });
     }
 

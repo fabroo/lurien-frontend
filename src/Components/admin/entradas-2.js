@@ -23,7 +23,6 @@ export default class Nose2 extends Component {
         }
     }
     async componentDidMount() {
-        let direcc = "http://${process.env.REACT_APP_IP}:8080"
         let direcc1 = "https://backend.lurien.team"
         const entradas = await axios.get(`${direcc1}/api/entradas/historial/${this.state.companyid}`)
         let dbEntries = entradas.data.entradas

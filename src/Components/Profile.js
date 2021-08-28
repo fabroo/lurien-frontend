@@ -21,8 +21,8 @@ const Profile = (props) => {
                 borderColor: 'rgba(75,192,192,1)',
                 borderCapStyle: 'butt',
                 borderDash: [],
-                animation:{
-                    duration:1.5
+                animation: {
+                    duration: 1.5
                 },
                 borderDashOffset: 0.0,
                 borderJoinStyle: 'miter',
@@ -46,12 +46,12 @@ const Profile = (props) => {
         setPicture(e.target.files)
         document.getElementById('btnCnfm').classList.remove('hidden')
     }
-   
+
     const onClickHandler = () => {
         var str = firebase.storage().ref(`${user.companyID}/pfp/${user.dni}.png`)
         if (picture.length > 0) {
             str.put(picture[0], {
-                contentType:"image/png"
+                contentType: "image/png"
             }).then(snap => {
                 snap.ref.getDownloadURL().then(url => {
                     AuthService.uploadPfp(url, user.companyID, user.dni)
@@ -80,7 +80,6 @@ const Profile = (props) => {
                         <div className="card-body">
                             <div className="whole-body">
                                 <div className="profile-picture">
-                                    <p className="profile-text">Profile Picture</p>
                                     <img src={usuario.pfp} alt="pfp" className="profile-picture-img" />
                                     <button className="change-profile-picture" style={{ display: "block", width: "120px", height: "30px" }} onClick={() => document.getElementById('getFile').click()}>Change Photo</button>
                                     <input required={true} type="file" onChange={onChangeHandler} name="holu" style={{ display: 'none' }} id="getFile" accept="image/jpeg,image/png,image/jpg" />

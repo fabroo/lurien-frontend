@@ -48,7 +48,7 @@ const Admin = props => {
     <>
       <Notifications />
 
-      <div className="botonera-admin" style={{ marginBottom: '80px' }}>
+      <div className="botonera-admin" style={{ marginBottom: '30px' }}>
 
 
         <button className="botones-paginas-tabla"  onClick={() => showTabla()} data-tip data-for='sadFace1'><img src={b1} alt="boton1" /> </button>

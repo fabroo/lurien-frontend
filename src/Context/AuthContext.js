@@ -14,6 +14,7 @@ export default ({ children }) => {
     const [open2,setOpenn] = useState(false);
     
     useEffect(() => {
+        console.log("empieza")
         AuthService.isAuthenticated().then(data => {
             setUser(data.user);
             setIsAuthenticated(data.isAuthenticated);

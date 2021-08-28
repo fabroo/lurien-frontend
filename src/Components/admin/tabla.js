@@ -348,7 +348,7 @@ const Tabla = (areas) => {
                         </div>
                     ) : (
                             <div className="a" style={{ alignItems: 'center', textAlign: 'center' }}>
-                                <img src={Loading} alt="loading" style={{ width: '200px', color: "white" }} />
+                                <img src={Loading} alt="loading" style={{ width: '100px', color: "white" }} />
                             </div>
                         )}
 

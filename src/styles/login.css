@@ -15,23 +15,23 @@ button:focus {outline:0;}
     border-color: #cecece;
 }
 .login_text{
-    margin-top: 71px;
-    font-family: Montserrat;
+    padding-top: 71px;
+    font-family: 'Nunito', sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 48px;
+    font-size: 54px;
     line-height: 0%;
     text-align: center;
 }
 .campos{
-    margin-top: 110px;
+    margin-top: 90px;
 }
 .input{
     margin-bottom: 30px;
-    width: 550px;
+    width: 500px;
     height: 40px;
     font-size: 20px;
-    font-family: Montserrat;
+    font-family: 'Nunito', sans-serif;
     border: none;
     border-bottom: 1px solid #7A7A7A;
     background: transparent; 
@@ -53,10 +53,10 @@ button:focus {outline:0;}
     grid-template-columns: 1fr 1fr 1fr ;
 }
 .aceptar{
-    margin-top: 74px;
+    margin-top: 20px;
     cursor: pointer;
     width: 239px;
-    height: 70px;
+    height: 55px;
     border-radius: 50px;
     background-color: #1E1E1E;
     border: none;
@@ -79,12 +79,12 @@ button:focus {outline:0;}
     transform: scale(1.1);
 }
 .registrar{
-    font-family: Montserrat;
+    font-family: 'Nunito', sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 0%;
-    margin-top: 57px;
+    margin-top: 30px;
 }
 .textoo{
     display: grid;
